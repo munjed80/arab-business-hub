@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">مركز الأعمال العربي</title>
+  <desc id="desc">رمز بسيط يمثل الأحرف الأولى</desc>
+  <rect width="64" height="64" fill="#0f3b7d" rx="10" ry="10"/>
+  <path d="M14 46V18h8l10 13 10-13h8v28h-8V33l-10 12-10-12v13z" fill="#f7c948"/>
+</svg>

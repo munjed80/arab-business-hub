@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">مركز الأعمال العربي</title>
+  <desc id="desc">صورة مشاركة للعلامة التجارية</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f3b7d"/>
+      <stop offset="100%" stop-color="#102a56"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="140" width="1040" height="350" rx="26" fill="#fff" opacity="0.08"/>
+  <text x="600" y="250" text-anchor="middle" font-family="'Cairo', 'Tahoma', sans-serif" font-size="64" fill="#f7c948">مركز الأعمال العربي</text>
+  <text x="600" y="330" text-anchor="middle" font-family="'Cairo', 'Tahoma', sans-serif" font-size="40" fill="#e6ecf5">شريك نمو رواد الأعمال العرب</text>
+  <text x="600" y="410" text-anchor="middle" font-family="'Cairo', 'Tahoma', sans-serif" font-size="30" fill="#d9e2ec">هوية بصرية • مواقع إلكترونية • تسويق رقمي • دعم نمو</text>
+</svg>
