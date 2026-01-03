@@ -16,6 +16,15 @@
 }
 
 :root {
+    /* Theme tokens */
+    --bg: #0b1522;
+    --surface: #0f1d2d;
+    --text: #e9eef7;
+    --muted: #c7d2e1;
+    --border: #1e3148;
+    --accent: #c7a15a;
+    --accent2: #1b8a9c;
+
     /* Colors */
     --primary-color: #13334f;
     --primary-dark: #0a2238;
@@ -23,13 +32,13 @@
     --secondary-color: #c7a15a;
     --secondary-dark: #9f7f3d;
     --accent-color: #1b8a9c;
-    --text-dark: #e9eef7;
-    --text-medium: #c7d2e1;
-    --text-light: #9aa8be;
-    --bg-white: #f6f8fb;
-    --bg-light: #0f1d2d;
-    --bg-gray: #132437;
-    --border-color: #1e3148;
+    --text-dark: var(--text);
+    --text-medium: var(--muted);
+    --text-light: color-mix(in srgb, var(--muted) 70%, transparent);
+    --bg-white: var(--surface);
+    --bg-light: color-mix(in srgb, var(--bg) 80%, #0f1d2d 20%);
+    --bg-gray: var(--border);
+    --border-color: var(--border);
     --success-color: #2f9e44;
     --error-color: #dc3545;
 
@@ -56,18 +65,59 @@
     --shadow-xl: 0 20px 40px rgba(12, 27, 42, 0.16);
 }
 
+.theme-dark {
+    --bg: #0b1522;
+    --surface: #0f1d2d;
+    --text: #e9eef7;
+    --muted: #c7d2e1;
+    --border: #1e3148;
+    --accent: #c7a15a;
+    --accent2: #1b8a9c;
+    --bg-white: var(--surface);
+    --bg-light: #0f1d2d;
+    --bg-gray: #132437;
+    --text-medium: var(--muted);
+    --text-light: color-mix(in srgb, var(--muted) 60%, transparent);
+    background: var(--bg);
+    color: var(--muted);
+}
+
+.theme-light {
+    --bg: #f6f8fb;
+    --surface: #ffffff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #d6dee9;
+    --accent: #13334f;
+    --accent2: #1b8a9c;
+    --primary-color: var(--accent);
+    --primary-dark: #0a2238;
+    --primary-light: #1f4e73;
+    --secondary-color: #c7a15a;
+    --secondary-dark: #9f7f3d;
+    --bg-white: var(--surface);
+    --bg-light: #eef2f7;
+    --bg-gray: #d6dee9;
+    --text-dark: var(--text);
+    --text-medium: #334155;
+    --text-light: #4b5563;
+    --border-color: var(--border);
+    background: var(--bg);
+    color: var(--muted);
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
     font-family: var(--font-arabic);
-    color: var(--text-medium);
+    color: var(--muted);
     line-height: 1.7;
     font-weight: 400;
     background: radial-gradient(circle at 20% 20%, rgba(31, 138, 156, 0.08), transparent 32%),
                 radial-gradient(circle at 84% 12%, rgba(199, 161, 90, 0.12), transparent 26%),
-                linear-gradient(180deg, #060c12, #0b1522 40%, #0b1726 100%);
+                linear-gradient(180deg, #060c12, var(--bg) 40%, #0b1726 100%);
     overflow-x: hidden;
     direction: rtl;
     text-align: right;
@@ -75,8 +125,8 @@ body {
 }
 
 .icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     stroke: currentColor;
     stroke-width: 1.8;
     fill: none;
@@ -88,8 +138,8 @@ body {
 }
 
 svg {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     stroke: currentColor;
     stroke-width: 1.5;
     fill: none;
@@ -150,6 +200,12 @@ section {
                 radial-gradient(circle at 86% 14%, rgba(27, 138, 156, 0.08), transparent 28%),
                 linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96));
     border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+section.theme-light {
+    background: var(--bg);
+    border-top: 1px solid var(--border-color);
+    color: var(--muted);
 }
 
 .section-title {
@@ -1068,9 +1124,26 @@ section {
    ========================================== */
 
 .footer {
-    background-color: var(--text-dark);
-    color: var(--bg-white);
+    background: linear-gradient(180deg, var(--primary-dark), #050b12);
+    color: var(--text);
     padding: var(--spacing-xl) 0 var(--spacing-md);
+    border-top: 1px solid color-mix(in srgb, var(--border-color) 70%, transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 12% 8%, rgba(199, 161, 90, 0.08), transparent 28%),
+                radial-gradient(circle at 86% 4%, rgba(27, 138, 156, 0.08), transparent 24%);
+    pointer-events: none;
+}
+
+.footer .container {
+    position: relative;
+    z-index: 1;
 }
 
 .footer-content {
@@ -1082,12 +1155,12 @@ section {
 
 .footer-section h3,
 .footer-section h4 {
-    color: var(--bg-white);
+    color: var(--text);
     margin-bottom: var(--spacing-sm);
 }
 
 .footer-section p {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--muted);
 }
 
 .footer-section ul {
@@ -1099,12 +1172,12 @@ section {
 }
 
 .footer-section ul li a {
-    color: rgba(255, 255, 255, 0.8);
+    color: color-mix(in srgb, var(--text) 78%, transparent);
     transition: color var(--transition-fast);
 }
 
 .footer-section ul li a:hover {
-    color: var(--bg-white);
+    color: var(--accent);
 }
 
 .footer-actions {
@@ -1115,13 +1188,13 @@ section {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid color-mix(in srgb, var(--border-color) 50%, transparent);
     padding-top: var(--spacing-md);
     text-align: center;
 }
 
 .footer-bottom p {
-    color: rgba(255, 255, 255, 0.6);
+    color: color-mix(in srgb, var(--text) 65%, transparent);
 }
 
 /* ==========================================
@@ -1618,7 +1691,7 @@ section {
     gap: var(--spacing-sm);
 }
 
-/* Premium dark surfaces across pages */
+/* Premium surfaces respect theme tokens */
 .service-detail-content,
 .vm-card,
 .value-card,
@@ -1634,11 +1707,11 @@ section {
 .apply-card,
 .cta-panel,
 .testimonial-card {
-    background: linear-gradient(150deg, rgba(18, 30, 44, 0.94), rgba(10, 17, 26, 0.94));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.4);
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.28);
     border-radius: 18px;
-    color: var(--text-medium);
+    color: var(--muted);
 }
 
 .service-detail-content h2,
@@ -1653,7 +1726,7 @@ section {
 .vm-card h3,
 .value-card h3,
 .apply-card h3 {
-    color: #f2d8a4;
+    color: var(--text);
 }
 
 .feature-icon {
