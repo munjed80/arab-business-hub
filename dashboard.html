@@ -234,6 +234,14 @@
                             </div>
                             <span class="copy-status" id="adminCopyStatus"></span>
                         </div>
+
+                        <div class="dashboard-card" id="accessDiagnostics" style="display:none;">
+                            <div class="access-header">
+                                <h3>فحص الوصول</h3>
+                                <p class="inline-help">⚙️ معلومات سريعة بعد تسجيل الدخول للتأكد من أن الأكواد تعمل كما يجب.</p>
+                            </div>
+                            <ul class="code-list" id="diagnosticsList"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -289,6 +297,9 @@
     <script src="js/script.js"></script>
     <script>
         (function() {
+            const normalizeCode = (value) => (value || '').trim().toUpperCase();
+            const normalizeName = (value) => (value || '').trim().toLowerCase();
+
             const ADMIN_MODE_CODE = 'ABH-ADMIN-2024';
             const ACCESS_CODES = Object.freeze([
                 'ABH-94K2-7XM',
@@ -297,8 +308,8 @@
                 'ABH-63WD-8YL',
                 'ABH-10CR-5ZU',
                 'ABH-46MN-2QS'
-            ]);
-            const LEGACY_ACCESS_CODES = Object.freeze(['ABH-2024']);
+            ].map(normalizeCode));
+            const LEGACY_ACCESS_CODES = Object.freeze(['ABH-2024'].map(normalizeCode));
             const ALL_ACCESS_CODES = [...ACCESS_CODES, ...LEGACY_ACCESS_CODES];
             const ACCESS_KEY = 'abh_access_code';
             const TASK_KEY = 'abh_dashboard_tasks';
@@ -346,6 +357,8 @@
             const accessCodesList = document.getElementById('accessCodesList');
             const copyAllCodesBtn = document.getElementById('copyAllCodes');
             const copyStatus = document.getElementById('copyStatus');
+            const accessDiagnostics = document.getElementById('accessDiagnostics');
+            const diagnosticsList = document.getElementById('diagnosticsList');
             const statusChips = Array.from(document.querySelectorAll('.status-chip'));
             const counters = {
                 All: document.getElementById('countAll'),
@@ -359,8 +372,6 @@
                 adminCodeValue.textContent = ADMIN_MODE_CODE;
             }
 
-            const normalizeCode = (value) => (value || '').trim().toUpperCase();
-            const normalizeName = (value) => (value || '').trim().toLowerCase();
             let adminMode = false;
 
             function isValidAccessCode(code) {
@@ -439,6 +450,7 @@
                 dashboardPanel.style.display = 'block';
                 renderAccessCodes();
                 renderTasks();
+                renderAccessDiagnostics();
             }
 
             function showGate() {
@@ -922,6 +934,28 @@
                 });
             }
 
+            function renderAccessDiagnostics() {
+                if (!accessDiagnostics) return;
+                const unlocked = hasAccess();
+                accessDiagnostics.style.display = unlocked ? 'block' : 'none';
+                diagnosticsList.innerHTML = '';
+
+                const activeCodes = document.createElement('li');
+                activeCodes.className = 'code-item';
+                const legacyLabel = LEGACY_ACCESS_CODES.length ? ` + ${LEGACY_ACCESS_CODES.length} قديمة` : '';
+                activeCodes.textContent = `الرموز النشطة: ${ACCESS_CODES.length} أساسية${legacyLabel}`;
+
+                const adminState = document.createElement('li');
+                adminState.className = 'code-item';
+                adminState.textContent = adminMode ? 'وضع المشرف: مفعل' : 'وضع المشرف: غير مفعل';
+
+                const storageItem = document.createElement('li');
+                storageItem.className = 'code-item';
+                storageItem.textContent = `مفاتيح التخزين: ${ACCESS_KEY}, ${TASK_KEY} (لا يتم تخزين وضع المشرف)`;
+
+                diagnosticsList.append(activeCodes, adminState, storageItem);
+            }
+
             function updateAdminUiState() {
                 adminToggle.textContent = adminMode ? 'وضع المشرف مفعل' : 'تفعيل وضع المشرف';
                 adminToggle.classList.toggle('active', adminMode);
@@ -936,6 +970,7 @@
                 }
                 renderTasks();
                 renderAdminTaskBoard();
+                renderAccessDiagnostics();
             }
 
             function setAdminMode(value) {
