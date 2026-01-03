@@ -74,7 +74,10 @@
                                 <p class="lead">تحديث الحالات، استلام المهام، وإضافة روابط التسليم. كل شيء محفوظ محلياً.</p>
                                 <p class="inline-help">💡 للتعاون السريع: استخدم البحث، الفلاتر، وتواريخ التحديث لمعرفة أحدث التغييرات.</p>
                             </div>
-                            <button type="button" class="btn btn-secondary btn-small" id="adminToggle">تفعيل وضع المشرف</button>
+                            <div class="admin-toggle-area">
+                                <button type="button" class="btn btn-secondary btn-small" id="adminToggle">تفعيل وضع المشرف</button>
+                                <span class="admin-mode-badge" id="adminModeBadge">وضع المشرف مفعّل</span>
+                            </div>
                         </div>
 
                         <div class="task-controls">
@@ -166,7 +169,7 @@
                             <p class="inline-help">📱 في الشاشات الصغيرة تظهر المهام كبطاقات، وعلى الحاسوب تبقى في جدول منظم.</p>
                         </div>
 
-                        <div class="admin-task-board" id="adminTaskBoard">
+                        <div class="admin-task-board" id="adminTaskBoard" style="display:none;">
                             <div class="admin-board-header">
                                 <div>
                                     <h3>إدارة المهام</h3>
@@ -218,6 +221,18 @@
                                 <span class="copy-status" id="copyStatus"></span>
                             </div>
                             <ul class="code-list" id="accessCodesList"></ul>
+                        </div>
+
+                        <div class="dashboard-card admin-code-card" id="adminCodeSection" style="display:none;">
+                            <div class="access-header">
+                                <h3>رمز وضع المشرف</h3>
+                                <p class="inline-help">⚠️ احتفظ بهذا الرمز في مكان آمن. يسمح بتفعيل أدوات المشرف.</p>
+                            </div>
+                            <div class="admin-code-row">
+                                <span class="admin-code-value" id="adminCodeValue"></span>
+                                <button type="button" class="btn btn-primary btn-small" id="copyAdminCode">نسخ الرمز</button>
+                            </div>
+                            <span class="copy-status" id="adminCopyStatus"></span>
                         </div>
                     </div>
                 </div>
@@ -274,6 +289,7 @@
     <script src="js/script.js"></script>
     <script>
         (function() {
+            const ADMIN_MODE_CODE = 'ABH-ADMIN-2024';
             const ACCESS_CODES = Object.freeze([
                 'ABH-94K2-7XM',
                 'ABH-57GQ-29N',
@@ -320,7 +336,13 @@
             const searchBox = document.getElementById('searchBox');
             const sortBy = document.getElementById('sortBy');
             const adminToggle = document.getElementById('adminToggle');
+            const adminModeBadge = document.getElementById('adminModeBadge');
             const adminGroupList = document.getElementById('adminGroupList');
+            const adminTaskBoard = document.getElementById('adminTaskBoard');
+            const adminCodeSection = document.getElementById('adminCodeSection');
+            const adminCodeValue = document.getElementById('adminCodeValue');
+            const adminCopyStatus = document.getElementById('adminCopyStatus');
+            const copyAdminCodeBtn = document.getElementById('copyAdminCode');
             const accessCodesList = document.getElementById('accessCodesList');
             const copyAllCodesBtn = document.getElementById('copyAllCodes');
             const copyStatus = document.getElementById('copyStatus');
@@ -333,12 +355,20 @@
                 Delivered: document.getElementById('countDelivered')
             };
 
+            if (adminCodeValue) {
+                adminCodeValue.textContent = ADMIN_MODE_CODE;
+            }
+
             const normalizeCode = (value) => (value || '').trim().toUpperCase();
             const normalizeName = (value) => (value || '').trim().toLowerCase();
             let adminMode = false;
 
             function isValidAccessCode(code) {
                 return ALL_ACCESS_CODES.includes(normalizeCode(code));
+            }
+
+            function isValidAdminCode(code) {
+                return normalizeCode(code) === normalizeCode(ADMIN_MODE_CODE);
             }
 
             function loadTasks() {
@@ -381,6 +411,8 @@
 
             let tasks = loadTasks();
 
+            setAdminMode(false);
+
             function saveTasks() {
                 localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
             }
@@ -412,9 +444,7 @@
             function showGate() {
                 accessCard.style.display = 'block';
                 dashboardPanel.style.display = 'none';
-                adminMode = false;
-                adminToggle.textContent = 'تفعيل وضع المشرف';
-                adminToggle.classList.remove('active');
+                setAdminMode(false);
             }
 
             function formatDate(value) {
@@ -878,14 +908,39 @@
                 });
             }
 
-            function copyToClipboard(text) {
+            function copyToClipboard(text, statusElement = copyStatus) {
                 if (!text) return;
                 navigator.clipboard.writeText(text).then(() => {
-                    copyStatus.textContent = '✔ تم النسخ';
-                    setTimeout(() => copyStatus.textContent = '', 1200);
+                    if (statusElement) {
+                        statusElement.textContent = '✔ تم النسخ';
+                        setTimeout(() => statusElement.textContent = '', 1200);
+                    }
                 }).catch(() => {
-                    copyStatus.textContent = '';
+                    if (statusElement) {
+                        statusElement.textContent = '';
+                    }
                 });
+            }
+
+            function updateAdminUiState() {
+                adminToggle.textContent = adminMode ? 'وضع المشرف مفعل' : 'تفعيل وضع المشرف';
+                adminToggle.classList.toggle('active', adminMode);
+                if (adminModeBadge) {
+                    adminModeBadge.style.display = adminMode ? 'inline-flex' : 'none';
+                }
+                if (adminTaskBoard) {
+                    adminTaskBoard.style.display = adminMode ? 'block' : 'none';
+                }
+                if (adminCodeSection) {
+                    adminCodeSection.style.display = adminMode ? 'block' : 'none';
+                }
+                renderTasks();
+                renderAdminTaskBoard();
+            }
+
+            function setAdminMode(value) {
+                adminMode = !!value;
+                updateAdminUiState();
             }
 
             function exportPayload() {
@@ -1002,12 +1057,13 @@
 
             copyAllCodesBtn.addEventListener('click', () => copyToClipboard(ACCESS_CODES.join('\n')));
 
+            copyAdminCodeBtn.addEventListener('click', () => copyToClipboard(ADMIN_MODE_CODE, adminCopyStatus));
+
             adminToggle.addEventListener('click', () => {
-                const code = prompt('أدخل رمز وصول لتفعيل وضع المشرف');
-                if (isValidAccessCode(code)) {
-                    adminMode = true;
-                    adminToggle.textContent = 'وضع المشرف مفعل';
-                    adminToggle.classList.add('active');
+                const code = prompt('أدخل رمز تفعيل وضع المشرف');
+                if (code === null) return;
+                if (isValidAdminCode(code)) {
+                    setAdminMode(true);
                 } else {
                     alert('رمز غير صحيح.');
                 }
