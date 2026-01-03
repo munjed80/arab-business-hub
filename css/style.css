@@ -2199,6 +2199,35 @@ section {
     font-family: monospace;
 }
 
+.js-status-row {
+    margin: var(--spacing-sm) 0;
+}
+
+.js-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    background: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.js-status-badge.success {
+    background: #e6f4ea;
+    color: #0f5132;
+    border-color: #badbcc;
+}
+
+.js-status-badge.error {
+    background: #f8d7da;
+    color: #842029;
+    border-color: #f5c2c7;
+}
+
 @media (max-width: 768px) {
     .apply-card,
     .dashboard-card {
