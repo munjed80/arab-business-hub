@@ -60,7 +60,8 @@
                         <h2>بوابة الدخول</h2>
                         <p class="lead">أدخل رمز الوصول لاستعراض المهام. يتم حفظ الرمز محلياً لتسهيل الدخول لاحقاً.</p>
                         <form class="access-form" id="accessForm">
-                            <input type="password" id="accessCode" placeholder="رمز الدخول" required>
+                            <input type="text" id="accessCode" class="access-code-input" placeholder="رمز الدخول" required>
+                            <button type="button" id="toggleAccessVisibility" class="btn btn-secondary btn-small" aria-label="إخفاء أو إظهار رمز الدخول">إخفاء</button>
                             <button type="submit" class="btn btn-primary">دخول</button>
                             <button type="button" id="resetAccess" class="btn btn-secondary">إعادة تعيين</button>
                         </form>
@@ -70,6 +71,7 @@
                                 <p class="inline-help">🔎 يظهر ما سيتم التحقق منه قبل تسجيل الدخول.</p>
                             </div>
                             <ul class="code-list">
+                                <li class="code-item"><strong>النص المدخل:</strong> <span id="rawInputPreview"></span></li>
                                 <li class="code-item"><strong>القيمة بعد التطبيع:</strong> <span id="normalizedPreview"></span></li>
                                 <li class="code-item"><strong>عدد أكواد الدخول:</strong> <span id="accessCodeCount"></span></li>
                                 <li class="code-item"><strong>مفتاح التخزين:</strong> <span id="storageKeyPreview"></span></li>
@@ -339,6 +341,7 @@
             const dashboardPanel = document.getElementById('dashboardPanel');
             const accessForm = document.getElementById('accessForm');
             const accessCodeInput = document.getElementById('accessCode');
+            const toggleAccessVisibility = document.getElementById('toggleAccessVisibility');
             const resetAccess = document.getElementById('resetAccess');
             const taskBody = document.getElementById('taskBody');
             const taskCards = document.getElementById('taskCards');
@@ -371,6 +374,7 @@
             const copyStatus = document.getElementById('copyStatus');
             const accessDiagnostics = document.getElementById('accessDiagnostics');
             const diagnosticsList = document.getElementById('diagnosticsList');
+            const rawInputPreview = document.getElementById('rawInputPreview');
             const normalizedPreview = document.getElementById('normalizedPreview');
             const accessCodeCount = document.getElementById('accessCodeCount');
             const storageKeyPreview = document.getElementById('storageKeyPreview');
@@ -440,6 +444,17 @@
 
             setAdminMode(false);
             renderPreLoginDiagnostics();
+
+            function setAccessVisibility(isVisible) {
+                if (!accessCodeInput) return;
+                accessCodeInput.type = isVisible ? 'text' : 'password';
+                if (toggleAccessVisibility) {
+                    toggleAccessVisibility.textContent = isVisible ? 'إخفاء' : 'إظهار';
+                    toggleAccessVisibility.setAttribute('aria-pressed', (!isVisible).toString());
+                }
+            }
+
+            setAccessVisibility(true);
 
             function saveTasks() {
                 localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
@@ -953,6 +968,9 @@
 
             function renderPreLoginDiagnostics() {
                 if (!normalizedPreview || !accessCodeCount || !storageKeyPreview) return;
+                if (rawInputPreview) {
+                    rawInputPreview.textContent = (accessCodeInput.value || '').trim() || '—';
+                }
                 const normalizedValue = normalizeCode(accessCodeInput.value);
                 normalizedPreview.textContent = normalizedValue || '—';
                 accessCodeCount.textContent = ACCESS_CODES.length;
@@ -1039,6 +1057,13 @@
             });
 
             accessCodeInput.addEventListener('input', renderPreLoginDiagnostics);
+
+            if (toggleAccessVisibility) {
+                toggleAccessVisibility.addEventListener('click', function() {
+                    const showText = accessCodeInput.type !== 'text';
+                    setAccessVisibility(showText);
+                });
+            }
 
             resetAccess.addEventListener('click', function() {
                 localStorage.removeItem(ACCESS_KEY);
