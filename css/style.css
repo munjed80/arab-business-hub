@@ -1863,6 +1863,12 @@ section {
     min-width: 240px;
 }
 
+.access-code-input {
+    direction: ltr;
+    text-align: left;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 .task-controls {
     display: flex;
     flex-wrap: wrap;
