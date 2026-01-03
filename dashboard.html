@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="لوحة مهام داخلية للأخصائيين مع حفظ محلي للمهام والحالة.">
+    <meta name="author" content="مركز الأعمال العربي">
+    <link rel="canonical" href="https://arab-business-hub.com/dashboard.html">
+    <meta property="og:title" content="لوحة المهام - مركز الأعمال العربي">
+    <meta property="og:description" content="إدارة المهام، التعليقات، وروابط التسليم مع حفظ محلي للأخصائيين.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:url" content="https://arab-business-hub.com/dashboard.html">
+    <meta property="og:image" content="https://arab-business-hub.com/og-image.svg">
+    <meta property="og:site_name" content="مركز الأعمال العربي">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="لوحة المهام - مركز الأعمال العربي">
+    <meta name="twitter:description" content="بوابة مهام داخلية للأخصائيين مع حفظ في المتصفح.">
+    <meta name="twitter:image" content="https://arab-business-hub.com/og-image.svg">
+    <title>لوحة المهام - مركز الأعمال العربي</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>مركز الأعمال العربي</h1>
+                </div>
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="services.html">الخدمات</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="pricing.html">الأسعار</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>لوحة المهام الداخلية</h1>
+                <p>إدارة المهام، الاستلام، والملاحظات مع حفظ محلي في متصفحك.</p>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" id="accessCard">
+                        <h2>بوابة الدخول</h2>
+                        <p class="lead">أدخل رمز الوصول لاستعراض المهام. يتم حفظ الرمز محلياً لتسهيل الدخول لاحقاً.</p>
+                        <form class="access-form" id="accessForm">
+                            <input type="password" id="accessCode" placeholder="رمز الدخول" required>
+                            <button type="submit" class="btn btn-primary">دخول</button>
+                            <button type="button" id="resetAccess" class="btn btn-secondary">إعادة تعيين</button>
+                        </form>
+                        <p class="inline-note">لا يتم إرسال أي بيانات لخادم خارجي.</p>
+                    </div>
+
+                    <div class="dashboard-card" id="dashboardPanel" style="display:none;">
+                        <h2>لوحة المهام</h2>
+                        <p class="lead">تحديث الحالات، استلام المهام، وإضافة روابط التسليم. كل شيء محفوظ محلياً.</p>
+
+                        <div class="task-controls">
+                            <input type="text" id="newTitle" placeholder="عنوان المهمة">
+                            <input type="text" id="newOwner" placeholder="المالك أو الفريق">
+                            <select id="newStatus">
+                                <option value="New">جديدة</option>
+                                <option value="Assigned">مُسندة</option>
+                                <option value="In Progress">قيد التنفيذ</option>
+                                <option value="Review">مراجعة</option>
+                                <option value="Delivered">تم التسليم</option>
+                            </select>
+                            <input type="text" id="claimName" placeholder="اسمك للاستلام">
+                            <button type="button" id="addTask" class="btn btn-secondary btn-small">إضافة مهمة</button>
+                        </div>
+
+                        <table class="task-table">
+                            <thead>
+                                <tr>
+                                    <th>المهمة</th>
+                                    <th>الحالة</th>
+                                    <th>المسؤول</th>
+                                    <th>ملاحظات</th>
+                                    <th>رابط التسليم</th>
+                                    <th>إجراء</th>
+                                </tr>
+                            </thead>
+                            <tbody id="taskBody"></tbody>
+                        </table>
+
+                        <div class="backup-area">
+                            <div class="apply-actions">
+                                <button type="button" id="exportTasks" class="btn btn-secondary btn-small">تصدير JSON</button>
+                                <button type="button" id="importTasks" class="btn btn-primary btn-small">استيراد JSON</button>
+                            </div>
+                            <textarea id="backupText" placeholder="ألصق النسخة الاحتياطية هنا أو انسخ البيانات الحالية."></textarea>
+                            <p class="inline-note">النسخ الاحتياطي محلي فقط للاحتفاظ بتقدم الفريق.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>مركز الأعمال العربي</h3>
+                    <p>شريكك في النجاح الرقمي</p>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="services.html">الخدمات</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="pricing.html">الأسعار</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>الخدمات</h4>
+                    <ul>
+                        <li><a href="services.html#branding">العلامة التجارية</a></li>
+                        <li><a href="services.html#web">الموقع الإلكتروني</a></li>
+                        <li><a href="services.html#marketing">التسويق والنمو</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>للأخصائيين</h4>
+                    <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                    <div class="footer-actions">
+                        <a href="apply.html" class="btn btn-primary btn-small">التسجيل للعمل معنا</a>
+                        <a href="dashboard.html" class="btn btn-secondary btn-small">لوحة المهام</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><a href="contact.html">نموذج الاتصال</a></li>
+                        <li><a href="mailto:info@arab-business-hub.com">info@arab-business-hub.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 مركز الأعمال العربي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        (function() {
+            const ACCESS_CODE = 'ABH-2024';
+            const ACCESS_KEY = 'abh_access_code';
+            const TASK_KEY = 'abh_dashboard_tasks';
+            const statusLabels = {
+                'New': 'جديدة',
+                'Assigned': 'مُسندة',
+                'In Progress': 'قيد التنفيذ',
+                'Review': 'مراجعة',
+                'Delivered': 'تم التسليم'
+            };
+
+            const accessCard = document.getElementById('accessCard');
+            const dashboardPanel = document.getElementById('dashboardPanel');
+            const accessForm = document.getElementById('accessForm');
+            const accessCodeInput = document.getElementById('accessCode');
+            const resetAccess = document.getElementById('resetAccess');
+            const taskBody = document.getElementById('taskBody');
+            const newTitle = document.getElementById('newTitle');
+            const newOwner = document.getElementById('newOwner');
+            const newStatus = document.getElementById('newStatus');
+            const addTaskBtn = document.getElementById('addTask');
+            const claimNameInput = document.getElementById('claimName');
+            const exportBtn = document.getElementById('exportTasks');
+            const importBtn = document.getElementById('importTasks');
+            const backupText = document.getElementById('backupText');
+
+            function loadTasks() {
+                try {
+                    const saved = localStorage.getItem(TASK_KEY);
+                    if (saved) {
+                        return JSON.parse(saved);
+                    }
+                } catch (e) {
+                    console.warn('تعذر قراءة المهام من التخزين المحلي', e);
+                }
+                return [
+                    { id: Date.now(), title: 'تحديث صفحة الخدمات', owner: 'فريق المحتوى', status: 'New', assignee: '', notes: '', link: '' },
+                    { id: Date.now() + 1, title: 'إعداد حملة إطلاق', owner: 'التسويق', status: 'Assigned', assignee: 'أحمد', notes: 'حاجة لتأكيد الميزانية', link: '' }
+                ];
+            }
+
+            let tasks = loadTasks();
+
+            function saveTasks() {
+                localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
+            }
+
+            function hasAccess() {
+                return localStorage.getItem(ACCESS_KEY) === ACCESS_CODE;
+            }
+
+            function showDashboard() {
+                accessCard.style.display = 'none';
+                dashboardPanel.style.display = 'block';
+                renderTasks();
+            }
+
+            function showGate() {
+                accessCard.style.display = 'block';
+                dashboardPanel.style.display = 'none';
+            }
+
+            function renderTasks() {
+                taskBody.innerHTML = '';
+                tasks.forEach((task, index) => {
+                    const row = document.createElement('tr');
+
+                    const titleCell = document.createElement('td');
+                    titleCell.innerHTML = `<strong>${task.title}</strong><br><span class="inline-note">${task.owner || ''}</span>`;
+                    row.appendChild(titleCell);
+
+                    const statusCell = document.createElement('td');
+                    const statusSelect = document.createElement('select');
+                    ['New','Assigned','In Progress','Review','Delivered'].forEach(val => {
+                        const option = document.createElement('option');
+                        option.value = val;
+                        option.textContent = statusLabels[val];
+                        if (val === task.status) option.selected = true;
+                        statusSelect.appendChild(option);
+                    });
+                    statusSelect.addEventListener('change', () => {
+                        task.status = statusSelect.value;
+                        saveTasks();
+                    });
+                    statusCell.appendChild(statusSelect);
+                    row.appendChild(statusCell);
+
+                    const assigneeCell = document.createElement('td');
+                    const assigneeInput = document.createElement('input');
+                    assigneeInput.type = 'text';
+                    assigneeInput.value = task.assignee || '';
+                    assigneeInput.placeholder = 'اسم المسؤول';
+                    assigneeInput.addEventListener('change', () => {
+                        task.assignee = assigneeInput.value.trim();
+                        saveTasks();
+                    });
+                    assigneeCell.appendChild(assigneeInput);
+                    row.appendChild(assigneeCell);
+
+                    const notesCell = document.createElement('td');
+                    const notesArea = document.createElement('textarea');
+                    notesArea.rows = 3;
+                    notesArea.value = task.notes || '';
+                    notesArea.placeholder = 'ملاحظات أو طلبات مراجعة';
+                    notesArea.addEventListener('change', () => {
+                        task.notes = notesArea.value.trim();
+                        saveTasks();
+                    });
+                    notesCell.appendChild(notesArea);
+                    row.appendChild(notesCell);
+
+                    const linkCell = document.createElement('td');
+                    const linkInput = document.createElement('input');
+                    linkInput.type = 'url';
+                    linkInput.value = task.link || '';
+                    linkInput.placeholder = 'رابط التسليم أو مستند';
+                    linkInput.addEventListener('change', () => {
+                        task.link = linkInput.value.trim();
+                        saveTasks();
+                    });
+                    linkCell.appendChild(linkInput);
+                    row.appendChild(linkCell);
+
+                    const actionCell = document.createElement('td');
+                    const claimButton = document.createElement('button');
+                    claimButton.type = 'button';
+                    claimButton.className = 'btn btn-primary btn-small';
+                    claimButton.textContent = 'استلام';
+                    claimButton.addEventListener('click', () => {
+                        const claimer = claimNameInput.value.trim() || prompt('أدخل اسمك لاستلام المهمة');
+                        if (claimer) {
+                            task.assignee = claimer;
+                            task.status = 'Assigned';
+                            saveTasks();
+                            renderTasks();
+                        }
+                    });
+                    actionCell.appendChild(claimButton);
+                    row.appendChild(actionCell);
+
+                    taskBody.appendChild(row);
+                });
+                backupText.value = '';
+            }
+
+            accessForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (accessCodeInput.value.trim() === ACCESS_CODE) {
+                    localStorage.setItem(ACCESS_KEY, ACCESS_CODE);
+                    showDashboard();
+                } else {
+                    accessCodeInput.value = '';
+                    alert('الرمز غير صحيح.');
+                }
+            });
+
+            resetAccess.addEventListener('click', function() {
+                localStorage.removeItem(ACCESS_KEY);
+                showGate();
+            });
+
+            addTaskBtn.addEventListener('click', function() {
+                const title = newTitle.value.trim();
+                if (!title) return;
+                const owner = newOwner.value.trim();
+                const status = newStatus.value;
+                tasks.push({
+                    id: Date.now(),
+                    title,
+                    owner,
+                    status,
+                    assignee: claimNameInput.value.trim() || '',
+                    notes: '',
+                    link: ''
+                });
+                saveTasks();
+                renderTasks();
+                newTitle.value = '';
+                newOwner.value = '';
+            });
+
+            exportBtn.addEventListener('click', function() {
+                backupText.value = JSON.stringify(tasks, null, 2);
+                navigator.clipboard.writeText(backupText.value).catch(() => {});
+            });
+
+            importBtn.addEventListener('click', function() {
+                if (!backupText.value.trim()) return;
+                try {
+                    const imported = JSON.parse(backupText.value);
+                    if (Array.isArray(imported)) {
+                        tasks = imported;
+                        saveTasks();
+                        renderTasks();
+                    }
+                } catch (err) {
+                    alert('تعذر قراءة بيانات JSON.');
+                }
+            });
+
+            if (hasAccess()) {
+                showDashboard();
+            } else {
+                showGate();
+            }
+        })();
+    </script>
+</body>
+</html>
