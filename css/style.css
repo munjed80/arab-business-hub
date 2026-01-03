@@ -25,13 +25,17 @@
     --muted-on-light: #334155;
     --surface-light: #ffffff;
 
-    /* Colors */
+    /* Design system palette */
     --primary-color: #13334f;
     --primary-dark: #0a2238;
     --primary-light: #1f4e73;
     --secondary-color: #c7a15a;
     --secondary-dark: #9f7f3d;
     --accent-color: #1b8a9c;
+    --success-color: #2f9e44;
+    --error-color: #dc3545;
+
+    /* Contextual foreground defaults */
     --text: var(--text-on-dark);
     --muted: var(--muted-on-dark);
     --text-dark: var(--text-on-dark);
@@ -47,8 +51,6 @@
     --btn-secondary-bg: rgba(255, 255, 255, 0.04);
     --btn-secondary-border: rgba(255, 255, 255, 0.18);
     --btn-secondary-fg: var(--text);
-    --success-color: #2f9e44;
-    --error-color: #dc3545;
 
     /* Typography */
     --font-primary: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -71,7 +73,79 @@
     --shadow-md: 0 6px 18px rgba(12, 27, 42, 0.08);
     --shadow-lg: 0 12px 30px rgba(12, 27, 42, 0.12);
     --shadow-xl: 0 20px 40px rgba(12, 27, 42, 0.16);
+
+    /* Elevation + depth */
+    --glass-stroke: rgba(255, 255, 255, 0.14);
+    --glass-sheen: rgba(255, 255, 255, 0.08);
+    --glow-amber: rgba(199, 161, 90, 0.5);
+    --glow-cyan: rgba(31, 138, 156, 0.4);
 }
+
+/* ==========================================
+   DESIGN SYSTEM CONTEXTS
+   ========================================== */
+
+.dark-section {
+    --context-bg: linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96));
+    --context-surface: color-mix(in srgb, #0f1d2d 94%, rgba(255, 255, 255, 0.02));
+    --context-border: #1e3148;
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 88%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 95%, #f5dba7 5%);
+    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+    --btn-secondary-border: rgba(255, 255, 255, 0.18);
+    --btn-secondary-fg: var(--text-on-dark);
+    background: radial-gradient(circle at 12% 10%, rgba(199, 161, 90, 0.06), transparent 22%),
+                radial-gradient(circle at 86% 14%, rgba(27, 138, 156, 0.08), transparent 28%),
+                var(--context-bg);
+    color: var(--muted-contrast);
+    border-color: var(--context-border);
+}
+
+.light-section {
+    --context-bg: var(--surface-light);
+    --context-surface: color-mix(in srgb, var(--surface-light) 96%, #eef2f7 4%);
+    --context-border: #d6dee9;
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --icon-contrast: var(--text-on-light);
+    --btn-secondary-bg: rgba(19, 51, 79, 0.08);
+    --btn-secondary-border: color-mix(in srgb, var(--context-border) 70%, transparent);
+    --btn-secondary-fg: var(--text-on-light);
+    background: radial-gradient(circle at 18% 12%, rgba(19, 51, 79, 0.08), transparent 26%),
+                radial-gradient(circle at 78% 6%, rgba(199, 161, 90, 0.12), transparent 22%),
+                var(--context-bg);
+    color: var(--muted-contrast);
+    border-color: var(--context-border);
+}
+
+.dark-card {
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+                var(--context-surface, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--context-border, #1e3148) 65%, transparent);
+    box-shadow: 0 16px 40px rgba(6, 12, 18, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    color: var(--muted-contrast);
+    backdrop-filter: blur(8px);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, #f0d9a1 8%);
+}
+
+.light-card {
+    background: linear-gradient(170deg, rgba(255, 255, 255, 0.94), rgba(246, 248, 251, 0.94));
+    border: 1px solid color-mix(in srgb, var(--context-border, #d6dee9) 80%, transparent);
+    box-shadow: 0 14px 38px rgba(12, 27, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    color: var(--text-on-light);
+    --icon-contrast: color-mix(in srgb, var(--text-on-light) 94%, #1b8a9c 6%);
+}
+
+.dark-card h3,
+.dark-card h4,
+.dark-card h5,
+.light-card h3,
+.light-card h4,
+.light-card h5 {
+    color: var(--text-contrast);
+}
+
 
 .theme-dark {
     --bg: #0b1522;
@@ -126,7 +200,8 @@
 }
 
 .surface-light,
-.is-light {
+.is-light,
+.light-section {
     --text: var(--text-on-light);
     --text-dark: var(--text-on-light);
     --text-medium: var(--muted-on-light);
@@ -143,11 +218,13 @@
 .surface-light h1, .surface-light h2, .surface-light h3, .surface-light h4,
 .surface-light h5, .surface-light h6,
 .is-light h1, .is-light h2, .is-light h3, .is-light h4,
-.is-light h5, .is-light h6 {
+.is-light h5, .is-light h6,
+.light-section h1, .light-section h2, .light-section h3, .light-section h4,
+.light-section h5, .light-section h6 {
     color: var(--text-on-light);
 }
 
-.surface-light p, .is-light p {
+.surface-light p, .is-light p, .light-section p {
     color: var(--text-light);
 }
 
@@ -212,13 +289,17 @@ svg {
     filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
 }
 
-section:not(.theme-light) svg,
-section:not(.theme-light) .icon {
+section:not(.theme-light):not(.light-section) svg,
+section:not(.theme-light):not(.light-section) .icon,
+.dark-section svg,
+.dark-section .icon {
     color: var(--icon-contrast);
 }
 
 .theme-light svg,
 .theme-light .icon,
+.light-section svg,
+.light-section .icon,
 .surface-light svg,
 .surface-light .icon,
 .is-light svg,
@@ -275,19 +356,27 @@ a:hover {
 section {
     padding: var(--spacing-xl) 0;
     position: relative;
+}
+
+section:not(.light-section):not(.theme-light),
+.dark-section {
     background: radial-gradient(circle at 12% 10%, rgba(199, 161, 90, 0.06), transparent 22%),
                 radial-gradient(circle at 86% 14%, rgba(27, 138, 156, 0.08), transparent 28%),
-                linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96));
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+                var(--context-bg, linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96)));
+    border-top: 1px solid color-mix(in srgb, var(--context-border, rgba(255, 255, 255, 0.08)) 75%, transparent);
     --text-contrast: var(--text-on-dark);
     --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 88%, transparent);
     --icon-contrast: color-mix(in srgb, var(--text-on-dark) 95%, #f5dba7 5%);
     color: var(--muted-contrast);
 }
 
-section.theme-light {
-    background: var(--surface-light);
-    border-top: 1px solid var(--border-color);
+section.light-section,
+section.theme-light,
+.light-section {
+    background: radial-gradient(circle at 18% 12%, rgba(19, 51, 79, 0.08), transparent 26%),
+                radial-gradient(circle at 78% 6%, rgba(199, 161, 90, 0.12), transparent 22%),
+                var(--context-bg, var(--surface-light));
+    border-top: 1px solid var(--context-border, var(--border-color));
     --text-contrast: var(--text-on-light);
     --muted-contrast: var(--muted-on-light);
     --icon-contrast: var(--text-on-light);
@@ -408,14 +497,16 @@ section.theme-light {
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
-.btn-primary {
+.btn-primary,
+.primary-button {
     background: linear-gradient(135deg, #f5dba7 0%, #c7a15a 35%, #8d6b2e 100%);
     --btn-fg: #000000;
     border-color: transparent;
     box-shadow: 0 18px 50px rgba(199, 161, 90, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.42);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.primary-button:hover {
     transform: translateY(-3px) scale(1.01);
     box-shadow: 0 26px 64px rgba(199, 161, 90, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.48);
     filter: saturate(1.05);
@@ -424,18 +515,23 @@ section.theme-light {
 
 .btn-primary:focus,
 .btn-primary:active,
-.btn-primary:disabled {
+.btn-primary:disabled,
+.primary-button:focus,
+.primary-button:active,
+.primary-button:disabled {
     color: #000000;
 }
 
-.btn-secondary {
+.btn-secondary,
+.secondary-button {
     background: var(--btn-secondary-bg);
     color: var(--btn-secondary-fg);
     border-color: var(--btn-secondary-border);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 32px rgba(0, 0, 0, 0.3);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.secondary-button:hover {
     background: color-mix(in srgb, var(--btn-secondary-bg) 60%, rgba(255, 255, 255, 0.12));
     color: color-mix(in srgb, var(--btn-secondary-fg) 90%, #f5dba7 10%);
     transform: translateY(-3px);
