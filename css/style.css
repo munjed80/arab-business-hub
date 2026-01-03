@@ -69,6 +69,7 @@ body {
     line-height: var(--line-height-base);
     min-height: 100vh;
     direction: rtl;
+    overflow-x: hidden;
 }
 
 html, body {
@@ -89,6 +90,13 @@ a:hover {
 img, svg {
     max-width: 100%;
     display: block;
+}
+
+.svg-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }
 
 ul {
@@ -155,6 +163,7 @@ main > section:first-of-type {
 
 /* Navbar */
 .site-header {
+    /* Sticky header; layout accounts for its height without extra spacers. */
     position: sticky;
     top: 0;
     z-index: 30;
