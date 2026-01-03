@@ -1212,6 +1212,15 @@ section.theme-light,
     background: var(--secondary-color);
 }
 
+.deliverable-card.dark-card {
+    color: var(--muted-contrast);
+}
+
+.deliverable-card.dark-card h3,
+.deliverable-card.dark-card li {
+    color: var(--text-contrast);
+}
+
 .packages {
     background: linear-gradient(180deg, color-mix(in srgb, var(--bg-white) 94%, var(--surface) 6%), color-mix(in srgb, var(--bg-white) 88%, var(--surface) 12%));
 }
@@ -1258,6 +1267,19 @@ section.theme-light,
     display: grid;
     gap: 12px;
     color: var(--card-text-muted);
+}
+
+.pricing-card.dark-card {
+    color: var(--muted-contrast);
+    --card-text-strong: var(--text-contrast);
+    --card-text-muted: color-mix(in srgb, var(--muted-contrast) 86%, transparent);
+}
+
+.pricing-card.dark-card .plan-name,
+.pricing-card.dark-card .plan-title,
+.pricing-card.dark-card ul,
+.pricing-card.dark-card ul li {
+    color: var(--card-text-strong);
 }
 
 .pricing-card.featured {
