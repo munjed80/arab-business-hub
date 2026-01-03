@@ -85,6 +85,43 @@
                             <button type="button" id="addTask" class="btn btn-secondary btn-small">إضافة مهمة</button>
                         </div>
 
+                        <div class="status-summary" aria-label="ملخص الحالات">
+                            <div class="status-chip" data-status="New">
+                                <span>جديدة</span>
+                                <strong id="countNew">0</strong>
+                            </div>
+                            <div class="status-chip" data-status="In Progress">
+                                <span>قيد التنفيذ</span>
+                                <strong id="countInProgress">0</strong>
+                            </div>
+                            <div class="status-chip" data-status="Review">
+                                <span>مراجعة</span>
+                                <strong id="countReview">0</strong>
+                            </div>
+                            <div class="status-chip" data-status="Delivered">
+                                <span>تم التسليم</span>
+                                <strong id="countDelivered">0</strong>
+                            </div>
+                        </div>
+
+                        <div class="filter-controls" aria-label="عوامل تصفية المهام">
+                            <div class="filter-group">
+                                <label for="statusFilter">تصفية حسب الحالة</label>
+                                <select id="statusFilter">
+                                    <option value="">الكل</option>
+                                    <option value="New">جديدة</option>
+                                    <option value="Assigned">مُسندة</option>
+                                    <option value="In Progress">قيد التنفيذ</option>
+                                    <option value="Review">مراجعة</option>
+                                    <option value="Delivered">تم التسليم</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="assigneeFilter">حسب المسؤول / المالك</label>
+                                <input type="text" id="assigneeFilter" placeholder="ابحث بالاسم">
+                            </div>
+                        </div>
+
                         <table class="task-table">
                             <thead>
                                 <tr>
@@ -93,6 +130,7 @@
                                     <th>المسؤول</th>
                                     <th>ملاحظات</th>
                                     <th>رابط التسليم</th>
+                                    <th>آخر تحديث</th>
                                     <th>إجراء</th>
                                 </tr>
                             </thead>
@@ -187,20 +225,39 @@
             const exportBtn = document.getElementById('exportTasks');
             const importBtn = document.getElementById('importTasks');
             const backupText = document.getElementById('backupText');
+            const statusFilter = document.getElementById('statusFilter');
+            const assigneeFilter = document.getElementById('assigneeFilter');
+            const counters = {
+                New: document.getElementById('countNew'),
+                'In Progress': document.getElementById('countInProgress'),
+                Review: document.getElementById('countReview'),
+                Delivered: document.getElementById('countDelivered')
+            };
 
             function loadTasks() {
                 try {
                     const saved = localStorage.getItem(TASK_KEY);
                     if (saved) {
-                        return JSON.parse(saved);
+                        return JSON.parse(saved).map(task => normalizeTask(task));
                     }
                 } catch (e) {
                     console.warn('تعذر قراءة المهام من التخزين المحلي', e);
                 }
                 return [
-                    { id: Date.now(), title: 'تحديث صفحة الخدمات', owner: 'فريق المحتوى', status: 'New', assignee: '', notes: '', link: '' },
-                    { id: Date.now() + 1, title: 'إعداد حملة إطلاق', owner: 'التسويق', status: 'Assigned', assignee: 'أحمد', notes: 'حاجة لتأكيد الميزانية', link: '' }
+                    normalizeTask({ id: Date.now(), title: 'تحديث صفحة الخدمات', owner: 'فريق المحتوى', status: 'New', assignee: '', notes: '', link: '' }),
+                    normalizeTask({ id: Date.now() + 1, title: 'إعداد حملة إطلاق', owner: 'التسويق', status: 'Assigned', assignee: 'أحمد', notes: 'حاجة لتأكيد الميزانية', link: '' })
                 ];
+            }
+
+            function normalizeTask(task) {
+                if (!task.lastUpdated) {
+                    task.lastUpdated = new Date().toISOString();
+                }
+                return task;
+            }
+
+            function touchTask(task) {
+                task.lastUpdated = new Date().toISOString();
             }
 
             let tasks = loadTasks();
@@ -226,7 +283,14 @@
 
             function renderTasks() {
                 taskBody.innerHTML = '';
-                tasks.forEach((task, index) => {
+                const filtered = tasks.filter(task => {
+                    const statusMatch = statusFilter.value ? task.status === statusFilter.value : true;
+                    const assigneeTerm = assigneeFilter.value.trim();
+                    const assigneeMatch = assigneeTerm ? ((task.assignee || '').includes(assigneeTerm) || (task.owner || '').includes(assigneeTerm)) : true;
+                    return statusMatch && assigneeMatch;
+                });
+
+                filtered.forEach((task) => {
                     const row = document.createElement('tr');
 
                     const titleCell = document.createElement('td');
@@ -244,7 +308,9 @@
                     });
                     statusSelect.addEventListener('change', () => {
                         task.status = statusSelect.value;
+                        touchTask(task);
                         saveTasks();
+                        updateStatusCounts();
                     });
                     statusCell.appendChild(statusSelect);
                     row.appendChild(statusCell);
@@ -256,6 +322,7 @@
                     assigneeInput.placeholder = 'اسم المسؤول';
                     assigneeInput.addEventListener('change', () => {
                         task.assignee = assigneeInput.value.trim();
+                        touchTask(task);
                         saveTasks();
                     });
                     assigneeCell.appendChild(assigneeInput);
@@ -268,6 +335,7 @@
                     notesArea.placeholder = 'ملاحظات أو طلبات مراجعة';
                     notesArea.addEventListener('change', () => {
                         task.notes = notesArea.value.trim();
+                        touchTask(task);
                         saveTasks();
                     });
                     notesCell.appendChild(notesArea);
@@ -280,10 +348,18 @@
                     linkInput.placeholder = 'رابط التسليم أو مستند';
                     linkInput.addEventListener('change', () => {
                         task.link = linkInput.value.trim();
+                        touchTask(task);
                         saveTasks();
                     });
                     linkCell.appendChild(linkInput);
                     row.appendChild(linkCell);
+
+                    const updatedCell = document.createElement('td');
+                    const updatedText = document.createElement('div');
+                    updatedText.className = 'inline-note';
+                    updatedText.textContent = formatDate(task.lastUpdated);
+                    updatedCell.appendChild(updatedText);
+                    row.appendChild(updatedCell);
 
                     const actionCell = document.createElement('td');
                     const claimButton = document.createElement('button');
@@ -295,7 +371,9 @@
                         if (claimer) {
                             task.assignee = claimer;
                             task.status = 'Assigned';
+                            touchTask(task);
                             saveTasks();
+                            updateStatusCounts();
                             renderTasks();
                         }
                     });
@@ -305,6 +383,30 @@
                     taskBody.appendChild(row);
                 });
                 backupText.value = '';
+                updateStatusCounts();
+            }
+
+            function updateStatusCounts() {
+                const totals = { New: 0, 'In Progress': 0, Review: 0, Delivered: 0 };
+                tasks.forEach(task => {
+                    if (totals.hasOwnProperty(task.status)) {
+                        totals[task.status] += 1;
+                    }
+                });
+                Object.keys(totals).forEach(key => {
+                    if (counters[key]) {
+                        counters[key].textContent = totals[key];
+                    }
+                });
+            }
+
+            function formatDate(value) {
+                if (!value) return '';
+                try {
+                    return new Date(value).toLocaleString('ar-EG');
+                } catch (e) {
+                    return value;
+                }
             }
 
             accessForm.addEventListener('submit', function(e) {
@@ -328,7 +430,7 @@
                 if (!title) return;
                 const owner = newOwner.value.trim();
                 const status = newStatus.value;
-                tasks.push({
+                const newTask = normalizeTask({
                     id: Date.now(),
                     title,
                     owner,
@@ -337,6 +439,8 @@
                     notes: '',
                     link: ''
                 });
+                touchTask(newTask);
+                tasks.push(newTask);
                 saveTasks();
                 renderTasks();
                 newTitle.value = '';
@@ -353,7 +457,7 @@
                 try {
                     const imported = JSON.parse(backupText.value);
                     if (Array.isArray(imported)) {
-                        tasks = imported;
+                        tasks = imported.map(task => normalizeTask(task));
                         saveTasks();
                         renderTasks();
                     }
@@ -361,6 +465,9 @@
                     alert('تعذر قراءة بيانات JSON.');
                 }
             });
+
+            statusFilter.addEventListener('change', renderTasks);
+            assigneeFilter.addEventListener('input', renderTasks);
 
             if (hasAccess()) {
                 showDashboard();
