@@ -64,6 +64,17 @@
                             <button type="submit" class="btn btn-primary">دخول</button>
                             <button type="button" id="resetAccess" class="btn btn-secondary">إعادة تعيين</button>
                         </form>
+                        <div class="dashboard-card" id="preLoginDiagnostics">
+                            <div class="access-header">
+                                <h3>فحص قبل الدخول</h3>
+                                <p class="inline-help">🔎 يظهر ما سيتم التحقق منه قبل تسجيل الدخول.</p>
+                            </div>
+                            <ul class="code-list">
+                                <li class="code-item"><strong>القيمة بعد التطبيع:</strong> <span id="normalizedPreview"></span></li>
+                                <li class="code-item"><strong>عدد أكواد الدخول:</strong> <span id="accessCodeCount"></span></li>
+                                <li class="code-item"><strong>مفتاح التخزين:</strong> <span id="storageKeyPreview"></span></li>
+                            </ul>
+                        </div>
                         <p class="inline-note">لا يتم إرسال أي بيانات لخادم خارجي.</p>
                     </div>
 
@@ -297,7 +308,10 @@
     <script src="js/script.js"></script>
     <script>
         (function() {
-            const normalizeCode = (value) => (value || '').trim().toUpperCase();
+            const normalizeCode = (value) => {
+                const dashNormalized = (value || '').replace(/[‐‑‒–—−﹣－]/g, '-');
+                return dashNormalized.trim().toUpperCase();
+            };
             const normalizeName = (value) => (value || '').trim().toLowerCase();
 
             const ADMIN_MODE_CODE = 'ABH-ADMIN-2024';
@@ -309,8 +323,6 @@
                 'ABH-10CR-5ZU',
                 'ABH-46MN-2QS'
             ].map(normalizeCode));
-            const LEGACY_ACCESS_CODES = Object.freeze(['ABH-2024'].map(normalizeCode));
-            const ALL_ACCESS_CODES = [...ACCESS_CODES, ...LEGACY_ACCESS_CODES];
             const ACCESS_KEY = 'abh_access_code';
             const TASK_KEY = 'abh_dashboard_tasks';
             const EXPORT_VERSION = '1.0.0';
@@ -359,6 +371,9 @@
             const copyStatus = document.getElementById('copyStatus');
             const accessDiagnostics = document.getElementById('accessDiagnostics');
             const diagnosticsList = document.getElementById('diagnosticsList');
+            const normalizedPreview = document.getElementById('normalizedPreview');
+            const accessCodeCount = document.getElementById('accessCodeCount');
+            const storageKeyPreview = document.getElementById('storageKeyPreview');
             const statusChips = Array.from(document.querySelectorAll('.status-chip'));
             const counters = {
                 All: document.getElementById('countAll'),
@@ -374,8 +389,9 @@
 
             let adminMode = false;
 
-            function isValidAccessCode(code) {
-                return ALL_ACCESS_CODES.includes(normalizeCode(code));
+            function isValidAccessCode(input) {
+                const normalizedInput = normalizeCode(input);
+                return ACCESS_CODES.includes(normalizedInput);
             }
 
             function isValidAdminCode(code) {
@@ -423,6 +439,7 @@
             let tasks = loadTasks();
 
             setAdminMode(false);
+            renderPreLoginDiagnostics();
 
             function saveTasks() {
                 localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
@@ -934,6 +951,14 @@
                 });
             }
 
+            function renderPreLoginDiagnostics() {
+                if (!normalizedPreview || !accessCodeCount || !storageKeyPreview) return;
+                const normalizedValue = normalizeCode(accessCodeInput.value);
+                normalizedPreview.textContent = normalizedValue || '—';
+                accessCodeCount.textContent = ACCESS_CODES.length;
+                storageKeyPreview.textContent = ACCESS_KEY;
+            }
+
             function renderAccessDiagnostics() {
                 if (!accessDiagnostics) return;
                 const unlocked = hasAccess();
@@ -942,8 +967,7 @@
 
                 const activeCodes = document.createElement('li');
                 activeCodes.className = 'code-item';
-                const legacyLabel = LEGACY_ACCESS_CODES.length ? ` + ${LEGACY_ACCESS_CODES.length} قديمة` : '';
-                activeCodes.textContent = `الرموز النشطة: ${ACCESS_CODES.length} أساسية${legacyLabel}`;
+                activeCodes.textContent = `الرموز النشطة: ${ACCESS_CODES.length}`;
 
                 const adminState = document.createElement('li');
                 adminState.className = 'code-item';
@@ -1003,18 +1027,23 @@
 
             accessForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const providedCode = normalizeCode(accessCodeInput.value);
+                const providedCode = accessCodeInput.value;
                 if (isValidAccessCode(providedCode)) {
                     persistAccessCode(providedCode);
                     showDashboard();
                 } else {
                     accessCodeInput.value = '';
+                    renderPreLoginDiagnostics();
                     alert('الرمز غير صحيح.');
                 }
             });
 
+            accessCodeInput.addEventListener('input', renderPreLoginDiagnostics);
+
             resetAccess.addEventListener('click', function() {
                 localStorage.removeItem(ACCESS_KEY);
+                accessCodeInput.value = '';
+                renderPreLoginDiagnostics();
                 showGate();
             });
 
