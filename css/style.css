@@ -1,6 +1,10 @@
 /* ==========================================
    Arab Business Hub - Main Stylesheet
-   Modern, Premium Arabic-First Design
+   Changes summary: unified design tokens (colors, type scale, radii, shadows),
+   standardized cards/buttons/navigation, enforced hero + dark-surface readability,
+   and ensured gold CTAs always ship black labels.
+   Non‑negotiables: (1) hero headings/subtitles are white, (2) gold buttons keep
+   black text in all states, (3) dark cards/sections render white, readable text.
    ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
@@ -15,46 +19,43 @@
     box-sizing: border-box;
 }
 
+:focus-visible {
+    outline: 2px solid var(--ring-color);
+    outline-offset: 3px;
+}
+
 :root {
-    /* Theme tokens */
-    --bg: #0b1522;
-    --surface: #0f1d2d;
-    --text-on-dark: #ffffff;
-    --muted-on-dark: #d9e2f1;
-    --text-on-light: #0f172a;
-    --muted-on-light: #334155;
-    --surface-light: #ffffff;
+    /* Palette */
+    --color-bg: #0c1626;
+    --color-surface: #0f1d2d;
+    --color-surface-strong: #0a1220;
+    --color-surface-light: #111d2e;
+    --color-contrast: #ffffff;
+    --color-contrast-muted: #dbe4f3;
+    --color-heading: #ffffff;
+    --color-body: #e2e9f5;
+    --color-muted: #c2ccda;
+    --color-light-text: #0c1b30;
+    --color-light-muted: #334155;
+    --color-gold: #c7a15a;
+    --color-gold-strong: #a88337;
+    --color-accent: #1b8a9c;
+    --color-outline: #f2d8a4;
+    --color-border: #1f2f45;
+    --color-border-light: #d6dee9;
+    --color-success: #2f9e44;
+    --color-error: #dc3545;
 
-    /* Design system palette */
-    --primary-color: #13334f;
-    --primary-dark: #0a2238;
-    --primary-light: #1f4e73;
-    --secondary-color: #c7a15a;
-    --secondary-dark: #9f7f3d;
-    --accent-color: #1b8a9c;
-    --success-color: #2f9e44;
-    --error-color: #dc3545;
-
-    /* Contextual foreground defaults */
-    --text: var(--text-on-dark);
-    --muted: var(--muted-on-dark);
-    --text-dark: var(--text-on-dark);
-    --text-medium: var(--muted-on-dark);
-    --text-light: color-mix(in srgb, var(--muted-on-dark) 70%, transparent);
-    --bg-white: #ffffff;
-    --bg-light: color-mix(in srgb, var(--bg) 80%, #0f1d2d 20%);
-    --bg-gray: var(--border);
-    --border-color: var(--border);
-    --text-contrast: var(--text-on-dark);
-    --muted-contrast: var(--muted-on-dark);
-    --icon-contrast: var(--text-contrast);
-    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
-    --btn-secondary-border: rgba(255, 255, 255, 0.18);
-    --btn-secondary-fg: var(--text);
-
-    /* Typography */
+    /* Typography scale */
     --font-primary: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-arabic: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif;
+    --fs-h1: 2.6rem;
+    --fs-h2: 2.1rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1rem;
+    --fs-small: 0.95rem;
+    --lh-tight: 1.2;
+    --lh-normal: 1.6;
 
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -63,22 +64,64 @@
     --spacing-lg: 3rem;
     --spacing-xl: 4rem;
 
+    /* Radii + borders */
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --ring-color: rgba(247, 208, 124, 0.6);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(12, 27, 42, 0.08);
+    --shadow-md: 0 6px 18px rgba(12, 27, 42, 0.14);
+    --shadow-lg: 0 12px 30px rgba(6, 12, 18, 0.26);
+    --shadow-xl: 0 20px 40px rgba(6, 12, 18, 0.35);
+
     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(12, 27, 42, 0.08);
-    --shadow-md: 0 6px 18px rgba(12, 27, 42, 0.08);
-    --shadow-lg: 0 12px 30px rgba(12, 27, 42, 0.12);
-    --shadow-xl: 0 20px 40px rgba(12, 27, 42, 0.16);
-
-    /* Elevation + depth */
+    /* Contextual helpers */
+    --hero-overlay: linear-gradient(180deg, rgba(10, 20, 35, 0.92), rgba(6, 12, 20, 0.96));
+    --card-dark: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)), var(--color-surface);
+    --card-light: linear-gradient(170deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 251, 0.94));
+    --btn-glow: 0 18px 50px rgba(199, 161, 90, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.42);
     --glass-stroke: rgba(255, 255, 255, 0.14);
     --glass-sheen: rgba(255, 255, 255, 0.08);
     --glow-amber: rgba(199, 161, 90, 0.5);
     --glow-cyan: rgba(31, 138, 156, 0.4);
+
+    /* Legacy token aliases for existing components */
+    --bg: var(--color-bg);
+    --surface: var(--color-surface);
+    --surface-light: #ffffff;
+    --text-on-dark: var(--color-contrast);
+    --muted-on-dark: var(--color-contrast-muted);
+    --text-on-light: var(--color-light-text);
+    --muted-on-light: var(--color-light-muted);
+    --primary-color: var(--color-accent);
+    --primary-dark: #0a2238;
+    --primary-light: #1f4e73;
+    --secondary-color: var(--color-gold);
+    --secondary-dark: var(--color-gold-strong);
+    --accent-color: var(--color-accent);
+    --success-color: var(--color-success);
+    --error-color: var(--color-error);
+    --text: var(--text-on-dark);
+    --muted: var(--muted-on-dark);
+    --text-dark: var(--text-on-dark);
+    --text-medium: var(--muted-on-dark);
+    --text-light: color-mix(in srgb, var(--muted-on-dark) 70%, transparent);
+    --bg-white: #ffffff;
+    --bg-light: color-mix(in srgb, var(--color-bg) 70%, #16263b 30%);
+    --bg-gray: var(--color-border);
+    --border-color: var(--color-border);
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: var(--muted-on-dark);
+    --icon-contrast: var(--text-contrast);
+    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+    --btn-secondary-border: rgba(255, 255, 255, 0.18);
+    --btn-secondary-fg: var(--text);
 }
 
 /* ==========================================
@@ -144,6 +187,99 @@
 .light-card h4,
 .light-card h5 {
     color: var(--text-contrast);
+}
+
+.card,
+.pricing-card,
+.service-card,
+.feature-card,
+.case-card,
+.value-card,
+.contact-card,
+.metric-card,
+.panel-card,
+.contact-item,
+.map-placeholder {
+    border-radius: var(--radius-lg);
+    border: 1px solid color-mix(in srgb, var(--border-color) 70%, transparent);
+    box-shadow: var(--shadow-md);
+    background: var(--card-dark);
+    color: var(--color-contrast);
+}
+
+.card--dark,
+.dark-card,
+.pricing-card:not(.is-light),
+.service-card,
+.feature-card,
+.case-card,
+.value-card,
+.contact-item,
+.metric-card,
+.panel-card,
+.map-placeholder {
+    background: var(--card-dark);
+    color: var(--color-contrast);
+}
+
+.card--light,
+.light-card,
+.pricing-card.is-light,
+.contact-card,
+.map-section .map-placeholder {
+    background: var(--card-light);
+    color: var(--color-light-text);
+    border-color: var(--color-border-light);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card.is-light h3,
+.pricing-card.is-light p,
+.pricing-card.is-light li,
+.pricing-card.is-light .price,
+.pricing-card.is-light .amount,
+.pricing-card.is-light .currency {
+    color: var(--color-light-text);
+}
+
+.card--highlight,
+.pricing-card.featured {
+    border-color: var(--color-outline);
+    box-shadow: 0 24px 60px rgba(199, 161, 90, 0.35);
+}
+
+.card--dark p,
+.card--dark li,
+.dark-card p,
+.dark-card li,
+.pricing-card:not(.is-light) p,
+.pricing-card:not(.is-light) li,
+.contact-item p,
+.contact-item li,
+.panel-card p,
+.panel-card li,
+.value-card p,
+.value-card li,
+.service-card p,
+.service-card li,
+.feature-card p,
+.feature-card li,
+.case-card p,
+.case-card li,
+.metric-card p,
+.metric-card li {
+    color: var(--color-contrast-muted);
+}
+
+.card--dark li::marker,
+.dark-card li::marker,
+.pricing-card:not(.is-light) li::marker,
+.value-card li::marker,
+.contact-item li::marker,
+.panel-card li::marker,
+.feature-card li::marker,
+.case-card li::marker {
+    color: var(--color-outline);
 }
 
 
@@ -234,8 +370,8 @@ html {
 
 body {
     font-family: var(--font-arabic);
-    color: var(--muted);
-    line-height: 1.7;
+    color: var(--color-body);
+    line-height: var(--lh-normal);
     font-weight: 400;
     background: radial-gradient(circle at 20% 20%, rgba(31, 138, 156, 0.08), transparent 32%),
                 radial-gradient(circle at 84% 12%, rgba(199, 161, 90, 0.12), transparent 26%),
@@ -243,7 +379,7 @@ body {
     overflow-x: hidden;
     direction: rtl;
     text-align: right;
-    letter-spacing: 0.005em;
+    letter-spacing: 0.01em;
 }
 
 .icon {
@@ -313,15 +449,15 @@ section:not(.theme-light):not(.light-section) .icon,
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
-    line-height: 1.35;
+    line-height: var(--lh-tight);
     margin-bottom: var(--spacing-sm);
-    color: var(--text-contrast);
+    color: var(--color-heading);
     letter-spacing: 0.01em;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; font-weight: 700; }
-h3 { font-size: 1.5rem; font-weight: 600; }
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); font-weight: 700; }
+h3 { font-size: var(--fs-h3); font-weight: 700; }
 h4 { font-size: 1.25rem; font-weight: 600; }
 h5 { font-size: 1.1rem; font-weight: 600; }
 h6 { font-size: 1rem; font-weight: 600; }
@@ -435,10 +571,11 @@ section.theme-light,
     list-style: none;
     gap: var(--spacing-md);
     align-items: center;
+    background: transparent;
 }
 
 .nav-menu a {
-    color: var(--text-medium);
+    color: var(--color-contrast);
     font-weight: 600;
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: 10px;
@@ -451,7 +588,7 @@ section.theme-light,
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    color: #f2d8a4;
+    color: var(--color-outline);
     background: rgba(255, 255, 255, 0.06);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
@@ -696,7 +833,7 @@ section.theme-light,
 .hero-title {
     font-size: 3.2rem;
     margin-bottom: var(--spacing-sm);
-    color: var(--text-contrast);
+    color: #ffffff;
     letter-spacing: 0.01em;
     line-height: 1.35;
     text-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -705,7 +842,7 @@ section.theme-light,
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
-    color: var(--muted-contrast);
+    color: #f5f8ff;
     font-weight: 400;
     line-height: 1.9;
     max-width: 720px;
@@ -2442,7 +2579,7 @@ section.theme-light,
         top: 100%;
         right: 0;
         left: 0;
-        background-color: var(--bg-white);
+        background-color: var(--color-surface-strong);
         flex-direction: column;
         padding: var(--spacing-md);
         box-shadow: var(--shadow-md);
@@ -2451,6 +2588,7 @@ section.theme-light,
         transition: max-height var(--transition-normal);
         border-bottom: 1px solid var(--border-color);
         gap: var(--spacing-sm);
+        color: var(--color-contrast);
     }
     
     .nav-menu.active {
