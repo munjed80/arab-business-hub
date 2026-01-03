@@ -279,6 +279,11 @@ section {
     width: 100%;
 }
 
+.btn-small {
+    padding: 10px 16px;
+    font-size: 0.95rem;
+}
+
 .icon-circle {
     width: 56px;
     height: 56px;
@@ -831,6 +836,13 @@ section {
 
 .footer-section ul li a:hover {
     color: var(--bg-white);
+}
+
+.footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
 }
 
 .footer-bottom {
@@ -1735,7 +1747,151 @@ section {
 .mt-4 { margin-top: var(--spacing-lg); }
 
 /* ==========================================
-   18. ANIMATIONS
+   18. SPECIALIST PAGES
+   ========================================== */
+
+.apply-section,
+.dashboard-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--bg-light);
+}
+
+.apply-card,
+.dashboard-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.apply-card h2,
+.dashboard-card h2 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.apply-card p.lead,
+.dashboard-card p.lead {
+    color: var(--text-medium);
+    margin-bottom: var(--spacing-lg);
+}
+
+.apply-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+}
+
+.inline-note {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.copy-status {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+.access-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.access-form input {
+    flex: 1;
+    min-width: 240px;
+}
+
+.task-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.task-controls input,
+.task-controls select {
+    min-width: 220px;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--spacing-md);
+}
+
+.task-table th,
+.task-table td {
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-sm);
+    text-align: right;
+    vertical-align: top;
+}
+
+.task-table th {
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.task-table input,
+.task-table select,
+.task-table textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.backup-area {
+    background: var(--bg-light);
+    border: 1px dashed var(--border-color);
+    border-radius: 10px;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.backup-area textarea {
+    width: 100%;
+    min-height: 140px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: var(--spacing-sm);
+    font-family: monospace;
+}
+
+@media (max-width: 768px) {
+    .apply-card,
+    .dashboard-card {
+        padding: var(--spacing-lg);
+    }
+
+    .task-table th,
+    .task-table td {
+        font-size: 0.95rem;
+    }
+}
+
+/* ==========================================
+   19. ANIMATIONS
    ========================================== */
 
 @media (prefers-reduced-motion: no-preference) {
