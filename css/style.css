@@ -19,11 +19,8 @@
     /* Theme tokens */
     --bg: #0b1522;
     --surface: #0f1d2d;
-    --text: #e9eef7;
-    --muted: #c7d2e1;
-    --border: #1e3148;
-    --accent: #c7a15a;
-    --accent2: #1b8a9c;
+    --text-on-dark: #ffffff;
+    --muted-on-dark: #d9e2f1;
     --text-on-light: #0f172a;
     --muted-on-light: #334155;
     --surface-light: #ffffff;
@@ -35,13 +32,17 @@
     --secondary-color: #c7a15a;
     --secondary-dark: #9f7f3d;
     --accent-color: #1b8a9c;
-    --text-dark: var(--text);
-    --text-medium: var(--muted);
-    --text-light: color-mix(in srgb, var(--muted) 70%, transparent);
-    --bg-white: var(--surface);
+    --text: var(--text-on-dark);
+    --muted: var(--muted-on-dark);
+    --text-dark: var(--text-on-dark);
+    --text-medium: var(--muted-on-dark);
+    --text-light: color-mix(in srgb, var(--muted-on-dark) 70%, transparent);
+    --bg-white: #ffffff;
     --bg-light: color-mix(in srgb, var(--bg) 80%, #0f1d2d 20%);
     --bg-gray: var(--border);
     --border-color: var(--border);
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: var(--muted-on-dark);
     --btn-secondary-bg: rgba(255, 255, 255, 0.04);
     --btn-secondary-border: rgba(255, 255, 255, 0.18);
     --btn-secondary-fg: var(--text);
@@ -74,12 +75,12 @@
 .theme-dark {
     --bg: #0b1522;
     --surface: #0f1d2d;
-    --text: #e9eef7;
-    --muted: #c7d2e1;
+    --text: var(--text-on-dark);
+    --muted: var(--muted-on-dark);
     --border: #1e3148;
     --accent: #c7a15a;
     --accent2: #1b8a9c;
-    --bg-white: var(--surface);
+    --bg-white: #ffffff;
     --bg-light: #0f1d2d;
     --bg-gray: #132437;
     --text-medium: var(--muted);
@@ -87,6 +88,8 @@
     --btn-secondary-bg: rgba(255, 255, 255, 0.04);
     --btn-secondary-border: rgba(255, 255, 255, 0.18);
     --btn-secondary-fg: var(--text);
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: var(--muted-on-dark);
     background: var(--bg);
     color: var(--muted);
 }
@@ -94,8 +97,8 @@
 .theme-light {
     --bg: #f6f8fb;
     --surface: #ffffff;
-    --text: #0f172a;
-    --muted: #475569;
+    --text: var(--text-on-light);
+    --muted: var(--muted-on-light);
     --border: #d6dee9;
     --accent: #13334f;
     --accent2: #1b8a9c;
@@ -114,6 +117,8 @@
     --btn-secondary-bg: rgba(19, 51, 79, 0.08);
     --btn-secondary-border: color-mix(in srgb, var(--border) 70%, transparent);
     --btn-secondary-fg: var(--accent);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
     background: var(--bg);
     color: var(--muted);
 }
@@ -127,6 +132,8 @@
     --btn-secondary-bg: rgba(19, 51, 79, 0.08);
     --btn-secondary-border: color-mix(in srgb, var(--border-color) 50%, transparent);
     --btn-secondary-fg: var(--text-on-light);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
     color: var(--text-medium);
 }
 
@@ -206,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 800;
     line-height: 1.35;
     margin-bottom: var(--spacing-sm);
-    color: var(--text-dark);
+    color: var(--text-contrast);
     letter-spacing: 0.01em;
 }
 
@@ -219,7 +226,7 @@ h6 { font-size: 1rem; font-weight: 600; }
 
 p {
     margin-bottom: var(--spacing-sm);
-    color: var(--text-light);
+    color: var(--muted-contrast);
     font-weight: 400;
     line-height: 1.7;
 }
@@ -254,9 +261,11 @@ section {
 }
 
 section.theme-light {
-    background: var(--bg);
+    background: var(--surface-light);
     border-top: 1px solid var(--border-color);
-    color: var(--muted);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .section-title {
@@ -373,7 +382,7 @@ section.theme-light {
 
 .btn-primary {
     background: linear-gradient(135deg, #f5dba7 0%, #c7a15a 35%, #8d6b2e 100%);
-    color: #0b1622;
+    color: #000000;
     border-color: transparent;
     box-shadow: 0 18px 50px rgba(199, 161, 90, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.42);
 }
@@ -382,6 +391,13 @@ section.theme-light {
     transform: translateY(-3px) scale(1.01);
     box-shadow: 0 26px 64px rgba(199, 161, 90, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.48);
     filter: saturate(1.05);
+    color: #000000;
+}
+
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:disabled {
+    color: #000000;
 }
 
 .btn-secondary {
@@ -528,7 +544,7 @@ section.theme-light {
 .hero-title {
     font-size: 3.2rem;
     margin-bottom: var(--spacing-sm);
-    color: var(--bg-white);
+    color: #ffffff;
     letter-spacing: 0.01em;
     line-height: 1.35;
     text-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -537,7 +553,7 @@ section.theme-light {
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
-    color: rgba(255, 255, 255, 0.96);
+    color: #ffffff;
     font-weight: 400;
     line-height: 1.9;
     max-width: 720px;
@@ -551,7 +567,7 @@ section.theme-light {
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
     border: 1px solid rgba(255, 255, 255, 0.24);
     border-radius: 999px;
-    color: var(--bg-white);
+    color: #ffffff;
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
     font-size: 1rem;
@@ -584,7 +600,7 @@ section.theme-light {
 
 .hero .btn-primary.btn-premium {
     background: linear-gradient(135deg, #f4d9a4 0%, #d8a23f 38%, #c17a1c 100%);
-    color: #0b1b28;
+    color: #000000;
     border-color: transparent;
     box-shadow: 0 16px 50px rgba(216, 162, 63, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     letter-spacing: 0.04em;
@@ -593,11 +609,12 @@ section.theme-light {
 .hero .btn-primary.btn-premium:hover {
     transform: translateY(-3px) scale(1.01);
     box-shadow: 0 24px 60px rgba(216, 162, 63, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    color: #000000;
 }
 
 .hero .btn-ghost {
     background: rgba(255, 255, 255, 0.06);
-    color: var(--bg-white);
+    color: #ffffff;
     border-color: rgba(255, 255, 255, 0.22);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 40px rgba(0, 0, 0, 0.25);
 }
@@ -671,7 +688,7 @@ section.theme-light {
     align-items: center;
     gap: 10px;
     background-color: rgba(255, 255, 255, 0.08);
-    color: var(--bg-white);
+    color: #ffffff;
     padding: 12px 16px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -961,6 +978,11 @@ section.theme-light {
 
 .deliverables {
     background: var(--bg-white);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .deliverables-grid {
@@ -1065,6 +1087,11 @@ section.theme-light {
 
 .portfolio {
     background: var(--bg-white);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .portfolio-grid {
@@ -1080,6 +1107,11 @@ section.theme-light {
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     background: var(--bg-white);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .portfolio-card:hover {
@@ -1097,7 +1129,7 @@ section.theme-light {
 
 .pill.subtle {
     background: var(--bg-light);
-    color: var(--text-medium);
+    color: #ffffff;
     border-color: transparent;
 }
 
@@ -1123,6 +1155,11 @@ section.theme-light {
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--border-color);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .feature-icon {
@@ -1140,12 +1177,12 @@ section.theme-light {
 }
 
 .feature h3 {
-    color: var(--text-dark);
+    color: var(--text-contrast);
     margin-bottom: var(--spacing-xs);
 }
 
 .feature p {
-    color: var(--text-light);
+    color: var(--muted-contrast);
 }
 
 /* ==========================================
@@ -1173,13 +1210,14 @@ section.theme-light {
 
 .cta-section .btn-primary {
     background-color: var(--bg-white);
-    color: var(--secondary-dark);
+    color: #000000;
     border-color: var(--bg-white);
 }
 
 .cta-section .btn-primary:hover {
     background-color: var(--bg-light);
     border-color: var(--bg-light);
+    color: #000000;
 }
 
 /* ==========================================
@@ -1188,11 +1226,12 @@ section.theme-light {
 
 .footer {
     background: linear-gradient(180deg, var(--primary-dark), #050b12);
-    color: var(--text);
+    color: var(--text-on-dark);
     padding: var(--spacing-xl) 0 var(--spacing-md);
     border-top: 1px solid color-mix(in srgb, var(--border-color) 70%, transparent);
     position: relative;
     overflow: hidden;
+    isolation: isolate;
 }
 
 .footer::before {
@@ -1218,12 +1257,12 @@ section.theme-light {
 
 .footer-section h3,
 .footer-section h4 {
-    color: var(--text);
+    color: var(--text-on-dark);
     margin-bottom: var(--spacing-sm);
 }
 
 .footer-section p {
-    color: var(--muted);
+    color: color-mix(in srgb, var(--text-on-dark) 82%, transparent);
 }
 
 .footer-section ul {
@@ -1235,7 +1274,7 @@ section.theme-light {
 }
 
 .footer-section ul li a {
-    color: color-mix(in srgb, var(--text) 82%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 85%, transparent);
     transition: color var(--transition-fast);
     font-weight: 600;
 }
@@ -1258,7 +1297,7 @@ section.theme-light {
 }
 
 .footer-bottom p {
-    color: color-mix(in srgb, var(--text) 78%, transparent);
+    color: color-mix(in srgb, var(--text-on-dark) 88%, transparent);
 }
 
 /* ==========================================
@@ -1267,13 +1306,13 @@ section.theme-light {
 
 .page-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: var(--bg-white);
+    color: #ffffff;
     padding: calc(var(--spacing-xl) + 0.5rem) 0;
     text-align: center;
 }
 
 .page-header h1 {
-    color: var(--bg-white);
+    color: #ffffff;
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
 }
@@ -1304,6 +1343,11 @@ section.theme-light {
     border-radius: 16px;
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .service-detail-icon {
@@ -1358,6 +1402,9 @@ section.theme-light {
 
 .service-detail.alt-bg .service-features li {
     background-color: var(--bg-white);
+    color: var(--text-on-light);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
 }
 
 .service-cta {
@@ -1410,6 +1457,11 @@ section.theme-light {
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     text-align: center;
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .vm-icon {
@@ -1453,6 +1505,11 @@ section.theme-light {
     box-shadow: var(--shadow-sm);
     text-align: center;
     transition: all var(--transition-normal);
+    --text-contrast: var(--text-on-light);
+    --muted-contrast: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --text-medium: var(--muted-on-light);
+    color: var(--muted-contrast);
 }
 
 .value-card:hover {
@@ -2728,3 +2785,11 @@ section.theme-light {
         }
     }
 }
+
+/* Manual verification checklist (keep premium look intact):
+   - Confirm SVG icons render across all cards and social links.
+   - Check every hero heading/subheading/support text stays pure white (#fff).
+   - Ensure gold CTA buttons keep black text/icons in all states.
+   - Verify light pills/chips/badges keep white text for contrast.
+   - Validate footer text/links are readable and unobstructed.
+   - Inspect light/white sections to confirm text uses dark, legible colors. */
