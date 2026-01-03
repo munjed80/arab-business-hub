@@ -65,47 +65,60 @@
                             <button type="button" id="resetAccess" class="btn btn-secondary">إعادة تعيين</button>
                         </form>
                         <p class="inline-note">لا يتم إرسال أي بيانات لخادم خارجي.</p>
-                        <div class="code-display" id="accessCodesDisplay" aria-live="polite"></div>
                     </div>
 
                     <div class="dashboard-card" id="dashboardPanel" style="display:none;">
-                        <h2>لوحة المهام</h2>
-                        <p class="lead">تحديث الحالات، استلام المهام، وإضافة روابط التسليم. كل شيء محفوظ محلياً.</p>
+                        <div class="panel-header">
+                            <div>
+                                <h2>لوحة المهام</h2>
+                                <p class="lead">تحديث الحالات، استلام المهام، وإضافة روابط التسليم. كل شيء محفوظ محلياً.</p>
+                                <p class="inline-help">💡 للتعاون السريع: استخدم البحث، الفلاتر، وتواريخ التحديث لمعرفة أحدث التغييرات.</p>
+                            </div>
+                            <button type="button" class="btn btn-secondary btn-small" id="adminToggle">تفعيل وضع المشرف</button>
+                        </div>
 
                         <div class="task-controls">
-                            <input type="text" id="newTitle" placeholder="عنوان المهمة">
-                            <input type="text" id="newOwner" placeholder="المالك أو الفريق">
-                            <select id="newStatus">
+                            <input type="text" id="newTitle" placeholder="عنوان المهمة" aria-label="عنوان المهمة">
+                            <input type="text" id="newOwner" placeholder="المالك أو الفريق" aria-label="المالك أو الفريق">
+                            <select id="newStatus" aria-label="الحالة">
                                 <option value="New">جديدة</option>
                                 <option value="Assigned">مُسندة</option>
                                 <option value="In Progress">قيد التنفيذ</option>
                                 <option value="Review">مراجعة</option>
                                 <option value="Delivered">تم التسليم</option>
                             </select>
-                            <input type="text" id="claimName" placeholder="اسمك للاستلام">
+                            <input type="text" id="claimName" placeholder="اسمك للاستلام" aria-label="اسمك للاستلام">
                             <button type="button" id="addTask" class="btn btn-secondary btn-small">إضافة مهمة</button>
                         </div>
 
                         <div class="status-summary" aria-label="ملخص الحالات">
-                            <div class="status-chip" data-status="New">
-                                <span>جديدة</span>
+                            <button class="status-chip" data-status="" aria-label="عرض كل المهام">
+                                <div class="chip-label"><span class="chip-icon">📋</span><span>الكل</span></div>
+                                <strong id="countAll">0</strong>
+                            </button>
+                            <button class="status-chip" data-status="New">
+                                <div class="chip-label"><span class="chip-icon">🆕</span><span>جديدة</span></div>
                                 <strong id="countNew">0</strong>
-                            </div>
-                            <div class="status-chip" data-status="In Progress">
-                                <span>قيد التنفيذ</span>
+                            </button>
+                            <button class="status-chip" data-status="In Progress">
+                                <div class="chip-label"><span class="chip-icon">⏳</span><span>قيد التنفيذ</span></div>
                                 <strong id="countInProgress">0</strong>
-                            </div>
-                            <div class="status-chip" data-status="Review">
-                                <span>مراجعة</span>
+                            </button>
+                            <button class="status-chip" data-status="Review">
+                                <div class="chip-label"><span class="chip-icon">🧐</span><span>مراجعة</span></div>
                                 <strong id="countReview">0</strong>
-                            </div>
-                            <div class="status-chip" data-status="Delivered">
-                                <span>تم التسليم</span>
+                            </button>
+                            <button class="status-chip" data-status="Delivered">
+                                <div class="chip-label"><span class="chip-icon">✅</span><span>تم التسليم</span></div>
                                 <strong id="countDelivered">0</strong>
-                            </div>
+                            </button>
                         </div>
 
                         <div class="filter-controls" aria-label="عوامل تصفية المهام">
+                            <div class="filter-group">
+                                <label for="searchBox">بحث سريع</label>
+                                <input type="search" id="searchBox" placeholder="العنوان، المسؤول، الملاحظات" aria-label="بحث سريع">
+                            </div>
                             <div class="filter-group">
                                 <label for="statusFilter">تصفية حسب الحالة</label>
                                 <select id="statusFilter">
@@ -119,11 +132,25 @@
                             </div>
                             <div class="filter-group">
                                 <label for="assigneeFilter">حسب المسؤول / المالك</label>
-                                <input type="text" id="assigneeFilter" placeholder="ابحث بالاسم">
+                                <input type="text" id="assigneeFilter" placeholder="ابحث بالاسم" aria-label="تصفية حسب المسؤول">
+                            </div>
+                            <div class="filter-group">
+                                <label for="sortBy">ترتيب</label>
+                                <select id="sortBy">
+                                    <option value="recent">الأحدث تحديثاً</option>
+                                    <option value="newest">الأحدث إضافة</option>
+                                    <option value="oldest">الأقدم</option>
+                                </select>
                             </div>
                         </div>
 
-                        <table class="task-table">
+                        <div class="view-switch-help">
+                            <p class="inline-help">📱 في الشاشات الصغيرة تظهر المهام كبطاقات، وعلى الحاسوب تبقى في جدول منظم.</p>
+                        </div>
+
+                        <div class="task-cards" id="taskCards" aria-live="polite"></div>
+
+                        <table class="task-table" aria-live="polite">
                             <thead>
                                 <tr>
                                     <th>المهمة</th>
@@ -139,12 +166,29 @@
                         </table>
 
                         <div class="backup-area">
-                            <div class="apply-actions">
-                                <button type="button" id="exportTasks" class="btn btn-secondary btn-small">تصدير JSON</button>
-                                <button type="button" id="importTasks" class="btn btn-primary btn-small">استيراد JSON</button>
+                            <div class="backup-actions">
+                                <div class="apply-actions">
+                                    <button type="button" id="exportTasks" class="btn btn-secondary btn-small">تصدير JSON</button>
+                                    <button type="button" id="downloadTasks" class="btn btn-secondary btn-small">تنزيل ملف JSON</button>
+                                    <button type="button" id="importTasks" class="btn btn-primary btn-small">استيراد JSON</button>
+                                    <label for="uploadFile" class="btn btn-primary btn-small file-label">رفع ملف JSON</label>
+                                    <input type="file" id="uploadFile" accept="application/json" aria-label="رفع ملف النسخة الاحتياطية">
+                                </div>
+                                <p class="inline-help">↩️ عند التعديل أو التسليم يتم تحديث التوقيت تلقائياً لضمان المتابعة.</p>
                             </div>
                             <textarea id="backupText" placeholder="ألصق النسخة الاحتياطية هنا أو انسخ البيانات الحالية."></textarea>
                             <p class="inline-note">النسخ الاحتياطي محلي فقط للاحتفاظ بتقدم الفريق.</p>
+                            <div class="error-text" id="importError" role="alert" aria-live="assertive"></div>
+                        </div>
+
+                        <div class="access-mgmt" id="accessMgmt" aria-live="polite">
+                            <div class="access-header">
+                                <h3>أكواد الدخول (بعد تسجيل الدخول)</h3>
+                                <p class="inline-help">🔒 للاستخدام الداخلي فقط. انسخ الكود المناسب وشاركه بأمان.</p>
+                                <button type="button" id="copyAllCodes" class="btn btn-secondary btn-small">نسخ الكل</button>
+                                <span class="copy-status" id="copyStatus"></span>
+                            </div>
+                            <ul class="code-list" id="accessCodesList"></ul>
                         </div>
                     </div>
                 </div>
@@ -213,6 +257,7 @@
             const ALL_ACCESS_CODES = [...ACCESS_CODES, ...LEGACY_ACCESS_CODES];
             const ACCESS_KEY = 'abh_access_code';
             const TASK_KEY = 'abh_dashboard_tasks';
+            const EXPORT_VERSION = '1.0.0';
             const statusLabels = {
                 'New': 'جديدة',
                 'Assigned': 'مُسندة',
@@ -226,19 +271,30 @@
             const accessForm = document.getElementById('accessForm');
             const accessCodeInput = document.getElementById('accessCode');
             const resetAccess = document.getElementById('resetAccess');
-            const accessCodesDisplay = document.getElementById('accessCodesDisplay');
             const taskBody = document.getElementById('taskBody');
+            const taskCards = document.getElementById('taskCards');
             const newTitle = document.getElementById('newTitle');
             const newOwner = document.getElementById('newOwner');
             const newStatus = document.getElementById('newStatus');
             const addTaskBtn = document.getElementById('addTask');
             const claimNameInput = document.getElementById('claimName');
             const exportBtn = document.getElementById('exportTasks');
+            const downloadBtn = document.getElementById('downloadTasks');
             const importBtn = document.getElementById('importTasks');
+            const uploadFile = document.getElementById('uploadFile');
             const backupText = document.getElementById('backupText');
+            const importError = document.getElementById('importError');
             const statusFilter = document.getElementById('statusFilter');
             const assigneeFilter = document.getElementById('assigneeFilter');
+            const searchBox = document.getElementById('searchBox');
+            const sortBy = document.getElementById('sortBy');
+            const adminToggle = document.getElementById('adminToggle');
+            const accessCodesList = document.getElementById('accessCodesList');
+            const copyAllCodesBtn = document.getElementById('copyAllCodes');
+            const copyStatus = document.getElementById('copyStatus');
+            const statusChips = Array.from(document.querySelectorAll('.status-chip'));
             const counters = {
+                All: document.getElementById('countAll'),
                 New: document.getElementById('countNew'),
                 'In Progress': document.getElementById('countInProgress'),
                 Review: document.getElementById('countReview'),
@@ -246,27 +302,10 @@
             };
 
             const normalizeCode = (value) => (value || '').trim().toUpperCase();
+            let adminMode = false;
 
             function isValidAccessCode(code) {
                 return ALL_ACCESS_CODES.includes(normalizeCode(code));
-            }
-
-            function renderAccessCodes() {
-                if (!accessCodesDisplay) return;
-                const intro = document.createElement('p');
-                intro.className = 'inline-note';
-                intro.textContent = 'أكواد الدخول الحالية (احفظها لديك):';
-
-                const list = document.createElement('ul');
-                list.className = 'code-list';
-                ACCESS_CODES.forEach(code => {
-                    const item = document.createElement('li');
-                    item.textContent = code;
-                    list.appendChild(item);
-                });
-
-                accessCodesDisplay.appendChild(intro);
-                accessCodesDisplay.appendChild(list);
             }
 
             function loadTasks() {
@@ -279,14 +318,20 @@
                     console.warn('تعذر قراءة المهام من التخزين المحلي', e);
                 }
                 return [
-                    normalizeTask({ id: Date.now(), title: 'تحديث صفحة الخدمات', owner: 'فريق المحتوى', status: 'New', assignee: '', notes: '', link: '' }),
-                    normalizeTask({ id: Date.now() + 1, title: 'إعداد حملة إطلاق', owner: 'التسويق', status: 'Assigned', assignee: 'أحمد', notes: 'حاجة لتأكيد الميزانية', link: '' })
+                    normalizeTask({ id: Date.now(), title: 'تحديث صفحة الخدمات', owner: 'فريق المحتوى', status: 'New', assignee: '', notes: '', reviewerNotes: '', link: '' }),
+                    normalizeTask({ id: Date.now() + 1, title: 'إعداد حملة إطلاق', owner: 'التسويق', status: 'Assigned', assignee: 'أحمد', notes: 'حاجة لتأكيد الميزانية', reviewerNotes: '', link: '' })
                 ];
             }
 
             function normalizeTask(task) {
                 if (!task.lastUpdated) {
                     task.lastUpdated = new Date().toISOString();
+                }
+                if (!task.reviewerNotes) {
+                    task.reviewerNotes = '';
+                }
+                if (!task.link) {
+                    task.link = '';
                 }
                 return task;
             }
@@ -296,9 +341,6 @@
             }
 
             let tasks = loadTasks();
-
-            console.info('رموز الدخول الحالية للوحة المهام (يرجى حفظها):', ACCESS_CODES);
-            renderAccessCodes();
 
             function saveTasks() {
                 localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
@@ -324,27 +366,123 @@
             function showDashboard() {
                 accessCard.style.display = 'none';
                 dashboardPanel.style.display = 'block';
+                renderAccessCodes();
                 renderTasks();
             }
 
             function showGate() {
                 accessCard.style.display = 'block';
                 dashboardPanel.style.display = 'none';
+                adminMode = false;
+                adminToggle.textContent = 'تفعيل وضع المشرف';
+                adminToggle.classList.remove('active');
+            }
+
+            function formatDate(value) {
+                if (!value) return '';
+                try {
+                    return new Date(value).toLocaleString('ar-EG');
+                } catch (e) {
+                    return value;
+                }
+            }
+
+            function createStatusBadge(status) {
+                const badge = document.createElement('span');
+                badge.className = `status-badge status-${status.replace(/\s+/g,'-').toLowerCase()}`;
+                const icons = {
+                    'New': '🆕',
+                    'Assigned': '🧭',
+                    'In Progress': '⏳',
+                    'Review': '🧐',
+                    'Delivered': '✅'
+                };
+                badge.textContent = `${icons[status] || ''} ${statusLabels[status] || status}`;
+                return badge;
+            }
+
+            function claimTask(task) {
+                if (task.assignee && task.assignee.trim() && !adminMode) {
+                    alert('المهمة مسندة بالفعل. استخدم "إلغاء الاستلام" إذا كنت المسؤول نفسه أو فعّل وضع المشرف.');
+                    return;
+                }
+                const claimer = claimNameInput.value.trim() || prompt('أدخل اسمك لاستلام المهمة');
+                if (claimer) {
+                    task.assignee = claimer;
+                    task.status = task.status === 'Delivered' ? 'Delivered' : 'Assigned';
+                    touchTask(task);
+                    persistAndRender();
+                }
+            }
+
+            function unclaimTask(task) {
+                const currentUser = claimNameInput.value.trim();
+                if (!adminMode && task.assignee && currentUser !== task.assignee) {
+                    alert('يمكن إلغاء الاستلام فقط من قبل نفس المسؤول أو في وضع المشرف.');
+                    return;
+                }
+                task.assignee = '';
+                touchTask(task);
+                persistAndRender();
+            }
+
+            function deleteTask(task) {
+                const confirmed = confirm('تأكيد حذف المهمة؟ لن يمكن التراجع.');
+                if (confirmed) {
+                    tasks = tasks.filter(t => t.id !== task.id);
+                    persistAndRender();
+                }
+            }
+
+            function buildTaskActions(task) {
+                const wrap = document.createElement('div');
+                wrap.className = 'action-stack';
+
+                const claimButton = document.createElement('button');
+                claimButton.type = 'button';
+                claimButton.className = 'btn btn-primary btn-small';
+                claimButton.textContent = 'استلام';
+                claimButton.addEventListener('click', () => claimTask(task));
+
+                const unclaimButton = document.createElement('button');
+                unclaimButton.type = 'button';
+                unclaimButton.className = 'btn btn-secondary btn-small';
+                unclaimButton.textContent = 'إلغاء الاستلام';
+                unclaimButton.addEventListener('click', () => unclaimTask(task));
+
+                const deleteButton = document.createElement('button');
+                deleteButton.type = 'button';
+                deleteButton.className = 'btn btn-danger btn-small';
+                deleteButton.textContent = 'حذف';
+                deleteButton.addEventListener('click', () => deleteTask(task));
+
+                wrap.append(claimButton, unclaimButton, deleteButton);
+                return wrap;
             }
 
             function renderTasks() {
                 taskBody.innerHTML = '';
+                taskCards.innerHTML = '';
+                importError.textContent = '';
+
                 const filtered = tasks
                     .slice()
-                    .sort((a, b) => new Date(b.lastUpdated || 0) - new Date(a.lastUpdated || 0))
+                    .sort((a, b) => {
+                        if (sortBy.value === 'newest') return b.id - a.id;
+                        if (sortBy.value === 'oldest') return a.id - b.id;
+                        return new Date(b.lastUpdated || 0) - new Date(a.lastUpdated || 0);
+                    })
                     .filter(task => {
                         const statusMatch = statusFilter.value ? task.status === statusFilter.value : true;
                         const assigneeTerm = assigneeFilter.value.trim();
                         const assigneeMatch = assigneeTerm ? ((task.assignee || '').includes(assigneeTerm) || (task.owner || '').includes(assigneeTerm)) : true;
-                        return statusMatch && assigneeMatch;
+                        const searchTerm = searchBox.value.trim();
+                        const searchMatch = searchTerm ? [task.title, task.assignee, task.owner, task.notes, task.reviewerNotes].some(val => (val || '').toLowerCase().includes(searchTerm.toLowerCase())) : true;
+                        return statusMatch && assigneeMatch && searchMatch;
                     });
 
                 filtered.forEach((task) => {
+                    // Table row
                     const row = document.createElement('tr');
 
                     const titleCell = document.createElement('td');
@@ -392,6 +530,20 @@
                         persistAndRender();
                     });
                     notesCell.appendChild(notesArea);
+
+                    if (task.status === 'Review') {
+                        const reviewerArea = document.createElement('textarea');
+                        reviewerArea.rows = 2;
+                        reviewerArea.className = 'review-notes';
+                        reviewerArea.placeholder = 'ملاحظات المراجع';
+                        reviewerArea.value = task.reviewerNotes || '';
+                        reviewerArea.addEventListener('change', () => {
+                            task.reviewerNotes = reviewerArea.value.trim();
+                            touchTask(task);
+                            persistAndRender();
+                        });
+                        notesCell.appendChild(reviewerArea);
+                    }
                     row.appendChild(notesCell);
 
                     const linkCell = document.createElement('td');
@@ -404,7 +556,17 @@
                         touchTask(task);
                         persistAndRender();
                     });
-                    linkCell.appendChild(linkInput);
+                    const openLink = document.createElement('button');
+                    openLink.type = 'button';
+                    openLink.className = 'btn btn-secondary btn-small';
+                    openLink.textContent = 'فتح';
+                    openLink.disabled = !task.link;
+                    openLink.addEventListener('click', () => {
+                        if (task.link) {
+                            window.open(task.link, '_blank');
+                        }
+                    });
+                    linkCell.append(linkInput, openLink);
                     row.appendChild(linkCell);
 
                     const updatedCell = document.createElement('td');
@@ -415,30 +577,90 @@
                     row.appendChild(updatedCell);
 
                     const actionCell = document.createElement('td');
-                    const claimButton = document.createElement('button');
-                    claimButton.type = 'button';
-                    claimButton.className = 'btn btn-primary btn-small';
-                    claimButton.textContent = 'استلام';
-                    claimButton.addEventListener('click', () => {
-                        const claimer = claimNameInput.value.trim() || prompt('أدخل اسمك لاستلام المهمة');
-                        if (claimer) {
-                            task.assignee = claimer;
-                            task.status = 'Assigned';
-                            touchTask(task);
-                            persistAndRender();
-                        }
-                    });
-                    actionCell.appendChild(claimButton);
+                    actionCell.appendChild(buildTaskActions(task));
                     row.appendChild(actionCell);
 
                     taskBody.appendChild(row);
+
+                    // Card
+                    const card = document.createElement('article');
+                    card.className = 'task-card';
+                    const header = document.createElement('div');
+                    header.className = 'task-card-header';
+                    const title = document.createElement('div');
+                    title.className = 'task-title';
+                    title.textContent = task.title;
+                    const badge = createStatusBadge(task.status);
+                    header.append(title, badge);
+
+                    const ownerLine = document.createElement('p');
+                    ownerLine.className = 'inline-note';
+                    ownerLine.textContent = task.owner || '';
+
+                    const assigneeLine = document.createElement('div');
+                    assigneeLine.className = 'meta-line';
+                    assigneeLine.innerHTML = `<strong>المسؤول:</strong> ${task.assignee || '—'}`;
+
+                    const notesBlock = document.createElement('div');
+                    notesBlock.className = 'meta-line';
+                    notesBlock.innerHTML = `<strong>ملاحظات:</strong> ${task.notes || '—'}`;
+                    const reviewerBlock = document.createElement('div');
+                    reviewerBlock.className = 'meta-line';
+                    reviewerBlock.innerHTML = `<strong>ملاحظات المراجع:</strong> ${task.reviewerNotes || '—'}`;
+
+                    const linkBlock = document.createElement('div');
+                    linkBlock.className = 'meta-line';
+                    linkBlock.innerHTML = `<strong>رابط التسليم:</strong> ${task.link ? `<a href="${task.link}" target="_blank" rel="noopener">فتح</a>` : '—'}`;
+
+                    const updatedLine = document.createElement('div');
+                    updatedLine.className = 'inline-note';
+                    updatedLine.textContent = `آخر تحديث: ${formatDate(task.lastUpdated)}`;
+
+                    const cardActions = document.createElement('div');
+                    cardActions.className = 'card-actions';
+                    const openBtn = document.createElement('button');
+                    openBtn.type = 'button';
+                    openBtn.className = 'btn btn-secondary btn-small';
+                    openBtn.textContent = 'فتح الرابط';
+                    openBtn.disabled = !task.link;
+                    openBtn.addEventListener('click', () => task.link && window.open(task.link, '_blank'));
+
+                    const claimCardBtn = document.createElement('button');
+                    claimCardBtn.type = 'button';
+                    claimCardBtn.className = 'btn btn-primary btn-small';
+                    claimCardBtn.textContent = 'استلام';
+                    claimCardBtn.addEventListener('click', () => claimTask(task));
+
+                    const unclaimCardBtn = document.createElement('button');
+                    unclaimCardBtn.type = 'button';
+                    unclaimCardBtn.className = 'btn btn-secondary btn-small';
+                    unclaimCardBtn.textContent = 'إلغاء الاستلام';
+                    unclaimCardBtn.addEventListener('click', () => unclaimTask(task));
+
+                    const deleteCardBtn = document.createElement('button');
+                    deleteCardBtn.type = 'button';
+                    deleteCardBtn.className = 'btn btn-danger btn-small';
+                    deleteCardBtn.textContent = 'حذف';
+                    deleteCardBtn.addEventListener('click', () => deleteTask(task));
+
+                    cardActions.append(openBtn, claimCardBtn, unclaimCardBtn, deleteCardBtn);
+
+                    const cardPieces = [header, ownerLine, assigneeLine, notesBlock];
+                    if (task.status === 'Review') {
+                        cardPieces.push(reviewerBlock);
+                    }
+                    cardPieces.push(linkBlock, updatedLine, cardActions);
+
+                    cardPieces.forEach(part => card.appendChild(part));
+                    taskCards.appendChild(card);
                 });
+
                 backupText.value = '';
                 updateStatusCounts();
             }
 
             function updateStatusCounts() {
-                const totals = { New: 0, 'In Progress': 0, Review: 0, Delivered: 0 };
+                const totals = { All: tasks.length, New: 0, 'In Progress': 0, Review: 0, Delivered: 0 };
                 tasks.forEach(task => {
                     if (totals.hasOwnProperty(task.status)) {
                         totals[task.status] += 1;
@@ -451,12 +673,53 @@
                 });
             }
 
-            function formatDate(value) {
-                if (!value) return '';
+            function renderAccessCodes() {
+                accessCodesList.innerHTML = '';
+                ACCESS_CODES.forEach(code => {
+                    const item = document.createElement('li');
+                    item.className = 'code-item';
+                    const text = document.createElement('span');
+                    text.textContent = code;
+                    const copyBtn = document.createElement('button');
+                    copyBtn.type = 'button';
+                    copyBtn.className = 'btn btn-primary btn-small';
+                    copyBtn.textContent = 'نسخ';
+                    copyBtn.addEventListener('click', () => copyToClipboard(code));
+                    item.append(text, copyBtn);
+                    accessCodesList.appendChild(item);
+                });
+            }
+
+            function copyToClipboard(text) {
+                if (!text) return;
+                navigator.clipboard.writeText(text).then(() => {
+                    copyStatus.textContent = '✔ تم النسخ';
+                    setTimeout(() => copyStatus.textContent = '', 1200);
+                }).catch(() => {
+                    copyStatus.textContent = '';
+                });
+            }
+
+            function exportPayload() {
+                return {
+                    version: EXPORT_VERSION,
+                    exportedAt: new Date().toISOString(),
+                    tasks
+                };
+            }
+
+            function handleImport(jsonText) {
                 try {
-                    return new Date(value).toLocaleString('ar-EG');
-                } catch (e) {
-                    return value;
+                    const parsed = JSON.parse(jsonText);
+                    const candidateTasks = Array.isArray(parsed) ? parsed : parsed.tasks;
+                    if (!Array.isArray(candidateTasks)) {
+                        throw new Error('صيغة غير صالحة: لم يتم العثور على قائمة مهام.');
+                    }
+                    tasks = candidateTasks.map(task => normalizeTask(task));
+                    persistAndRender();
+                    importError.textContent = '';
+                } catch (err) {
+                    importError.textContent = err.message || 'تعذر قراءة بيانات JSON.';
                 }
             }
 
@@ -479,7 +742,10 @@
 
             addTaskBtn.addEventListener('click', function() {
                 const title = newTitle.value.trim();
-                if (!title) return;
+                if (!title) {
+                    alert('الرجاء كتابة عنوان للمهمة.');
+                    return;
+                }
                 const owner = newOwner.value.trim();
                 const status = newStatus.value;
                 const newTask = normalizeTask({
@@ -489,6 +755,7 @@
                     status,
                     assignee: claimNameInput.value.trim() || '',
                     notes: '',
+                    reviewerNotes: '',
                     link: ''
                 });
                 touchTask(newTask);
@@ -499,25 +766,63 @@
             });
 
             exportBtn.addEventListener('click', function() {
-                backupText.value = JSON.stringify(tasks, null, 2);
+                const payload = exportPayload();
+                backupText.value = JSON.stringify(payload, null, 2);
                 navigator.clipboard.writeText(backupText.value).catch(() => {});
+            });
+
+            downloadBtn.addEventListener('click', function() {
+                const payload = exportPayload();
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'tasks-backup.json';
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                URL.revokeObjectURL(url);
             });
 
             importBtn.addEventListener('click', function() {
                 if (!backupText.value.trim()) return;
-                try {
-                    const imported = JSON.parse(backupText.value);
-                    if (Array.isArray(imported)) {
-                        tasks = imported.map(task => normalizeTask(task));
-                        persistAndRender();
-                    }
-                } catch (err) {
-                    alert('تعذر قراءة بيانات JSON.');
-                }
+                handleImport(backupText.value);
+            });
+
+            uploadFile.addEventListener('change', function() {
+                const file = uploadFile.files && uploadFile.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (e) => handleImport(e.target.result);
+                reader.readAsText(file);
+                uploadFile.value = '';
             });
 
             statusFilter.addEventListener('change', renderTasks);
             assigneeFilter.addEventListener('input', renderTasks);
+            searchBox.addEventListener('input', renderTasks);
+            sortBy.addEventListener('change', renderTasks);
+
+            statusChips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const status = chip.dataset.status;
+                    statusFilter.value = status;
+                    renderTasks();
+                });
+            });
+
+            copyAllCodesBtn.addEventListener('click', () => copyToClipboard(ACCESS_CODES.join('\n')));
+
+            adminToggle.addEventListener('click', () => {
+                const code = prompt('أدخل رمز وصول لتفعيل وضع المشرف');
+                if (isValidAccessCode(code)) {
+                    adminMode = true;
+                    adminToggle.textContent = 'وضع المشرف مفعل';
+                    adminToggle.classList.add('active');
+                } else {
+                    alert('رمز غير صحيح.');
+                }
+            });
 
             if (hasAccess()) {
                 showDashboard();
