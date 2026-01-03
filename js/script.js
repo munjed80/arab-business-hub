@@ -5,6 +5,20 @@
 
 // Mobile Navigation Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Inline SVG sprite to keep icons reliable on GitHub Pages
+    const spriteContainer = document.createElement('div');
+    spriteContainer.className = 'svg-sprite';
+    spriteContainer.setAttribute('aria-hidden', 'true');
+    document.body.prepend(spriteContainer);
+
+    const iconIds = ['branding','web','growth','rocket','mail','phone','clock','twitter','linkedin','instagram','facebook','globe','eye','target','stack','analytics','handshake'];
+    const fallbackSprite = `<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden"><defs>${iconIds.map(id => `<symbol id="icon-${id}" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none" /><text x="12" y="16" text-anchor="middle" font-size="10" fill="currentColor">${id.charAt(0).toUpperCase()}</text></symbol>`).join('')}</defs></svg>`;
+
+    fetch('assets/icons.svg')
+        .then(response => response.ok ? response.text() : Promise.reject())
+        .then(sprite => { spriteContainer.innerHTML = sprite; })
+        .catch(() => { spriteContainer.innerHTML = fallbackSprite; });
+
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     

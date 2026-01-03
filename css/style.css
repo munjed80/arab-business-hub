@@ -24,6 +24,9 @@
     --border: #1e3148;
     --accent: #c7a15a;
     --accent2: #1b8a9c;
+    --text-on-light: #0f172a;
+    --muted-on-light: #334155;
+    --surface-light: #ffffff;
 
     /* Colors */
     --primary-color: #13334f;
@@ -39,6 +42,9 @@
     --bg-light: color-mix(in srgb, var(--bg) 80%, #0f1d2d 20%);
     --bg-gray: var(--border);
     --border-color: var(--border);
+    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+    --btn-secondary-border: rgba(255, 255, 255, 0.18);
+    --btn-secondary-fg: var(--text);
     --success-color: #2f9e44;
     --error-color: #dc3545;
 
@@ -78,6 +84,9 @@
     --bg-gray: #132437;
     --text-medium: var(--muted);
     --text-light: color-mix(in srgb, var(--muted) 60%, transparent);
+    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
+    --btn-secondary-border: rgba(255, 255, 255, 0.18);
+    --btn-secondary-fg: var(--text);
     background: var(--bg);
     color: var(--muted);
 }
@@ -102,8 +111,34 @@
     --text-medium: #334155;
     --text-light: #4b5563;
     --border-color: var(--border);
+    --btn-secondary-bg: rgba(19, 51, 79, 0.08);
+    --btn-secondary-border: color-mix(in srgb, var(--border) 70%, transparent);
+    --btn-secondary-fg: var(--accent);
     background: var(--bg);
     color: var(--muted);
+}
+
+.surface-light,
+.is-light {
+    --text: var(--text-on-light);
+    --text-dark: var(--text-on-light);
+    --text-medium: var(--muted-on-light);
+    --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
+    --btn-secondary-bg: rgba(19, 51, 79, 0.08);
+    --btn-secondary-border: color-mix(in srgb, var(--border-color) 50%, transparent);
+    --btn-secondary-fg: var(--text-on-light);
+    color: var(--text-medium);
+}
+
+.surface-light h1, .surface-light h2, .surface-light h3, .surface-light h4,
+.surface-light h5, .surface-light h6,
+.is-light h1, .is-light h2, .is-light h3, .is-light h4,
+.is-light h5, .is-light h6 {
+    color: var(--text-on-light);
+}
+
+.surface-light p, .is-light p {
+    color: var(--text-light);
 }
 
 html {
@@ -135,6 +170,22 @@ body {
     flex-shrink: 0;
     display: inline-block;
     vertical-align: middle;
+}
+
+.svg-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.svg-sprite symbol *,
+.svg-sprite svg * {
+    stroke: currentColor;
+}
+
+.svg-sprite text {
+    fill: currentColor;
 }
 
 svg {
@@ -334,15 +385,15 @@ section.theme-light {
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text-dark);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-fg);
+    border-color: var(--btn-secondary-border);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 32px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #f5dba7;
+    background: color-mix(in srgb, var(--btn-secondary-bg) 60%, rgba(255, 255, 255, 0.12));
+    color: color-mix(in srgb, var(--btn-secondary-fg) 90%, #f5dba7 10%);
     transform: translateY(-3px);
 }
 
@@ -486,7 +537,7 @@ section.theme-light {
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.96);
     font-weight: 400;
     line-height: 1.9;
     max-width: 720px;
@@ -972,6 +1023,13 @@ section.theme-light {
 
 .pricing-card {
     padding: var(--spacing-lg);
+    --card-surface: color-mix(in srgb, var(--surface) 92%, #050b12 8%);
+    --card-text-strong: var(--text);
+    --card-text-muted: color-mix(in srgb, var(--text) 80%, transparent);
+    --card-border: var(--border-color);
+    color: var(--card-text-muted);
+    background: var(--card-surface);
+    border-color: var(--card-border);
 }
 
 .pricing-card .plan-name {
@@ -983,7 +1041,7 @@ section.theme-light {
 .pricing-card .plan-title {
     font-size: 1.25rem;
     margin-bottom: var(--spacing-md);
-    color: var(--text-dark);
+    color: var(--card-text-strong);
 }
 
 .pricing-card ul {
@@ -992,12 +1050,17 @@ section.theme-light {
     margin: 0 0 var(--spacing-md);
     display: grid;
     gap: 12px;
-    color: var(--text-medium);
+    color: var(--card-text-muted);
 }
 
 .pricing-card.featured {
     border: 2px solid var(--secondary-color);
     background: linear-gradient(180deg, #fffaf3, #ffffff);
+    --card-surface: #ffffff;
+    --card-text-strong: var(--text-on-light);
+    --card-text-muted: var(--muted-on-light);
+    --card-border: color-mix(in srgb, var(--border-color) 40%, transparent);
+    color: var(--card-text-muted);
 }
 
 .portfolio {
@@ -1172,8 +1235,9 @@ section.theme-light {
 }
 
 .footer-section ul li a {
-    color: color-mix(in srgb, var(--text) 78%, transparent);
+    color: color-mix(in srgb, var(--text) 82%, transparent);
     transition: color var(--transition-fast);
+    font-weight: 600;
 }
 
 .footer-section ul li a:hover {
@@ -1194,7 +1258,7 @@ section.theme-light {
 }
 
 .footer-bottom p {
-    color: color-mix(in srgb, var(--text) 65%, transparent);
+    color: color-mix(in srgb, var(--text) 78%, transparent);
 }
 
 /* ==========================================
@@ -1482,13 +1546,13 @@ section.theme-light {
 }
 
 .pricing-card {
-    background-color: var(--bg-white);
+    background-color: var(--card-surface);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     overflow: hidden;
     transition: all var(--transition-normal);
     position: relative;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--card-border);
 }
 
 .pricing-card:hover {
@@ -1552,13 +1616,14 @@ section.theme-light {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
+    color: var(--card-text-muted);
 }
 
 .price {
     text-align: center;
     margin-bottom: var(--spacing-lg);
     font-size: 1.2rem;
-    color: var(--text-dark);
+    color: var(--card-text-muted);
 }
 
 .price .amount {
@@ -1569,13 +1634,13 @@ section.theme-light {
 }
 
 .price .currency {
-    color: var(--text-medium);
+    color: var(--card-text-muted);
 }
 
 .price .period {
     display: block;
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: var(--card-text-muted);
     margin-top: var(--spacing-xs);
 }
 
@@ -1587,7 +1652,7 @@ section.theme-light {
 .pricing-features li {
     padding: var(--spacing-sm) 0;
     border-bottom: 1px solid var(--bg-gray);
-    color: var(--text-medium);
+    color: var(--card-text-muted);
 }
 
 .pricing-features li:last-child {
