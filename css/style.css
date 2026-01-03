@@ -212,6 +212,20 @@ svg {
     filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
 }
 
+section:not(.theme-light) svg,
+section:not(.theme-light) .icon {
+    color: var(--icon-contrast);
+}
+
+.theme-light svg,
+.theme-light .icon,
+.surface-light svg,
+.surface-light .icon,
+.is-light svg,
+.is-light .icon {
+    color: var(--icon-contrast);
+}
+
 /* ==========================================
    2. TYPOGRAPHY
    ========================================== */
@@ -265,6 +279,10 @@ section {
                 radial-gradient(circle at 86% 14%, rgba(27, 138, 156, 0.08), transparent 28%),
                 linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96));
     border-top: 1px solid rgba(255, 255, 255, 0.04);
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 88%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 95%, #f5dba7 5%);
+    color: var(--muted-contrast);
 }
 
 section.theme-light {
@@ -472,7 +490,8 @@ section.theme-light {
     width: 28px;
     height: 28px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, rgba(255, 255, 255, 0.16) 80%, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     color: var(--icon-contrast);
     display: inline-flex;
     align-items: center;
@@ -506,6 +525,19 @@ section.theme-light {
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    --text-contrast: #ffffff;
+    --muted-contrast: color-mix(in srgb, #f7fbff 92%, transparent);
+    --icon-contrast: color-mix(in srgb, #ffffff 92%, #f5dba7 8%);
+}
+
+.page-header,
+.cta-section,
+.footer,
+.contact-section {
+    --text-contrast: #ffffff;
+    --muted-contrast: color-mix(in srgb, #f6f9ff 90%, transparent);
+    --icon-contrast: color-mix(in srgb, #ffffff 92%, #f5dba7 8%);
+    color: var(--muted-contrast);
 }
 
 .hero::before {
@@ -568,7 +600,7 @@ section.theme-light {
 .hero-title {
     font-size: 3.2rem;
     margin-bottom: var(--spacing-sm);
-    color: #ffffff;
+    color: var(--text-contrast);
     letter-spacing: 0.01em;
     line-height: 1.35;
     text-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
@@ -577,7 +609,7 @@ section.theme-light {
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
-    color: #ffffff;
+    color: var(--muted-contrast);
     font-weight: 400;
     line-height: 1.9;
     max-width: 720px;
@@ -592,7 +624,7 @@ section.theme-light {
     background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
     border: 1px solid rgba(255, 255, 255, 0.24);
     border-radius: 999px;
-    color: #ffffff;
+    color: var(--text-contrast);
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
     font-size: 1rem;
@@ -639,7 +671,7 @@ section.theme-light {
 
 .hero .btn-ghost {
     background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
+    color: var(--text-contrast);
     border-color: rgba(255, 255, 255, 0.22);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 40px rgba(0, 0, 0, 0.25);
 }
@@ -888,6 +920,20 @@ section.theme-light {
     margin-top: var(--spacing-lg);
 }
 
+.service-card,
+.process-card,
+.panel-card,
+.faq-item,
+.cta-panel,
+.testimonial-card,
+.metric-card,
+.pill {
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 90%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, #f5dba7 8%);
+    color: var(--muted-contrast);
+}
+
 .service-card {
     background: linear-gradient(145deg, rgba(20, 36, 52, 0.9), rgba(12, 22, 34, 0.9));
     padding: var(--spacing-lg);
@@ -921,13 +967,13 @@ section.theme-light {
 }
 
 .service-card h3 {
-    color: #f2d8a4;
+    color: var(--text-contrast);
     margin-bottom: var(--spacing-sm);
     font-size: 1.3rem;
 }
 
 .service-card p {
-    color: var(--text-medium);
+    color: var(--muted-contrast);
     margin-bottom: var(--spacing-md);
 }
 
@@ -992,13 +1038,13 @@ section.theme-light {
 }
 
 .process-card h3 {
-    color: #f2d8a4;
+    color: var(--text-contrast);
     margin-top: var(--spacing-sm);
     margin-bottom: var(--spacing-xs);
 }
 
 .process-card p {
-    color: var(--text-light);
+    color: var(--muted-contrast);
 }
 
 .deliverables {
@@ -1084,6 +1130,17 @@ section.theme-light {
     background: var(--card-surface);
     border-color: var(--card-border);
     box-shadow: var(--shadow-md);
+}
+
+.pricing-card h3,
+.pricing-card .plan-title,
+.pricing-card .price .amount {
+    color: var(--card-text-strong);
+}
+
+.pricing-card .price .currency,
+.pricing-card ul {
+    color: var(--card-text-muted);
 }
 
 .pricing-card .plan-name {
@@ -2001,12 +2058,12 @@ section.theme-light {
 }
 
 .faq-item h3 {
-    color: #f2d8a4;
+    color: var(--text-contrast);
     margin-bottom: var(--spacing-sm);
 }
 
 .faq-item p {
-    color: var(--text-light);
+    color: var(--muted-contrast);
 }
 
 /* ==========================================
@@ -2015,6 +2072,10 @@ section.theme-light {
 
 .contact-section {
     padding: var(--spacing-xl) 0;
+    --text-contrast: var(--text-on-dark);
+    --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 90%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, #f5dba7 8%);
+    color: var(--muted-contrast);
 }
 
 .contact-grid {
@@ -2030,12 +2091,12 @@ section.theme-light {
 }
 
 .contact-form-wrapper h2 {
-    color: var(--primary-color);
+    color: var(--text-contrast);
     margin-bottom: var(--spacing-sm);
 }
 
 .contact-form-wrapper p {
-    color: var(--text-light);
+    color: var(--muted-contrast);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -2047,7 +2108,7 @@ section.theme-light {
     display: block;
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
-    color: var(--text-dark);
+    color: var(--text-contrast);
 }
 
 .form-group input,
@@ -2092,7 +2153,7 @@ section.theme-light {
 }
 
 .contact-info h2 {
-    color: var(--primary-color);
+    color: var(--text-contrast);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -2108,12 +2169,13 @@ section.theme-light {
 .contact-icon {
     width: 48px;
     height: 48px;
-    background-color: var(--bg-light);
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 12px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
+    color: var(--icon-contrast);
     flex-shrink: 0;
 }
 
@@ -2124,18 +2186,18 @@ section.theme-light {
 }
 
 .contact-item h3 {
-    color: var(--text-dark);
+    color: var(--text-contrast);
     margin-bottom: var(--spacing-xs);
     font-size: 1.1rem;
 }
 
 .contact-item p {
-    color: var(--text-medium);
+    color: var(--muted-contrast);
     margin: 0;
 }
 
 .contact-item a {
-    color: var(--primary-color);
+    color: var(--text-contrast);
 }
 
 .social-links {
@@ -2154,17 +2216,18 @@ section.theme-light {
 .social-icon {
     width: 50px;
     height: 50px;
-    background-color: var(--bg-light);
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
+    color: var(--icon-contrast);
     transition: all var(--transition-fast);
 }
 
 .social-icon:hover {
-    background-color: var(--primary-color);
+    background-color: color-mix(in srgb, var(--primary-color) 70%, #c7a15a 30%);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
     color: var(--bg-white);
