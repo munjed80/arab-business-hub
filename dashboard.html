@@ -87,6 +87,15 @@
                                 <option value="Review">مراجعة</option>
                                 <option value="Delivered">تم التسليم</option>
                             </select>
+                            <select id="newAssignee" aria-label="تعيين إلى">
+                                <option value="">غير مسندة</option>
+                                <option value="أحمد">أحمد</option>
+                                <option value="سارة">سارة</option>
+                                <option value="ليلى">ليلى</option>
+                                <option value="خالد">خالد</option>
+                                <option value="مها">مها</option>
+                                <option value="يوسف">يوسف</option>
+                            </select>
                             <input type="text" id="claimName" placeholder="اسمك للاستلام" aria-label="اسمك للاستلام">
                             <button type="button" id="addTask" class="btn btn-secondary btn-small">إضافة مهمة</button>
                         </div>
@@ -132,7 +141,16 @@
                             </div>
                             <div class="filter-group">
                                 <label for="assigneeFilter">حسب المسؤول / المالك</label>
-                                <input type="text" id="assigneeFilter" placeholder="ابحث بالاسم" aria-label="تصفية حسب المسؤول">
+                                <select id="assigneeFilter" aria-label="تصفية حسب المسؤول">
+                                    <option value="">الكل</option>
+                                    <option value="__unassigned">غير مسندة</option>
+                                    <option value="أحمد">أحمد</option>
+                                    <option value="سارة">سارة</option>
+                                    <option value="ليلى">ليلى</option>
+                                    <option value="خالد">خالد</option>
+                                    <option value="مها">مها</option>
+                                    <option value="يوسف">يوسف</option>
+                                </select>
                             </div>
                             <div class="filter-group">
                                 <label for="sortBy">ترتيب</label>
@@ -146,6 +164,17 @@
 
                         <div class="view-switch-help">
                             <p class="inline-help">📱 في الشاشات الصغيرة تظهر المهام كبطاقات، وعلى الحاسوب تبقى في جدول منظم.</p>
+                        </div>
+
+                        <div class="admin-task-board" id="adminTaskBoard">
+                            <div class="admin-board-header">
+                                <div>
+                                    <h3>إدارة المهام</h3>
+                                    <p class="inline-help">عرض سريع للمهام بحسب الأخصائي المسؤول مع إبراز المهام غير المسندة.</p>
+                                </div>
+                                <span class="admin-note">مرئي بعد تسجيل الدخول</span>
+                            </div>
+                            <div class="admin-group-list" id="adminGroupList"></div>
                         </div>
 
                         <div class="task-cards" id="taskCards" aria-live="polite"></div>
@@ -258,6 +287,7 @@
             const ACCESS_KEY = 'abh_access_code';
             const TASK_KEY = 'abh_dashboard_tasks';
             const EXPORT_VERSION = '1.0.0';
+            const SPECIALISTS = ['أحمد', 'سارة', 'ليلى', 'خالد', 'مها', 'يوسف'];
             const statusLabels = {
                 'New': 'جديدة',
                 'Assigned': 'مُسندة',
@@ -276,6 +306,7 @@
             const newTitle = document.getElementById('newTitle');
             const newOwner = document.getElementById('newOwner');
             const newStatus = document.getElementById('newStatus');
+            const newAssignee = document.getElementById('newAssignee');
             const addTaskBtn = document.getElementById('addTask');
             const claimNameInput = document.getElementById('claimName');
             const exportBtn = document.getElementById('exportTasks');
@@ -289,6 +320,7 @@
             const searchBox = document.getElementById('searchBox');
             const sortBy = document.getElementById('sortBy');
             const adminToggle = document.getElementById('adminToggle');
+            const adminGroupList = document.getElementById('adminGroupList');
             const accessCodesList = document.getElementById('accessCodesList');
             const copyAllCodesBtn = document.getElementById('copyAllCodes');
             const copyStatus = document.getElementById('copyStatus');
@@ -302,6 +334,7 @@
             };
 
             const normalizeCode = (value) => (value || '').trim().toUpperCase();
+            const normalizeName = (value) => (value || '').trim().toLowerCase();
             let adminMode = false;
 
             function isValidAccessCode(code) {
@@ -324,6 +357,12 @@
             }
 
             function normalizeTask(task) {
+                if (task.assignedTo && !task.assignee) {
+                    task.assignee = task.assignedTo;
+                }
+                if (!task.assignee) {
+                    task.assignee = '';
+                }
                 if (!task.lastUpdated) {
                     task.lastUpdated = new Date().toISOString();
                 }
@@ -401,23 +440,98 @@
                 return badge;
             }
 
-            function claimTask(task) {
-                if (task.assignee && task.assignee.trim() && !adminMode) {
-                    alert('المهمة مسندة بالفعل. استخدم "إلغاء الاستلام" إذا كنت المسؤول نفسه أو فعّل وضع المشرف.');
-                    return;
+            function currentUser() {
+                return claimNameInput.value.trim();
+            }
+
+            function userMatchesAssignee(task) {
+                return task.assignee && normalizeName(task.assignee) === normalizeName(currentUser());
+            }
+
+            function canEditTask(task) {
+                if (adminMode) return true;
+                return !!task.assignee && userMatchesAssignee(task);
+            }
+
+            function canClaimTask(task) {
+                if (adminMode) return true;
+                if (!task.assignee) return false;
+                return userMatchesAssignee(task);
+            }
+
+            function buildSpecialistOptions(selectEl, selectedValue = '') {
+                selectEl.innerHTML = '';
+                const emptyOption = document.createElement('option');
+                emptyOption.value = '';
+                emptyOption.textContent = 'غير مسندة';
+                selectEl.appendChild(emptyOption);
+
+                SPECIALISTS.forEach(name => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = name;
+                    selectEl.appendChild(option);
+                });
+
+                if (selectedValue && !SPECIALISTS.includes(selectedValue)) {
+                    const customOption = document.createElement('option');
+                    customOption.value = selectedValue;
+                    customOption.textContent = selectedValue;
+                    selectEl.appendChild(customOption);
                 }
-                const claimer = claimNameInput.value.trim() || prompt('أدخل اسمك لاستلام المهمة');
-                if (claimer) {
-                    task.assignee = claimer;
-                    task.status = task.status === 'Delivered' ? 'Delivered' : 'Assigned';
-                    touchTask(task);
-                    persistAndRender();
+
+                selectEl.value = selectedValue || '';
+            }
+
+            function refreshAssigneeFilterOptions() {
+                const currentValue = assigneeFilter.value;
+                const uniqueNames = Array.from(new Set([
+                    ...SPECIALISTS,
+                    ...tasks.filter(t => t.assignee).map(t => t.assignee.trim())
+                ])).filter(Boolean);
+
+                assigneeFilter.innerHTML = '';
+                const allOption = document.createElement('option');
+                allOption.value = '';
+                allOption.textContent = 'الكل';
+                assigneeFilter.appendChild(allOption);
+
+                const unassignedOption = document.createElement('option');
+                unassignedOption.value = '__unassigned';
+                unassignedOption.textContent = 'غير مسندة';
+                assigneeFilter.appendChild(unassignedOption);
+
+                uniqueNames.forEach(name => {
+                    const opt = document.createElement('option');
+                    opt.value = name;
+                    opt.textContent = name;
+                    assigneeFilter.appendChild(opt);
+                });
+
+                if (currentValue && Array.from(assigneeFilter.options).some(opt => opt.value === currentValue)) {
+                    assigneeFilter.value = currentValue;
                 }
             }
 
+            function claimTask(task) {
+                if (!task.assignee) {
+                    alert('هذه المهمة غير مسندة. يرجى تعيين مسؤول قبل البدء.');
+                    return;
+                }
+                const claimer = currentUser() || prompt('أدخل اسمك للاستلام وفق التعيين المسجّل');
+                if (!claimer) return;
+                claimNameInput.value = claimer;
+                if (!canClaimTask(task)) {
+                    alert('فقط الأخصائي المعيّن يمكنه استلام هذه المهمة.');
+                    return;
+                }
+                task.status = task.status === 'Delivered' ? 'Delivered' : 'In Progress';
+                touchTask(task);
+                persistAndRender();
+            }
+
             function unclaimTask(task) {
-                const currentUser = claimNameInput.value.trim();
-                if (!adminMode && task.assignee && currentUser !== task.assignee) {
+                if (!adminMode && !userMatchesAssignee(task)) {
                     alert('يمكن إلغاء الاستلام فقط من قبل نفس المسؤول أو في وضع المشرف.');
                     return;
                 }
@@ -443,18 +557,21 @@
                 claimButton.className = 'btn btn-primary btn-small';
                 claimButton.textContent = 'استلام';
                 claimButton.addEventListener('click', () => claimTask(task));
+                claimButton.disabled = !canClaimTask(task);
 
                 const unclaimButton = document.createElement('button');
                 unclaimButton.type = 'button';
                 unclaimButton.className = 'btn btn-secondary btn-small';
                 unclaimButton.textContent = 'إلغاء الاستلام';
                 unclaimButton.addEventListener('click', () => unclaimTask(task));
+                unclaimButton.disabled = !canEditTask(task);
 
                 const deleteButton = document.createElement('button');
                 deleteButton.type = 'button';
                 deleteButton.className = 'btn btn-danger btn-small';
                 deleteButton.textContent = 'حذف';
                 deleteButton.addEventListener('click', () => deleteTask(task));
+                deleteButton.disabled = !adminMode;
 
                 wrap.append(claimButton, unclaimButton, deleteButton);
                 return wrap;
@@ -464,6 +581,7 @@
                 taskBody.innerHTML = '';
                 taskCards.innerHTML = '';
                 importError.textContent = '';
+                refreshAssigneeFilterOptions();
 
                 const filtered = tasks
                     .slice()
@@ -475,15 +593,21 @@
                     .filter(task => {
                         const statusMatch = statusFilter.value ? task.status === statusFilter.value : true;
                         const assigneeTerm = assigneeFilter.value.trim();
-                        const assigneeMatch = assigneeTerm ? ((task.assignee || '').includes(assigneeTerm) || (task.owner || '').includes(assigneeTerm)) : true;
+                        const assigneeMatch = assigneeTerm ? (assigneeTerm === '__unassigned' ? !task.assignee : normalizeName(task.assignee) === normalizeName(assigneeTerm)) : true;
                         const searchTerm = searchBox.value.trim();
                         const searchMatch = searchTerm ? [task.title, task.assignee, task.owner, task.notes, task.reviewerNotes].some(val => (val || '').toLowerCase().includes(searchTerm.toLowerCase())) : true;
                         return statusMatch && assigneeMatch && searchMatch;
                     });
 
                 filtered.forEach((task) => {
+                    const editable = canEditTask(task);
+                    const claimable = canClaimTask(task);
+                    const isUnassigned = !task.assignee;
                     // Table row
                     const row = document.createElement('tr');
+                    if (isUnassigned) {
+                        row.classList.add('unassigned-row');
+                    }
 
                     const titleCell = document.createElement('td');
                     titleCell.innerHTML = `<strong>${task.title}</strong><br><span class="inline-note">${task.owner || ''}</span>`;
@@ -503,14 +627,14 @@
                         touchTask(task);
                         persistAndRender();
                     });
+                    statusSelect.disabled = !editable;
                     statusCell.appendChild(statusSelect);
                     row.appendChild(statusCell);
 
                     const assigneeCell = document.createElement('td');
-                    const assigneeInput = document.createElement('input');
-                    assigneeInput.type = 'text';
-                    assigneeInput.value = task.assignee || '';
-                    assigneeInput.placeholder = 'اسم المسؤول';
+                    const assigneeInput = document.createElement('select');
+                    buildSpecialistOptions(assigneeInput, task.assignee || '');
+                    assigneeInput.disabled = !adminMode;
                     assigneeInput.addEventListener('change', () => {
                         task.assignee = assigneeInput.value.trim();
                         touchTask(task);
@@ -529,6 +653,7 @@
                         touchTask(task);
                         persistAndRender();
                     });
+                    notesArea.disabled = !editable;
                     notesCell.appendChild(notesArea);
 
                     if (task.status === 'Review') {
@@ -542,6 +667,7 @@
                             touchTask(task);
                             persistAndRender();
                         });
+                        reviewerArea.disabled = !editable;
                         notesCell.appendChild(reviewerArea);
                     }
                     row.appendChild(notesCell);
@@ -556,6 +682,7 @@
                         touchTask(task);
                         persistAndRender();
                     });
+                    linkInput.disabled = !editable;
                     const openLink = document.createElement('button');
                     openLink.type = 'button';
                     openLink.className = 'btn btn-secondary btn-small';
@@ -585,6 +712,9 @@
                     // Card
                     const card = document.createElement('article');
                     card.className = 'task-card';
+                    if (isUnassigned) {
+                        card.classList.add('unassigned-card');
+                    }
                     const header = document.createElement('div');
                     header.className = 'task-card-header';
                     const title = document.createElement('div');
@@ -630,18 +760,21 @@
                     claimCardBtn.className = 'btn btn-primary btn-small';
                     claimCardBtn.textContent = 'استلام';
                     claimCardBtn.addEventListener('click', () => claimTask(task));
+                    claimCardBtn.disabled = !claimable;
 
                     const unclaimCardBtn = document.createElement('button');
                     unclaimCardBtn.type = 'button';
                     unclaimCardBtn.className = 'btn btn-secondary btn-small';
                     unclaimCardBtn.textContent = 'إلغاء الاستلام';
                     unclaimCardBtn.addEventListener('click', () => unclaimTask(task));
+                    unclaimCardBtn.disabled = !editable;
 
                     const deleteCardBtn = document.createElement('button');
                     deleteCardBtn.type = 'button';
                     deleteCardBtn.className = 'btn btn-danger btn-small';
                     deleteCardBtn.textContent = 'حذف';
                     deleteCardBtn.addEventListener('click', () => deleteTask(task));
+                    deleteCardBtn.disabled = !adminMode;
 
                     cardActions.append(openBtn, claimCardBtn, unclaimCardBtn, deleteCardBtn);
 
@@ -657,6 +790,61 @@
 
                 backupText.value = '';
                 updateStatusCounts();
+                renderAdminGroups();
+            }
+
+            function renderAdminGroups() {
+                adminGroupList.innerHTML = '';
+                if (!tasks.length) {
+                    const emptyState = document.createElement('p');
+                    emptyState.className = 'inline-note';
+                    emptyState.textContent = 'لا توجد مهام حالياً.';
+                    adminGroupList.appendChild(emptyState);
+                    return;
+                }
+
+                const grouped = tasks.reduce((acc, task) => {
+                    const key = task.assignee && task.assignee.trim() ? task.assignee.trim() : 'غير مسندة';
+                    if (!acc[key]) acc[key] = [];
+                    acc[key].push(task);
+                    return acc;
+                }, {});
+
+                Object.keys(grouped).sort((a, b) => {
+                    if (a === 'غير مسندة') return -1;
+                    if (b === 'غير مسندة') return 1;
+                    return a.localeCompare(b, 'ar');
+                }).forEach(name => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'admin-group';
+                    if (name === 'غير مسندة') {
+                        wrapper.classList.add('admin-group-unassigned');
+                    }
+
+                    const header = document.createElement('div');
+                    header.className = 'admin-group-header';
+                    const title = document.createElement('h4');
+                    title.textContent = `${name} (${grouped[name].length})`;
+                    header.appendChild(title);
+                    wrapper.appendChild(header);
+
+                    const list = document.createElement('ul');
+                    list.className = 'admin-task-list';
+                    grouped[name].forEach(task => {
+                        const item = document.createElement('li');
+                        item.className = 'admin-task-item';
+                        const nameLine = document.createElement('div');
+                        nameLine.className = 'admin-task-title';
+                        nameLine.textContent = task.title;
+                        const meta = document.createElement('div');
+                        meta.className = 'inline-note';
+                        meta.textContent = `${statusLabels[task.status] || task.status} • ${task.owner || 'بدون مالك'}`;
+                        item.append(nameLine, meta);
+                        list.appendChild(item);
+                    });
+                    wrapper.appendChild(list);
+                    adminGroupList.appendChild(wrapper);
+                });
             }
 
             function updateStatusCounts() {
@@ -753,7 +941,7 @@
                     title,
                     owner,
                     status,
-                    assignee: claimNameInput.value.trim() || '',
+                    assignee: newAssignee.value.trim(),
                     notes: '',
                     reviewerNotes: '',
                     link: ''
@@ -763,6 +951,7 @@
                 persistAndRender();
                 newTitle.value = '';
                 newOwner.value = '';
+                newAssignee.value = '';
             });
 
             exportBtn.addEventListener('click', function() {
@@ -799,7 +988,7 @@
             });
 
             statusFilter.addEventListener('change', renderTasks);
-            assigneeFilter.addEventListener('input', renderTasks);
+            assigneeFilter.addEventListener('change', renderTasks);
             searchBox.addEventListener('input', renderTasks);
             sortBy.addEventListener('change', renderTasks);
 
