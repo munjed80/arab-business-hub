@@ -2037,6 +2037,44 @@ section {
     background: #fdfdfd;
 }
 
+.admin-toggle-area {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.admin-mode-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background: #eaf4ff;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.admin-code-card {
+    margin-top: var(--spacing-md);
+}
+
+.admin-code-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    border: 1px dashed var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-light);
+}
+
+.admin-code-value {
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
 .admin-board-header {
     display: flex;
     align-items: center;
