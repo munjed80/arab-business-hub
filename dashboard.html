@@ -65,6 +65,7 @@
                             <button type="button" id="resetAccess" class="btn btn-secondary">إعادة تعيين</button>
                         </form>
                         <p class="inline-note">لا يتم إرسال أي بيانات لخادم خارجي.</p>
+                        <div class="code-display" id="accessCodesDisplay" aria-live="polite"></div>
                     </div>
 
                     <div class="dashboard-card" id="dashboardPanel" style="display:none;">
@@ -200,7 +201,16 @@
     <script src="js/script.js"></script>
     <script>
         (function() {
-            const ACCESS_CODE = 'ABH-2024';
+            const ACCESS_CODES = Object.freeze([
+                'ABH-94K2-7XM',
+                'ABH-57GQ-29N',
+                'ABH-81PV-4T3',
+                'ABH-63WD-8YL',
+                'ABH-10CR-5ZU',
+                'ABH-46MN-2QS'
+            ]);
+            const LEGACY_ACCESS_CODES = Object.freeze(['ABH-2024']);
+            const ALL_ACCESS_CODES = [...ACCESS_CODES, ...LEGACY_ACCESS_CODES];
             const ACCESS_KEY = 'abh_access_code';
             const TASK_KEY = 'abh_dashboard_tasks';
             const statusLabels = {
@@ -216,6 +226,7 @@
             const accessForm = document.getElementById('accessForm');
             const accessCodeInput = document.getElementById('accessCode');
             const resetAccess = document.getElementById('resetAccess');
+            const accessCodesDisplay = document.getElementById('accessCodesDisplay');
             const taskBody = document.getElementById('taskBody');
             const newTitle = document.getElementById('newTitle');
             const newOwner = document.getElementById('newOwner');
@@ -233,6 +244,30 @@
                 Review: document.getElementById('countReview'),
                 Delivered: document.getElementById('countDelivered')
             };
+
+            const normalizeCode = (value) => (value || '').trim().toUpperCase();
+
+            function isValidAccessCode(code) {
+                return ALL_ACCESS_CODES.includes(normalizeCode(code));
+            }
+
+            function renderAccessCodes() {
+                if (!accessCodesDisplay) return;
+                const intro = document.createElement('p');
+                intro.className = 'inline-note';
+                intro.textContent = 'أكواد الدخول الحالية (احفظها لديك):';
+
+                const list = document.createElement('ul');
+                list.className = 'code-list';
+                ACCESS_CODES.forEach(code => {
+                    const item = document.createElement('li');
+                    item.textContent = code;
+                    list.appendChild(item);
+                });
+
+                accessCodesDisplay.appendChild(intro);
+                accessCodesDisplay.appendChild(list);
+            }
 
             function loadTasks() {
                 try {
@@ -262,12 +297,28 @@
 
             let tasks = loadTasks();
 
+            console.info('رموز الدخول الحالية للوحة المهام (يرجى حفظها):', ACCESS_CODES);
+            renderAccessCodes();
+
             function saveTasks() {
                 localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
             }
 
+            function persistAndRender() {
+                saveTasks();
+                renderTasks();
+            }
+
+            function getStoredAccessCode() {
+                return normalizeCode(localStorage.getItem(ACCESS_KEY));
+            }
+
+            function persistAccessCode(code) {
+                localStorage.setItem(ACCESS_KEY, normalizeCode(code));
+            }
+
             function hasAccess() {
-                return localStorage.getItem(ACCESS_KEY) === ACCESS_CODE;
+                return isValidAccessCode(getStoredAccessCode());
             }
 
             function showDashboard() {
@@ -283,12 +334,15 @@
 
             function renderTasks() {
                 taskBody.innerHTML = '';
-                const filtered = tasks.filter(task => {
-                    const statusMatch = statusFilter.value ? task.status === statusFilter.value : true;
-                    const assigneeTerm = assigneeFilter.value.trim();
-                    const assigneeMatch = assigneeTerm ? ((task.assignee || '').includes(assigneeTerm) || (task.owner || '').includes(assigneeTerm)) : true;
-                    return statusMatch && assigneeMatch;
-                });
+                const filtered = tasks
+                    .slice()
+                    .sort((a, b) => new Date(b.lastUpdated || 0) - new Date(a.lastUpdated || 0))
+                    .filter(task => {
+                        const statusMatch = statusFilter.value ? task.status === statusFilter.value : true;
+                        const assigneeTerm = assigneeFilter.value.trim();
+                        const assigneeMatch = assigneeTerm ? ((task.assignee || '').includes(assigneeTerm) || (task.owner || '').includes(assigneeTerm)) : true;
+                        return statusMatch && assigneeMatch;
+                    });
 
                 filtered.forEach((task) => {
                     const row = document.createElement('tr');
@@ -309,8 +363,7 @@
                     statusSelect.addEventListener('change', () => {
                         task.status = statusSelect.value;
                         touchTask(task);
-                        saveTasks();
-                        updateStatusCounts();
+                        persistAndRender();
                     });
                     statusCell.appendChild(statusSelect);
                     row.appendChild(statusCell);
@@ -323,7 +376,7 @@
                     assigneeInput.addEventListener('change', () => {
                         task.assignee = assigneeInput.value.trim();
                         touchTask(task);
-                        saveTasks();
+                        persistAndRender();
                     });
                     assigneeCell.appendChild(assigneeInput);
                     row.appendChild(assigneeCell);
@@ -336,7 +389,7 @@
                     notesArea.addEventListener('change', () => {
                         task.notes = notesArea.value.trim();
                         touchTask(task);
-                        saveTasks();
+                        persistAndRender();
                     });
                     notesCell.appendChild(notesArea);
                     row.appendChild(notesCell);
@@ -349,7 +402,7 @@
                     linkInput.addEventListener('change', () => {
                         task.link = linkInput.value.trim();
                         touchTask(task);
-                        saveTasks();
+                        persistAndRender();
                     });
                     linkCell.appendChild(linkInput);
                     row.appendChild(linkCell);
@@ -372,9 +425,7 @@
                             task.assignee = claimer;
                             task.status = 'Assigned';
                             touchTask(task);
-                            saveTasks();
-                            updateStatusCounts();
-                            renderTasks();
+                            persistAndRender();
                         }
                     });
                     actionCell.appendChild(claimButton);
@@ -411,8 +462,9 @@
 
             accessForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                if (accessCodeInput.value.trim() === ACCESS_CODE) {
-                    localStorage.setItem(ACCESS_KEY, ACCESS_CODE);
+                const providedCode = normalizeCode(accessCodeInput.value);
+                if (isValidAccessCode(providedCode)) {
+                    persistAccessCode(providedCode);
                     showDashboard();
                 } else {
                     accessCodeInput.value = '';
@@ -441,8 +493,7 @@
                 });
                 touchTask(newTask);
                 tasks.push(newTask);
-                saveTasks();
-                renderTasks();
+                persistAndRender();
                 newTitle.value = '';
                 newOwner.value = '';
             });
@@ -458,8 +509,7 @@
                     const imported = JSON.parse(backupText.value);
                     if (Array.isArray(imported)) {
                         tasks = imported.map(task => normalizeTask(task));
-                        saveTasks();
-                        renderTasks();
+                        persistAndRender();
                     }
                 } catch (err) {
                     alert('تعذر قراءة بيانات JSON.');
