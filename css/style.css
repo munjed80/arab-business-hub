@@ -20,40 +20,14 @@
 }
 
 :focus-visible {
-    outline: 2px solid var(--ring-color);
+    outline: 2px solid var(--focus);
     outline-offset: 3px;
 }
 
-:root {
-    /* Palette */
-    --color-bg: #0c1626;
-    --color-surface: #0f1d2d;
-    --color-surface-strong: #0a1220;
-    --color-surface-light: #111d2e;
-    --color-contrast: #ffffff;
-    --color-contrast-muted: #dbe4f3;
-    --color-heading: #ffffff;
-    --color-body: #e2e9f5;
-    --color-muted: #c2ccda;
-    --color-light-text: #0c1b30;
-    --color-light-muted: #334155;
-    --color-gold: #c7a15a;
-    --color-gold-strong: #a88337;
-    --color-accent: #1b8a9c;
-    --color-outline: #f2d8a4;
-    --color-border: #1f2f45;
-    --color-border-light: #d6dee9;
-    --color-success: #2f9e44;
-    --color-error: #dc3545;
-
-    /* Global page background */
-    --page-background: radial-gradient(circle at 20% 20%, rgba(31, 138, 156, 0.08), transparent 32%),
-                       radial-gradient(circle at 84% 12%, rgba(199, 161, 90, 0.12), transparent 26%),
-                       linear-gradient(180deg, #060c12, var(--bg) 40%, #0b1726 100%);
-
-    /* Typography scale */
+body {
     --font-primary: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --font-arabic: 'Cairo', 'Tajawal', 'Segoe UI', sans-serif;
+
     --fs-h1: 2.6rem;
     --fs-h2: 2.1rem;
     --fs-h3: 1.5rem;
@@ -62,71 +36,79 @@
     --lh-tight: 1.2;
     --lh-normal: 1.6;
 
-    /* Spacing */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 3rem;
     --spacing-xl: 4rem;
 
-    /* Radii + borders */
     --radius-sm: 10px;
-    --radius-md: 14px;
-    --radius-lg: 18px;
-    --ring-color: rgba(247, 208, 124, 0.6);
+    --radius-md: var(--radius);
+    --radius-lg: var(--radius-lg);
+    --shadow-sm: 0 2px 4px color-mix(in srgb, var(--bg) 70%, transparent);
+    --shadow-md: 0 8px 24px color-mix(in srgb, var(--bg) 75%, transparent);
+    --shadow-lg: var(--shadow);
+    --shadow-xl: 0 22px 48px color-mix(in srgb, var(--bg) 78%, transparent);
 
-    /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(12, 27, 42, 0.08);
-    --shadow-md: 0 6px 18px rgba(12, 27, 42, 0.14);
-    --shadow-lg: 0 12px 30px rgba(6, 12, 18, 0.26);
-    --shadow-xl: 0 20px 40px rgba(6, 12, 18, 0.35);
-
-    /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 
-    /* Contextual helpers */
-    --hero-overlay: linear-gradient(180deg, rgba(10, 20, 35, 0.92), rgba(6, 12, 20, 0.96));
-    --card-dark: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)), var(--color-surface);
-    --card-light: linear-gradient(170deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 251, 0.94));
-    --btn-glow: 0 18px 50px rgba(199, 161, 90, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.42);
-    --glass-stroke: rgba(255, 255, 255, 0.14);
-    --glass-sheen: rgba(255, 255, 255, 0.08);
-    --glow-amber: rgba(199, 161, 90, 0.5);
-    --glow-cyan: rgba(31, 138, 156, 0.4);
-
-    /* Legacy token aliases for existing components */
-    --bg: var(--color-bg);
-    --surface: var(--color-surface);
-    --surface-light: #ffffff;
-    --text-on-dark: var(--color-contrast);
-    --muted-on-dark: var(--color-contrast-muted);
-    --text-on-light: var(--color-light-text);
-    --muted-on-light: var(--color-light-muted);
-    --primary-color: var(--color-accent);
-    --primary-dark: #0a2238;
-    --primary-light: #1f4e73;
-    --secondary-color: var(--color-gold);
-    --secondary-dark: var(--color-gold-strong);
-    --accent-color: var(--color-accent);
+    --color-contrast: var(--text);
+    --color-contrast-muted: var(--text-muted);
+    --color-heading: var(--text);
+    --color-body: var(--text);
+    --color-muted: var(--text-muted);
+    --color-light-text: var(--text);
+    --color-light-muted: color-mix(in srgb, var(--text-muted) 80%, var(--text) 20%);
+    --color-gold: var(--gold);
+    --color-gold-strong: color-mix(in srgb, var(--gold) 90%, var(--bg) 10%);
+    --color-accent: var(--brand);
+    --color-outline: var(--gold);
+    --color-border: var(--border);
+    --color-border-light: color-mix(in srgb, var(--border) 40%, var(--surface-2) 60%);
+    --color-success: color-mix(in srgb, var(--brand-2) 70%, var(--gold) 30%);
+    --color-error: color-mix(in srgb, var(--brand) 70%, var(--gold) 30%);
+    --text-on-dark: var(--text);
+    --muted-on-dark: var(--text-muted);
+    --text-on-light: var(--text);
+    --muted-on-light: color-mix(in srgb, var(--text-muted) 80%, var(--text) 20%);
+    --primary-color: var(--brand);
+    --primary-dark: color-mix(in srgb, var(--brand) 80%, var(--bg) 20%);
+    --primary-light: color-mix(in srgb, var(--brand) 70%, var(--text) 30%);
+    --secondary-color: var(--gold);
+    --secondary-dark: color-mix(in srgb, var(--gold) 85%, var(--bg) 15%);
+    --accent-color: var(--brand);
     --success-color: var(--color-success);
     --error-color: var(--color-error);
-    --text: var(--text-on-dark);
-    --muted: var(--muted-on-dark);
-    --text-dark: var(--text-on-dark);
-    --text-medium: var(--muted-on-dark);
-    --text-light: color-mix(in srgb, var(--muted-on-dark) 70%, transparent);
-    --bg-white: #ffffff;
-    --bg-light: color-mix(in srgb, var(--color-bg) 70%, #16263b 30%);
-    --bg-gray: var(--color-border);
-    --border-color: var(--color-border);
-    --text-contrast: var(--text-on-dark);
-    --muted-contrast: var(--muted-on-dark);
-    --icon-contrast: var(--text-contrast);
-    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
-    --btn-secondary-border: rgba(255, 255, 255, 0.18);
+    --text: var(--text);
+    --muted: var(--text-muted);
+    --text-dark: var(--text);
+    --text-medium: var(--text-muted);
+    --text-light: color-mix(in srgb, var(--text-muted) 70%, transparent);
+    --bg: var(--bg);
+    --surface: var(--surface);
+    --surface-light: var(--surface-2);
+    --bg-white: var(--surface);
+    --bg-light: color-mix(in srgb, var(--bg) 80%, var(--surface) 20%);
+    --bg-gray: var(--border);
+    --border-color: var(--border);
+    --text-contrast: var(--text);
+    --muted-contrast: var(--text-muted);
+    --icon-contrast: var(--text);
+    --btn-secondary-bg: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    --btn-secondary-border: color-mix(in srgb, var(--border) 85%, transparent);
     --btn-secondary-fg: var(--text);
+
+    --page-background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 98%, transparent), color-mix(in srgb, var(--surface) 92%, transparent));
+    --hero-overlay: linear-gradient(180deg, color-mix(in srgb, var(--bg) 94%, transparent), color-mix(in srgb, var(--surface) 96%, transparent));
+    --card-dark: linear-gradient(160deg, color-mix(in srgb, var(--text) 6%, transparent), color-mix(in srgb, var(--text) 3%, transparent)), var(--surface);
+    --card-light: linear-gradient(170deg, color-mix(in srgb, var(--surface-2) 96%, var(--surface) 4%), color-mix(in srgb, var(--surface-2) 88%, var(--surface) 12%));
+    --btn-glow: 0 18px 50px color-mix(in srgb, var(--gold) 45%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 25%, transparent);
+    --glass-stroke: color-mix(in srgb, var(--text) 12%, transparent);
+    --glass-sheen: color-mix(in srgb, var(--text) 8%, transparent);
+    --glow-amber: color-mix(in srgb, var(--gold) 55%, transparent);
+    --glow-cyan: color-mix(in srgb, var(--brand) 40%, transparent);
 }
 
 /* ==========================================
@@ -134,55 +116,55 @@
    ========================================== */
 
 .dark-section {
-    --context-bg: linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96));
-    --context-surface: color-mix(in srgb, #0f1d2d 94%, rgba(255, 255, 255, 0.02));
-    --context-border: #1e3148;
-    --text-contrast: var(--text-on-dark);
-    --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 88%, transparent);
-    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 95%, #f5dba7 5%);
-    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
-    --btn-secondary-border: rgba(255, 255, 255, 0.18);
-    --btn-secondary-fg: var(--text-on-dark);
-    background: radial-gradient(circle at 12% 10%, rgba(199, 161, 90, 0.06), transparent 22%),
-                radial-gradient(circle at 86% 14%, rgba(27, 138, 156, 0.08), transparent 28%),
+    --context-bg: linear-gradient(180deg, color-mix(in srgb, var(--bg) 95%, transparent), color-mix(in srgb, var(--surface) 95%, transparent));
+    --context-surface: color-mix(in srgb, var(--surface) 94%, var(--surface-2) 6%);
+    --context-border: color-mix(in srgb, var(--border) 92%, transparent);
+    --text-contrast: var(--text);
+    --muted-contrast: color-mix(in srgb, var(--text-muted) 90%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text) 94%, var(--gold) 6%);
+    --btn-secondary-bg: color-mix(in srgb, var(--surface-2) 70%, transparent);
+    --btn-secondary-border: color-mix(in srgb, var(--border) 88%, transparent);
+    --btn-secondary-fg: var(--text);
+    background: radial-gradient(circle at 12% 10%, color-mix(in srgb, var(--gold) 6%, transparent), transparent 22%),
+                radial-gradient(circle at 86% 14%, color-mix(in srgb, var(--brand-2) 8%, transparent), transparent 28%),
                 var(--context-bg);
     color: var(--muted-contrast);
     border-color: var(--context-border);
 }
 
 .light-section {
-    --context-bg: var(--surface-light);
-    --context-surface: color-mix(in srgb, var(--surface-light) 96%, #eef2f7 4%);
-    --context-border: #d6dee9;
-    --text-contrast: var(--text-on-light);
-    --muted-contrast: var(--muted-on-light);
-    --icon-contrast: var(--text-on-light);
-    --btn-secondary-bg: rgba(19, 51, 79, 0.08);
+    --context-bg: var(--surface-2);
+    --context-surface: color-mix(in srgb, var(--surface-2) 90%, var(--surface) 10%);
+    --context-border: color-mix(in srgb, var(--border) 65%, var(--surface-2) 35%);
+    --text-contrast: var(--text);
+    --muted-contrast: color-mix(in srgb, var(--text-muted) 88%, transparent);
+    --icon-contrast: var(--text);
+    --btn-secondary-bg: color-mix(in srgb, var(--surface-2) 65%, transparent);
     --btn-secondary-border: color-mix(in srgb, var(--context-border) 70%, transparent);
-    --btn-secondary-fg: var(--text-on-light);
-    background: radial-gradient(circle at 18% 12%, rgba(19, 51, 79, 0.08), transparent 26%),
-                radial-gradient(circle at 78% 6%, rgba(199, 161, 90, 0.12), transparent 22%),
+    --btn-secondary-fg: var(--text);
+    background: radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 26%),
+                radial-gradient(circle at 78% 6%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 22%),
                 var(--context-bg);
     color: var(--muted-contrast);
     border-color: var(--context-border);
 }
 
 .dark-card {
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    background: linear-gradient(160deg, color-mix(in srgb, var(--text) 4%, transparent), color-mix(in srgb, var(--text) 2%, transparent)),
                 var(--context-surface, var(--surface));
-    border: 1px solid color-mix(in srgb, var(--context-border, #1e3148) 65%, transparent);
-    box-shadow: 0 16px 40px rgba(6, 12, 18, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    border: 1px solid color-mix(in srgb, var(--context-border, var(--border)) 65%, transparent);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--bg) 70%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 8%, transparent);
     color: var(--muted-contrast);
     backdrop-filter: blur(8px);
-    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, #f0d9a1 8%);
+    --icon-contrast: color-mix(in srgb, var(--text) 92%, var(--gold) 8%);
 }
 
 .light-card {
-    background: linear-gradient(170deg, rgba(255, 255, 255, 0.94), rgba(246, 248, 251, 0.94));
-    border: 1px solid color-mix(in srgb, var(--context-border, #d6dee9) 80%, transparent);
-    box-shadow: 0 14px 38px rgba(12, 27, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    background: linear-gradient(170deg, color-mix(in srgb, var(--text) 94%, transparent), color-mix(in srgb, var(--text) 90%, transparent));
+    border: 1px solid color-mix(in srgb, var(--context-border, var(--border)) 80%, transparent);
+    box-shadow: 0 14px 38px color-mix(in srgb, var(--bg) 8%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 60%, transparent);
     color: var(--text-on-light);
-    --icon-contrast: color-mix(in srgb, var(--text-on-light) 94%, #1b8a9c 6%);
+    --icon-contrast: color-mix(in srgb, var(--text) 94%, var(--brand) 6%);
 }
 
 .dark-card h3,
@@ -250,7 +232,7 @@
 .card--highlight,
 .pricing-card.featured {
     border-color: var(--color-outline);
-    box-shadow: 0 24px 60px rgba(199, 161, 90, 0.35);
+    box-shadow: 0 24px 60px color-mix(in srgb, var(--gold) 35%, transparent);
 }
 
 .card--dark p,
@@ -289,55 +271,13 @@
 
 
 .theme-dark {
-    --bg: #0b1522;
-    --surface: #0f1d2d;
-    --text: var(--text-on-dark);
-    --muted: var(--muted-on-dark);
-    --border: #1e3148;
-    --accent: #c7a15a;
-    --accent2: #1b8a9c;
-    --bg-white: #ffffff;
-    --bg-light: #0f1d2d;
-    --bg-gray: #132437;
-    --text-medium: var(--muted);
-    --text-light: color-mix(in srgb, var(--muted) 60%, transparent);
-    --btn-secondary-bg: rgba(255, 255, 255, 0.04);
-    --btn-secondary-border: rgba(255, 255, 255, 0.18);
-    --btn-secondary-fg: var(--text);
-    --text-contrast: var(--text-on-dark);
-    --muted-contrast: var(--muted-on-dark);
     background: var(--bg);
     color: var(--muted);
 }
 
 .theme-light {
-    --bg: #f6f8fb;
-    --surface: #ffffff;
-    --text: var(--text-on-light);
-    --muted: var(--muted-on-light);
-    --border: #d6dee9;
-    --accent: #13334f;
-    --accent2: #1b8a9c;
-    --primary-color: var(--accent);
-    --primary-dark: #0a2238;
-    --primary-light: #1f4e73;
-    --secondary-color: #c7a15a;
-    --secondary-dark: #9f7f3d;
-    --bg-white: var(--surface);
-    --bg-light: #eef2f7;
-    --bg-gray: #d6dee9;
-    --text-dark: var(--text);
-    --text-medium: #334155;
-    --text-light: #4b5563;
-    --border-color: var(--border);
-    --btn-secondary-bg: rgba(19, 51, 79, 0.08);
-    --btn-secondary-border: color-mix(in srgb, var(--border) 70%, transparent);
-    --btn-secondary-fg: var(--accent);
-    --text-contrast: var(--text-on-light);
-    --muted-contrast: var(--muted-on-light);
-    --icon-contrast: var(--text-contrast);
-    background: var(--bg);
-    color: var(--muted);
+    background: var(--surface);
+    color: var(--muted-on-light);
 }
 
 .surface-light,
@@ -347,7 +287,7 @@
     --text-dark: var(--text-on-light);
     --text-medium: var(--muted-on-light);
     --text-light: color-mix(in srgb, var(--muted-on-light) 70%, transparent);
-    --btn-secondary-bg: rgba(19, 51, 79, 0.08);
+    --btn-secondary-bg: color-mix(in srgb, var(--brand) 8%, transparent);
     --btn-secondary-border: color-mix(in srgb, var(--border-color) 50%, transparent);
     --btn-secondary-fg: var(--text-on-light);
     --text-contrast: var(--text-on-light);
@@ -418,7 +358,7 @@ main {
     display: inline-block;
     vertical-align: middle;
     color: var(--icon-contrast);
-    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+    filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--bg) 35%, transparent));
 }
 
 .svg-sprite {
@@ -446,7 +386,7 @@ svg {
     stroke-linecap: round;
     stroke-linejoin: round;
     color: var(--icon-contrast);
-    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+    filter: drop-shadow(0 1px 4px color-mix(in srgb, var(--bg) 35%, transparent));
 }
 
 section:not(.theme-light):not(.light-section) svg,
@@ -520,21 +460,21 @@ section {
 
 section:not(.light-section):not(.theme-light),
 .dark-section {
-    background: radial-gradient(circle at 12% 10%, rgba(199, 161, 90, 0.06), transparent 22%),
-                radial-gradient(circle at 86% 14%, rgba(27, 138, 156, 0.08), transparent 28%),
-                var(--context-bg, linear-gradient(180deg, rgba(14, 26, 40, 0.96), rgba(7, 13, 20, 0.96)));
-    border-top: 1px solid color-mix(in srgb, var(--context-border, rgba(255, 255, 255, 0.08)) 75%, transparent);
+    background: radial-gradient(circle at 12% 10%, color-mix(in srgb, var(--gold) 6%, transparent), transparent 22%),
+                radial-gradient(circle at 86% 14%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 28%),
+                var(--context-bg, linear-gradient(180deg, color-mix(in srgb, var(--bg) 96%, transparent), color-mix(in srgb, var(--bg) 96%, transparent)));
+    border-top: 1px solid color-mix(in srgb, var(--context-border, color-mix(in srgb, var(--text) 8%, transparent)) 75%, transparent);
     --text-contrast: var(--text-on-dark);
     --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 88%, transparent);
-    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 95%, #f5dba7 5%);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 95%, var(--gold) 5%);
     color: var(--muted-contrast);
 }
 
 section.light-section,
 section.theme-light,
 .light-section {
-    background: radial-gradient(circle at 18% 12%, rgba(19, 51, 79, 0.08), transparent 26%),
-                radial-gradient(circle at 78% 6%, rgba(199, 161, 90, 0.12), transparent 22%),
+    background: radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 26%),
+                radial-gradient(circle at 78% 6%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 22%),
                 var(--context-bg, var(--surface-light));
     border-top: 1px solid var(--context-border, var(--border-color));
     --text-contrast: var(--text-on-light);
@@ -566,14 +506,14 @@ section.theme-light,
    ========================================== */
 
 .navbar {
-    background: rgba(6, 12, 18, 0.85);
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(12px);
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 18px 36px color-mix(in srgb, var(--bg) 35%, transparent);
     position: sticky;
     top: 0;
     z-index: 1000;
     padding: var(--spacing-sm) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
 }
 
 .navbar .container {
@@ -613,8 +553,8 @@ section.theme-light,
 .nav-menu a:hover,
 .nav-menu a.active {
     color: var(--color-outline);
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 12%, transparent);
 }
 
 .nav-toggle {
@@ -651,27 +591,30 @@ section.theme-light,
     font-size: 1rem;
     letter-spacing: 0.04em;
     line-height: 1.2;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 20px 40px color-mix(in srgb, var(--bg) 75%, transparent);
     position: relative;
     overflow: hidden;
     color: var(--btn-fg, var(--text-contrast));
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 1px 6px color-mix(in srgb, var(--bg) 55%, transparent);
 }
 
 .btn-primary,
 .primary-button {
-    background: linear-gradient(135deg, #f5dba7 0%, #c7a15a 35%, #8d6b2e 100%);
-    --btn-fg: #000000;
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--gold) 96%, transparent) 0%,
+        color-mix(in srgb, var(--gold) 82%, var(--brand) 18%) 35%,
+        color-mix(in srgb, var(--gold) 70%, var(--bg) 30%) 100%);
+    --btn-fg: var(--gold-contrast);
     border-color: transparent;
-    box-shadow: 0 18px 50px rgba(199, 161, 90, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    box-shadow: 0 18px 50px color-mix(in srgb, var(--gold) 38%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 42%, transparent);
 }
 
 .btn-primary:hover,
 .primary-button:hover {
     transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 26px 64px rgba(199, 161, 90, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.48);
+    box-shadow: 0 26px 64px color-mix(in srgb, var(--gold) 50%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 48%, transparent);
     filter: saturate(1.05);
-    color: #000000;
+    color: var(--gold-contrast);
 }
 
 .btn-primary:focus,
@@ -680,7 +623,7 @@ section.theme-light,
 .primary-button:focus,
 .primary-button:active,
 .primary-button:disabled {
-    color: #000000;
+    color: var(--gold-contrast);
 }
 
 .btn-secondary,
@@ -688,26 +631,26 @@ section.theme-light,
     background: var(--btn-secondary-bg);
     color: var(--btn-secondary-fg);
     border-color: var(--btn-secondary-border);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 18%, transparent), 0 16px 32px color-mix(in srgb, var(--bg) 72%, transparent);
 }
 
 .btn-secondary:hover,
 .secondary-button:hover {
-    background: color-mix(in srgb, var(--btn-secondary-bg) 60%, rgba(255, 255, 255, 0.12));
-    color: color-mix(in srgb, var(--btn-secondary-fg) 90%, #f5dba7 10%);
+    background: color-mix(in srgb, var(--btn-secondary-bg) 60%, color-mix(in srgb, var(--gold) 12%, transparent));
+    color: color-mix(in srgb, var(--btn-secondary-fg) 90%, var(--gold) 10%);
     transform: translateY(-3px);
 }
 
 .btn-danger {
-    background-color: #fce8e6;
-    color: #c5221f;
-    border-color: #f28b82;
+    background-color: color-mix(in srgb, var(--gold) 55%, var(--brand) 45%);
+    color: var(--gold-contrast);
+    border-color: color-mix(in srgb, var(--gold) 65%, var(--border) 35%);
 }
 
 .btn-danger:hover {
-    background-color: #c5221f;
-    color: var(--bg-white);
-    border-color: #c5221f;
+    background-color: color-mix(in srgb, var(--gold) 45%, var(--brand) 55%);
+    color: var(--gold-contrast);
+    border-color: color-mix(in srgb, var(--gold) 50%, var(--border) 50%);
 }
 
 .btn-large {
@@ -728,7 +671,7 @@ section.theme-light,
     width: 56px;
     height: 56px;
     border-radius: 50%;
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)), var(--bg-light);
+    background: linear-gradient(145deg, color-mix(in srgb, var(--text) 10%, transparent), color-mix(in srgb, var(--text) 5%, transparent)), var(--bg-light);
     color: var(--primary-color);
     display: inline-flex;
     align-items: center;
@@ -747,8 +690,8 @@ section.theme-light,
     width: 28px;
     height: 28px;
     border-radius: 8px;
-    background: color-mix(in srgb, rgba(255, 255, 255, 0.16) 80%, transparent);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: color-mix(in srgb, color-mix(in srgb, var(--text) 16%, transparent) 80%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
     color: var(--icon-contrast);
     display: inline-flex;
     align-items: center;
@@ -774,26 +717,26 @@ section.theme-light,
    ========================================== */
 
 .hero {
-    background: radial-gradient(circle at 8% 12%, rgba(216, 162, 63, 0.18), transparent 26%),
-                radial-gradient(circle at 82% 10%, rgba(31, 122, 140, 0.18), transparent 30%),
-                linear-gradient(135deg, #03121c 0%, #061b29 45%, #0d3042 100%);
+    background: radial-gradient(circle at 8% 12%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 26%),
+                radial-gradient(circle at 82% 10%, color-mix(in srgb, var(--brand) 18%, transparent), transparent 30%),
+                linear-gradient(135deg, var(--bg) 0%, var(--surface) 45%, var(--surface-2) 100%);
     color: var(--bg-white);
     padding: calc(var(--spacing-xl) + 1.5rem) 0;
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    --text-contrast: #ffffff;
-    --muted-contrast: color-mix(in srgb, #f7fbff 92%, transparent);
-    --icon-contrast: color-mix(in srgb, #ffffff 92%, #f5dba7 8%);
+    --text-contrast: var(--text);
+    --muted-contrast: color-mix(in srgb, var(--text) 92%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text) 92%, var(--gold) 8%);
 }
 
 .page-header,
 .cta-section,
 .footer,
 .contact-section {
-    --text-contrast: #ffffff;
-    --muted-contrast: color-mix(in srgb, #f6f9ff 90%, transparent);
-    --icon-contrast: color-mix(in srgb, #ffffff 92%, #f5dba7 8%);
+    --text-contrast: var(--text);
+    --muted-contrast: color-mix(in srgb, var(--text) 90%, transparent);
+    --icon-contrast: color-mix(in srgb, var(--text) 92%, var(--gold) 8%);
     color: var(--muted-contrast);
 }
 
@@ -801,7 +744,7 @@ section.theme-light,
     content: '';
     position: absolute;
     inset: -20% -10% 30% -10%;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+    background: linear-gradient(120deg, color-mix(in srgb, var(--text) 5%, transparent), color-mix(in srgb, var(--text) 0%, transparent));
     transform: skewY(-6deg);
     filter: blur(3px);
     opacity: 0.8;
@@ -824,18 +767,18 @@ section.theme-light,
     transform: rotate(-8deg);
 }
 
-.glow-amber { background: rgba(216, 162, 63, 0.35); top: -120px; right: -120px; }
-.glow-cyan { background: rgba(31, 122, 140, 0.32); bottom: -160px; left: -80px; }
+.glow-amber { background: color-mix(in srgb, var(--gold) 35%, transparent); top: -120px; right: -120px; }
+.glow-cyan { background: color-mix(in srgb, var(--brand) 32%, transparent); bottom: -160px; left: -80px; }
 
 .hero-gridlines {
     position: absolute;
     inset: 12% 6% auto 6%;
     height: 70%;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0, transparent 35%),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(0deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--text) 8%, transparent) 0, transparent 35%),
+                linear-gradient(90deg, color-mix(in srgb, var(--text) 5%, transparent) 1px, transparent 1px),
+                linear-gradient(0deg, color-mix(in srgb, var(--text) 5%, transparent) 1px, transparent 1px);
     background-size: 360px 360px, 120px 120px, 120px 120px;
-    mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.9), transparent 80%);
+    mask-image: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--bg) 90%, transparent), transparent 80%);
     opacity: 0.35;
 }
 
@@ -857,20 +800,20 @@ section.theme-light,
 .hero-title {
     font-size: 3.2rem;
     margin-bottom: var(--spacing-sm);
-    color: #ffffff;
+    color: var(--text);
     letter-spacing: 0.01em;
     line-height: 1.35;
-    text-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 20px 60px color-mix(in srgb, var(--bg) 35%, transparent);
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
     margin-bottom: var(--spacing-md);
-    color: #f5f8ff;
+    color: var(--text-muted);
     font-weight: 400;
     line-height: 1.9;
     max-width: 720px;
-    text-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+    text-shadow: 0 14px 40px color-mix(in srgb, var(--bg) 35%, transparent);
 }
 
 .eyebrow {
@@ -878,20 +821,20 @@ section.theme-light,
     align-items: center;
     gap: 12px;
     padding: 10px 14px;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
-    border: 1px solid rgba(255, 255, 255, 0.24);
+    background: linear-gradient(120deg, color-mix(in srgb, var(--text) 12%, transparent), color-mix(in srgb, var(--text) 2%, transparent));
+    border: 1px solid color-mix(in srgb, var(--text) 24%, transparent);
     border-radius: 999px;
     color: var(--text-contrast);
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
     font-size: 1rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px color-mix(in srgb, var(--bg) 30%, transparent);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
 .premium-eyebrow .eyebrow-note {
-    color: rgba(255, 255, 255, 0.7);
+    color: color-mix(in srgb, var(--text) 70%, transparent);
     font-weight: 600;
     font-size: 0.95rem;
 }
@@ -900,8 +843,8 @@ section.theme-light,
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f5d58c, #d8a23f);
-    box-shadow: 0 0 0 6px rgba(216, 162, 63, 0.2);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 88%, transparent), color-mix(in srgb, var(--gold) 85%, var(--brand) 15%));
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 20%, transparent);
 }
 
 .hero-cta {
@@ -913,33 +856,33 @@ section.theme-light,
 }
 
 .hero .btn-primary.btn-premium {
-    background: linear-gradient(135deg, #f4d9a4 0%, #d8a23f 38%, #c17a1c 100%);
-    color: #000000;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 92%, transparent) 0%, color-mix(in srgb, var(--gold) 85%, var(--brand) 15%) 38%, color-mix(in srgb, var(--gold) 65%, var(--bg) 35%) 100%);
+    color: var(--gold-contrast);
     border-color: transparent;
-    box-shadow: 0 16px 50px rgba(216, 162, 63, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-shadow: 0 16px 50px color-mix(in srgb, var(--gold) 45%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 35%, transparent);
     letter-spacing: 0.04em;
 }
 
 .hero .btn-primary.btn-premium:hover {
     transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 24px 60px rgba(216, 162, 63, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    color: #000000;
+    box-shadow: 0 24px 60px color-mix(in srgb, var(--gold) 55%, transparent), inset 0 1px 0 color-mix(in srgb, var(--text) 40%, transparent);
+    color: var(--gold-contrast);
 }
 
 .hero .btn-ghost {
-    background: rgba(255, 255, 255, 0.06);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
     color: var(--text-contrast);
-    border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 16px 40px rgba(0, 0, 0, 0.25);
+    border-color: color-mix(in srgb, var(--text) 22%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 18%, transparent), 0 16px 40px color-mix(in srgb, var(--bg) 25%, transparent);
 }
 
 .hero .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: color-mix(in srgb, var(--text) 12%, transparent);
     transform: translateY(-3px);
 }
 
 .cta-note {
-    color: rgba(255, 255, 255, 0.78);
+    color: color-mix(in srgb, var(--text) 78%, transparent);
     font-weight: 600;
     letter-spacing: 0.03em;
 }
@@ -952,18 +895,18 @@ section.theme-light,
 }
 
 .metric-card {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: color-mix(in srgb, var(--text) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 16%, transparent);
     border-radius: 16px;
     padding: var(--spacing-sm);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 30px color-mix(in srgb, var(--bg) 25%, transparent);
     backdrop-filter: blur(6px);
 }
 
 .metric-value {
     font-size: 1.7rem;
     font-weight: 800;
-    color: #f4d9a4;
+    color: color-mix(in srgb, var(--gold) 92%, transparent);
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -973,12 +916,12 @@ section.theme-light,
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #3fdee4, #1f7a8c);
-    box-shadow: 0 0 0 6px rgba(31, 122, 140, 0.18);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--brand-2) 60%, var(--gold) 40%), var(--brand));
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--brand) 18%, transparent);
 }
 
 .metric-label {
-    color: rgba(255, 255, 255, 0.78);
+    color: color-mix(in srgb, var(--text) 78%, transparent);
     margin-top: 6px;
     font-weight: 500;
     line-height: 1.6;
@@ -991,9 +934,9 @@ section.theme-light,
 }
 
 .premium-pills .pill {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-    border-color: rgba(255, 255, 255, 0.16);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 30px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, color-mix(in srgb, var(--text) 8%, transparent), color-mix(in srgb, var(--text) 3%, transparent));
+    border-color: color-mix(in srgb, var(--text) 16%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 12%, transparent), 0 12px 30px color-mix(in srgb, var(--bg) 20%, transparent);
     letter-spacing: 0.01em;
 }
 
@@ -1001,11 +944,11 @@ section.theme-light,
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
+    background-color: color-mix(in srgb, var(--text) 8%, transparent);
+    color: var(--text);
     padding: 12px 16px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
     font-weight: 600;
     font-size: 0.98rem;
 }
@@ -1021,13 +964,13 @@ section.theme-light,
 }
 
 .panel-card {
-    background: rgba(255, 255, 255, 0.07);
+    background: color-mix(in srgb, var(--text) 7%, transparent);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
     border-radius: 18px;
     padding: calc(var(--spacing-lg) - 0.5rem);
     color: var(--bg-white);
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+    box-shadow: 0 18px 50px color-mix(in srgb, var(--bg) 32%, transparent);
     max-width: 480px;
     width: 100%;
     position: relative;
@@ -1039,7 +982,7 @@ section.theme-light,
     position: absolute;
     inset: -30% -5% auto -5%;
     height: 60%;
-    background: linear-gradient(135deg, rgba(244, 217, 164, 0.08), rgba(31, 122, 140, 0.12));
+    background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 8%, transparent), color-mix(in srgb, var(--brand) 12%, transparent));
     filter: blur(8px);
 }
 
@@ -1047,13 +990,13 @@ section.theme-light,
     display: inline-flex;
     align-items: center;
     padding: 6px 14px;
-    background: linear-gradient(135deg, rgba(244, 217, 164, 0.35), rgba(216, 162, 63, 0.55));
-    color: #0b1b28;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 35%, transparent), color-mix(in srgb, var(--gold) 55%, transparent));
+    color: var(--bg);
     font-weight: 800;
     border-radius: 999px;
     letter-spacing: 0.06em;
     margin-bottom: var(--spacing-sm);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 40%, transparent);
 }
 
 .panel-header {
@@ -1066,13 +1009,13 @@ section.theme-light,
 }
 
 .premium-icon {
-    background: linear-gradient(160deg, rgba(244, 217, 164, 0.4), rgba(255, 255, 255, 0.08));
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(160deg, color-mix(in srgb, var(--gold) 40%, transparent), color-mix(in srgb, var(--text) 8%, transparent));
+    border: 1px solid color-mix(in srgb, var(--text) 30%, transparent);
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--bg) 30%, transparent);
 }
 
 .panel-eyebrow {
-    color: rgba(255, 255, 255, 0.7);
+    color: color-mix(in srgb, var(--text) 70%, transparent);
     font-weight: 700;
     font-size: 0.98rem;
     margin: 0;
@@ -1083,8 +1026,8 @@ section.theme-light,
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing-sm);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: color-mix(in srgb, var(--text) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
     border-radius: 14px;
     padding: var(--spacing-sm);
     position: relative;
@@ -1092,7 +1035,7 @@ section.theme-light,
 }
 
 .stat-label {
-    color: rgba(255, 255, 255, 0.7);
+    color: color-mix(in srgb, var(--text) 70%, transparent);
     font-weight: 600;
     margin-bottom: 4px;
 }
@@ -1104,13 +1047,13 @@ section.theme-light,
 }
 
 .stat-trend {
-    color: #f4d9a4;
+    color: color-mix(in srgb, var(--gold) 92%, transparent);
     font-size: 0.95rem;
     font-weight: 700;
     margin-right: 6px;
 }
 
-.stat-trend.positive { color: #8be6e2; }
+.stat-trend.positive { color: color-mix(in srgb, var(--brand-2) 55%, var(--gold) 45%); }
 
 .panel-list {
     list-style: none;
@@ -1126,7 +1069,7 @@ section.theme-light,
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    color: rgba(255, 255, 255, 0.92);
+    color: color-mix(in srgb, var(--text) 92%, transparent);
     font-weight: 600;
     letter-spacing: 0.01em;
 }
@@ -1167,7 +1110,7 @@ section.theme-light,
    ========================================== */
 
 .services-overview {
-    background: linear-gradient(180deg, rgba(12, 22, 34, 0.96), rgba(9, 17, 26, 0.96));
+    background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 96%, transparent), color-mix(in srgb, var(--bg) 96%, transparent));
 }
 
 .services-grid {
@@ -1187,18 +1130,18 @@ section.theme-light,
 .pill {
     --text-contrast: var(--text-on-dark);
     --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 90%, transparent);
-    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, #f5dba7 8%);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, var(--gold) 8%);
     color: var(--muted-contrast);
 }
 
 .service-card {
-    background: linear-gradient(145deg, rgba(20, 36, 52, 0.9), rgba(12, 22, 34, 0.9));
+    background: linear-gradient(145deg, color-mix(in srgb, var(--surface-2) 90%, transparent), color-mix(in srgb, var(--bg) 90%, transparent));
     padding: var(--spacing-lg);
     border-radius: 18px;
-    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 28px 60px color-mix(in srgb, var(--bg) 35%, transparent);
     transition: all var(--transition-normal);
     text-align: right;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
     position: relative;
     overflow: hidden;
 }
@@ -1207,14 +1150,14 @@ section.theme-light,
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(199, 161, 90, 0.08), transparent 40%);
+    background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--gold) 8%, transparent), transparent 40%);
     opacity: 0;
     transition: opacity var(--transition-normal);
 }
 
 .service-card:hover {
     transform: translateY(-10px) scale(1.01);
-    box-shadow: 0 32px 68px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 32px 68px color-mix(in srgb, var(--bg) 45%, transparent);
 }
 
 .service-card:hover::after { opacity: 1; }
@@ -1235,7 +1178,7 @@ section.theme-light,
 }
 
 .service-link {
-    color: #f2d8a4;
+    color: var(--focus);
     font-weight: 700;
     display: inline-block;
     transition: all var(--transition-fast);
@@ -1244,7 +1187,7 @@ section.theme-light,
 
 .service-link:hover {
     transform: translateX(-5px);
-    color: #ffedc2;
+    color: color-mix(in srgb, var(--gold) 92%, transparent);
 }
 
 /* ==========================================
@@ -1261,12 +1204,12 @@ section.theme-light,
 .cta-section .btn-secondary {
     background: transparent;
     color: var(--bg-white);
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: color-mix(in srgb, var(--text) 60%, transparent);
 }
 
 .hero .btn-secondary:hover,
 .cta-section .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: color-mix(in srgb, var(--text) 10%, transparent);
     color: var(--bg-white);
 }
 
@@ -1281,17 +1224,17 @@ section.theme-light,
 }
 
 .process-card {
-    background: linear-gradient(155deg, rgba(18, 34, 50, 0.92), rgba(10, 19, 30, 0.92));
+    background: linear-gradient(155deg, color-mix(in srgb, var(--surface-2) 92%, transparent), color-mix(in srgb, var(--surface) 92%, transparent));
     padding: var(--spacing-lg);
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+    border: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
+    box-shadow: 0 22px 50px color-mix(in srgb, var(--bg) 35%, transparent);
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .process-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 28px 60px color-mix(in srgb, var(--bg) 45%, transparent);
 }
 
 .process-card h3 {
@@ -1503,8 +1446,8 @@ section.theme-light,
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(199, 161, 90, 0.18), transparent 40%),
-                radial-gradient(circle at 80% 0%, rgba(27, 138, 156, 0.16), transparent 36%);
+    background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 40%),
+                radial-gradient(circle at 80% 0%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 36%);
     opacity: 0.9;
     pointer-events: none;
 }
@@ -1584,7 +1527,7 @@ section.theme-light,
 
 .pill.subtle {
     background: var(--bg-light);
-    color: #ffffff;
+    color: var(--text);
     border-color: transparent;
 }
 
@@ -1658,21 +1601,21 @@ section.theme-light,
 }
 
 .cta-section p {
-    color: rgba(255, 255, 255, 0.9);
+    color: color-mix(in srgb, var(--text) 90%, transparent);
     font-size: 1.2rem;
     margin-bottom: var(--spacing-lg);
 }
 
 .cta-section .btn-primary {
     background-color: var(--bg-white);
-    color: #000000;
+    color: var(--gold-contrast);
     border-color: var(--bg-white);
 }
 
 .cta-section .btn-primary:hover {
     background-color: var(--bg-light);
     border-color: var(--bg-light);
-    color: #000000;
+    color: var(--gold-contrast);
 }
 
 /* ==========================================
@@ -1680,7 +1623,7 @@ section.theme-light,
    ========================================== */
 
 .footer {
-    background: linear-gradient(180deg, var(--primary-dark), #050b12);
+    background: linear-gradient(180deg, var(--primary-dark), var(--bg));
     color: var(--text-on-dark);
     padding: var(--spacing-xl) 0 var(--spacing-md);
     border-top: 1px solid color-mix(in srgb, var(--border-color) 70%, transparent);
@@ -1693,8 +1636,8 @@ section.theme-light,
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 12% 8%, rgba(199, 161, 90, 0.08), transparent 28%),
-                radial-gradient(circle at 86% 4%, rgba(27, 138, 156, 0.08), transparent 24%);
+    background: radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--gold) 8%, transparent), transparent 28%),
+                radial-gradient(circle at 86% 4%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 24%);
     pointer-events: none;
 }
 
@@ -1761,19 +1704,19 @@ section.theme-light,
 
 .page-header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: #ffffff;
+    color: var(--text);
     padding: calc(var(--spacing-xl) + 0.5rem) 0;
     text-align: center;
 }
 
 .page-header h1 {
-    color: #ffffff;
+    color: var(--text);
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
 }
 
 .page-header p {
-    color: rgba(255, 255, 255, 0.9);
+    color: color-mix(in srgb, var(--text) 90%, transparent);
     font-size: 1.2rem;
 }
 
@@ -2098,7 +2041,7 @@ section.theme-light,
     color: var(--bg-white);
     padding: var(--spacing-lg);
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid color-mix(in srgb, var(--text) 20%, transparent);
 }
 
 .pricing-card.featured .pricing-header {
@@ -2110,7 +2053,7 @@ section.theme-light,
     width: 72px;
     height: 72px;
     border-radius: 14px;
-    background: color-mix(in srgb, rgba(255, 255, 255, 0.16) 70%, transparent);
+    background: color-mix(in srgb, color-mix(in srgb, var(--text) 16%, transparent) 70%, transparent);
     color: var(--icon-contrast);
     border: 1px solid color-mix(in srgb, var(--card-border) 70%, transparent);
     display: inline-flex;
@@ -2200,7 +2143,7 @@ section.theme-light,
 
 .package-subtitle {
     text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+    color: color-mix(in srgb, var(--text) 90%, transparent);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -2221,7 +2164,7 @@ section.theme-light,
 
 .package-features li {
     padding: var(--spacing-xs) 0;
-    color: rgba(255, 255, 255, 0.9);
+    color: color-mix(in srgb, var(--text) 90%, transparent);
 }
 
 .package-pricing {
@@ -2230,7 +2173,7 @@ section.theme-light,
 
 .old-price {
     text-decoration: line-through;
-    color: rgba(255, 255, 255, 0.6);
+    color: color-mix(in srgb, var(--text) 60%, transparent);
     font-size: 1.2rem;
     display: block;
     margin-bottom: var(--spacing-xs);
@@ -2294,7 +2237,7 @@ section.theme-light,
 .testimonial-card {
     background: var(--surface);
     border: 1px solid var(--border-color);
-    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 24px 55px color-mix(in srgb, var(--bg) 28%, transparent);
     border-radius: 18px;
     color: var(--muted);
 }
@@ -2332,8 +2275,8 @@ section.theme-light,
     padding: var(--spacing-md);
     border-radius: 12px;
     margin-bottom: var(--spacing-md);
-    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 22px 50px color-mix(in srgb, var(--bg) 35%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
 }
 
 .faq-item h3 {
@@ -2353,7 +2296,7 @@ section.theme-light,
     padding: var(--spacing-xl) 0;
     --text-contrast: var(--text-on-dark);
     --muted-contrast: color-mix(in srgb, var(--muted-on-dark) 90%, transparent);
-    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, #f5dba7 8%);
+    --icon-contrast: color-mix(in srgb, var(--text-on-dark) 92%, var(--gold) 8%);
     color: var(--muted-contrast);
 }
 
@@ -2400,7 +2343,7 @@ section.theme-light,
     font-family: inherit;
     font-size: 1rem;
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    background: linear-gradient(120deg, color-mix(in srgb, var(--text) 6%, transparent), color-mix(in srgb, var(--text) 2%, transparent));
     color: var(--text-dark);
 }
 
@@ -2408,8 +2351,8 @@ section.theme-light,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #f2d8a4;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    border-color: var(--focus);
+    box-shadow: 0 12px 30px color-mix(in srgb, var(--bg) 35%, transparent);
 }
 
 .form-message {
@@ -2420,13 +2363,13 @@ section.theme-light,
 }
 
 .form-message.success {
-    background-color: rgba(40, 167, 69, 0.1);
+    background-color: color-mix(in srgb, var(--brand-2) 20%, transparent);
     color: var(--success-color);
     display: block;
 }
 
 .form-message.error {
-    background-color: rgba(220, 53, 69, 0.1);
+    background-color: color-mix(in srgb, var(--brand) 20%, transparent);
     color: var(--error-color);
     display: block;
 }
@@ -2448,8 +2391,8 @@ section.theme-light,
 .contact-icon {
     width: 48px;
     height: 48px;
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: color-mix(in srgb, var(--text) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
     border-radius: 12px;
     display: inline-flex;
     align-items: center;
@@ -2495,8 +2438,8 @@ section.theme-light,
 .social-icon {
     width: 50px;
     height: 50px;
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: color-mix(in srgb, var(--text) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2506,7 +2449,7 @@ section.theme-light,
 }
 
 .social-icon:hover {
-    background-color: color-mix(in srgb, var(--primary-color) 70%, #c7a15a 30%);
+    background-color: color-mix(in srgb, var(--primary-color) 70%, var(--gold) 30%);
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
     color: var(--bg-white);
@@ -2951,11 +2894,11 @@ section.theme-light,
     color: var(--text-dark);
 }
 
-.status-new { background: #e8f0fe; color: #0b57d0; }
-.status-assigned { background: #fff4e5; color: #b06f00; }
-.status-in-progress { background: #e7f5ff; color: #0b7285; }
-.status-review { background: #f3e8ff; color: #6f42c1; }
-.status-delivered { background: #e6f4ea; color: #137333; }
+.status-new { background: color-mix(in srgb, var(--brand) 15%, var(--surface) 85%); color: var(--brand); }
+.status-assigned { background: color-mix(in srgb, var(--gold) 25%, var(--surface) 75%); color: color-mix(in srgb, var(--gold) 80%, var(--bg) 20%); }
+.status-in-progress { background: color-mix(in srgb, var(--brand-2) 15%, var(--surface) 85%); color: var(--brand-2); }
+.status-review { background: color-mix(in srgb, var(--brand) 20%, var(--surface) 80%); color: color-mix(in srgb, var(--brand) 60%, var(--gold) 40%); }
+.status-delivered { background: color-mix(in srgb, var(--brand-2) 18%, var(--surface) 82%); color: color-mix(in srgb, var(--brand-2) 60%, var(--bg) 40%); }
 
 .task-cards {
     display: none;
@@ -3020,7 +2963,7 @@ section.theme-light,
     padding: var(--spacing-md);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    background: #fdfdfd;
+    background: var(--surface);
 }
 
 .admin-toggle-area {
@@ -3037,7 +2980,7 @@ section.theme-light,
     border-radius: 999px;
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    background: #eaf4ff;
+    background: color-mix(in srgb, var(--brand) 20%, var(--surface) 80%);
     font-weight: 600;
     letter-spacing: 0.01em;
     font-size: 0.95rem;
@@ -3094,7 +3037,7 @@ section.theme-light,
 
 .admin-group-unassigned {
     border-color: var(--secondary-color);
-    background: #fff8eb;
+    background: color-mix(in srgb, var(--gold) 18%, var(--surface) 82%);
 }
 
 .admin-group-header {
@@ -3127,7 +3070,7 @@ section.theme-light,
 
 .unassigned-row,
 .unassigned-card {
-    background: #fff8eb;
+    background: color-mix(in srgb, var(--gold) 18%, var(--surface) 82%);
 }
 
 .file-label {
@@ -3198,15 +3141,15 @@ section.theme-light,
 }
 
 .js-status-badge.success {
-    background: #e6f4ea;
-    color: #0f5132;
-    border-color: #badbcc;
+    background: color-mix(in srgb, var(--brand-2) 18%, var(--surface) 82%);
+    color: var(--bg);
+    border-color: color-mix(in srgb, var(--border) 60%, var(--surface) 40%);
 }
 
 .js-status-badge.error {
-    background: #f8d7da;
-    color: #842029;
-    border-color: #f5c2c7;
+    background: color-mix(in srgb, var(--gold) 28%, var(--surface) 72%);
+    color: color-mix(in srgb, var(--brand) 65%, var(--bg) 35%);
+    border-color: color-mix(in srgb, var(--gold) 40%, var(--surface) 60%);
 }
 
 @media (max-width: 768px) {
@@ -3261,7 +3204,7 @@ section.theme-light,
 
 /* Manual verification checklist (keep premium look intact):
    - Confirm SVG icons render across all cards and social links.
-   - Check every hero heading/subheading/support text stays pure white (#fff).
+   - Check every hero heading/subheading/support text stays pure white using var(--text).
    - Ensure gold CTA buttons keep black text/icons in all states.
    - Verify light pills/chips/badges keep white text for contrast.
    - Validate footer text/links are readable and unobstructed.

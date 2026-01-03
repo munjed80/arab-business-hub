@@ -1,0 +1,22 @@
+:root {
+    --bg: #0b1322;
+    --surface: #111b2d;
+    --surface-2: #18253a;
+    --text: #f5f7fb;
+    --text-muted: #c4cede;
+    --brand: #2d4d9c;
+    --brand-2: #3b5fb5;
+    --gold: #d7b46a;
+    --gold-contrast: #0b0b0b;
+    --border: #25344c;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --radius: 12px;
+    --radius-lg: 18px;
+    --focus: #f2d8a4;
+}
+
+html {
+    font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
