@@ -27,37 +27,61 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(() => { spriteContainer.innerHTML = inlineSprite; });
 
     const navToggle = document.getElementById('navToggle');
+    const navOverlay = document.getElementById('navOverlay');
+    const navClose = document.getElementById('navClose');
     const navMenu = document.getElementById('navMenu');
-    
-    if (navToggle && navMenu) {
+
+    const openMenu = () => {
+        if (!navOverlay) return;
+        navOverlay.classList.add('active');
+        document.body.classList.add('nav-open');
+        navOverlay.setAttribute('aria-hidden', 'false');
+        navToggle?.setAttribute('aria-expanded', 'true');
+        navToggle?.classList.add('is-active');
+    };
+
+    const closeMenu = () => {
+        if (!navOverlay) return;
+        navOverlay.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navOverlay.setAttribute('aria-hidden', 'true');
+        navToggle?.setAttribute('aria-expanded', 'false');
+        navToggle?.classList.remove('is-active');
+    };
+
+    if (navToggle && navOverlay) {
         navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            
-            // Animate hamburger icon
-            const spans = navToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translateY(10px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translateY(-10px)';
+            if (navOverlay.classList.contains('active')) {
+                closeMenu();
             } else {
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
+                openMenu();
             }
         });
-        
-        // Close menu when clicking on a link
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
-            });
-        });
     }
+
+    navClose?.addEventListener('click', closeMenu);
+
+    navOverlay?.addEventListener('click', function(event) {
+        if (event.target === navOverlay) {
+            closeMenu();
+        }
+    });
+
+    navMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keyup', function(event) {
+        if (event.key === 'Escape' && navOverlay?.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768 && navOverlay?.classList.contains('active')) {
+            closeMenu();
+        }
+    });
     
     // Contact Form Handling
     const contactForm = document.getElementById('contactForm');
