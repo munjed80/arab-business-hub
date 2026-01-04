@@ -108,6 +108,29 @@ arab-business-hub/
 2. Ensure `index.html` is in the root directory
 3. Your site is ready!
 
+#### Deploy to Vercel (recommended for production):
+
+- **Production branch**: `work` (default). Keep the Production Branch in Vercel set to this branch.
+- **Root directory**: Repository root (`.`). The included `vercel.json` builds from the repo root and serves `/index.html` as the entry point.
+
+Workflow:
+
+1. Make your edits locally.
+2. Run the cache-busting script to stamp asset versions and the build marker:
+   ```bash
+   node scripts/update-build.js
+   ```
+3. Commit the generated HTML updates and script changes:
+   ```bash
+   git add .
+   git commit -m "<your message>"
+   ```
+4. Push to the production branch:
+   ```bash
+   git push origin work
+   ```
+5. Verify the Vercel production deployment shows the latest commit hash and that `/index.html` is served (the footer comment should match the current timestamp and CSS/JS URLs should include the new `?v=` version).
+
 ## 🎨 Customization
 
 ### Changing Colors
