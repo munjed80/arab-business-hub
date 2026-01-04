@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const openMenu = () => {
         if (!navOverlay) return;
-        navOverlay.classList.add('active');
-        document.body.classList.add('nav-open');
+        navOverlay.classList.add('is-open');
+        document.body.classList.add('nav-open', 'is-open');
         navOverlay.setAttribute('aria-hidden', 'false');
         navToggle?.setAttribute('aria-expanded', 'true');
         navToggle?.classList.add('is-active');
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const closeMenu = () => {
         if (!navOverlay) return;
-        navOverlay.classList.remove('active');
-        document.body.classList.remove('nav-open');
+        navOverlay.classList.remove('is-open');
+        document.body.classList.remove('nav-open', 'is-open');
         navOverlay.setAttribute('aria-hidden', 'true');
         navToggle?.setAttribute('aria-expanded', 'false');
         navToggle?.classList.remove('is-active');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (navToggle && navOverlay) {
         navToggle.addEventListener('click', function() {
-            if (navOverlay.classList.contains('active')) {
+            if (navOverlay.classList.contains('is-open')) {
                 closeMenu();
             } else {
                 openMenu();
@@ -72,13 +72,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.addEventListener('keyup', function(event) {
-        if (event.key === 'Escape' && navOverlay?.classList.contains('active')) {
+        if (event.key === 'Escape' && navOverlay?.classList.contains('is-open')) {
             closeMenu();
         }
     });
 
     window.addEventListener('resize', function() {
-        if (window.innerWidth >= 768 && navOverlay?.classList.contains('active')) {
+        if (window.innerWidth >= 768 && navOverlay?.classList.contains('is-open')) {
             closeMenu();
         }
     });
