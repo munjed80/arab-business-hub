@@ -993,3 +993,23 @@ input:focus, select:focus, textarea:focus {
     .process-grid { grid-template-columns: repeat(4, 1fr); }
     .deliverables-grid, .pricing-grid, .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Ensure mobile drawer is always opaque */
+@media (max-width: 767px) {
+    .nav-overlay {
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+
+    .nav-panel {
+        background: #0b1220 !important;
+        opacity: 1 !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .nav-panel * {
+        opacity: 1 !important;
+    }
+}
