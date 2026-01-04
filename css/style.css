@@ -186,10 +186,17 @@ main > section:first-of-type {
     position: relative;
 }
 
-.nav-brand h1 {
+.nav-brand .site-title {
     font-size: 1.1rem;
-    letter-spacing: 0.5px;
     margin: 0;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    background: linear-gradient(120deg, #f2f5f8 0%, #c7d0dc 38%, #e6ebf2 58%, #b3bdc9 100%);
+    color: #e5e9f0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25), 0 7px 18px rgba(136, 152, 172, 0.35);
 }
 
 .nav-toggle {
