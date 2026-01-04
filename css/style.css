@@ -68,6 +68,7 @@ body {
     color: var(--color-text);
     line-height: var(--line-height-base);
     min-height: 100vh;
+    min-height: 100svh;
     direction: rtl;
     overflow-x: hidden;
 }
@@ -94,9 +95,12 @@ img, svg {
 
 .svg-sprite {
     position: absolute;
+    inset: 0;
     width: 0;
     height: 0;
     overflow: hidden;
+    pointer-events: none;
+    visibility: hidden;
 }
 
 ul {
