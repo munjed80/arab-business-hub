@@ -720,6 +720,30 @@ input:focus, select:focus, textarea:focus {
 
 .footer-legal p { margin: 0; }
 
+.footer-powered {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #dfe4ec;
+    opacity: 0.82;
+    text-align: center;
+    background: linear-gradient(120deg, #f3f5f9 0%, #c2c8d2 28%, #eef1f6 52%, #aab3c0 72%, #f4f7fb 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
+    animation: footer-signature-shimmer 10s ease-in-out infinite;
+}
+
+.footer-powered strong { font-weight: 700; color: inherit; }
+
+@keyframes footer-signature-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* Pills & badges */
 .pill { display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-2); border-radius: 999px; background: var(--color-overlay); color: var(--color-text); }
 .pill.subtle { background: rgba(255, 255, 255, 0.06); color: var(--color-text-soft); }
@@ -740,6 +764,7 @@ input:focus, select:focus, textarea:focus {
 
     .footer-top { grid-template-columns: 1.1fr 0.9fr; align-items: start; }
     .footer-legal { flex-direction: row; justify-content: space-between; align-items: center; }
+    .footer-powered { text-align: end; align-self: flex-end; }
 }
 
 @media (max-width: 767px) {
