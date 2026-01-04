@@ -191,12 +191,28 @@ main > section:first-of-type {
     margin: 0;
     letter-spacing: 0.08em;
     font-weight: 800;
-    background: linear-gradient(120deg, #f2f5f8 0%, #c7d0dc 38%, #e6ebf2 58%, #b3bdc9 100%);
-    color: #e5e9f0;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25), 0 7px 18px rgba(136, 152, 172, 0.35);
+    color: #8de6de;
+    text-shadow:
+        0 0 8px rgba(115, 219, 210, 0.35),
+        0 0 16px rgba(79, 188, 180, 0.28),
+        0 10px 24px rgba(5, 19, 26, 0.55);
+    animation: brandGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes brandGlowPulse {
+    0%,
+    100% {
+        text-shadow:
+            0 0 8px rgba(115, 219, 210, 0.35),
+            0 0 16px rgba(79, 188, 180, 0.28),
+            0 10px 24px rgba(5, 19, 26, 0.55);
+    }
+    50% {
+        text-shadow:
+            0 0 10px rgba(141, 230, 222, 0.45),
+            0 0 22px rgba(94, 214, 202, 0.4),
+            0 12px 28px rgba(5, 19, 26, 0.6);
+    }
 }
 
 .nav-toggle {
