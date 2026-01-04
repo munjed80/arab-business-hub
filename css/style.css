@@ -722,26 +722,28 @@ input:focus, select:focus, textarea:focus {
 
 .footer-powered {
     display: block;
-    font-size: 0.78rem;
+    font-family: "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+    font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #dfe4ec;
+    letter-spacing: 0.12em;
+    color: #e5e8f0;
     opacity: 0.82;
     text-align: center;
-    background: linear-gradient(120deg, #f3f5f9 0%, #c2c8d2 28%, #eef1f6 52%, #aab3c0 72%, #f4f7fb 100%);
-    background-size: 200% 200%;
+    background: linear-gradient(135deg, #f6f7fb 0%, #d5d9e1 28%, #f9fafc 52%, #c5cad3 70%, #eef1f6 100%);
+    background-size: 240% 240%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
-    animation: footer-signature-shimmer 10s ease-in-out infinite;
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.08), 0 0 18px rgba(255, 255, 255, 0.04);
+    animation: footer-signature-shimmer 16s ease-in-out infinite;
 }
 
 .footer-powered strong { font-weight: 700; color: inherit; }
 
 @keyframes footer-signature-shimmer {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { background-position: 10% 50%; }
+    45% { background-position: 90% 48%; }
+    55% { background-position: 100% 52%; }
+    100% { background-position: 15% 50%; }
 }
 
 /* Pills & badges */
