@@ -147,11 +147,13 @@
                 <span class="pill meta-pill">${new Date(lesson.date).toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
             `;
 
-            content.innerHTML = `
+            const defaultContent = `
                 <p>هذا الدرس يقدم تطبيقاً عملياً حول: ${lesson.title_ar}.</p>
                 <p>استخدم القائمة المختصرة في بداية الدرس لتحديد أهم القرارات، ثم طبّق قائمة الفحص المرفقة لضمان جودة التنفيذ. يمكنك مشاركة الدرس مع فريقك أو استخدامه كجلسة عمل لمدة 30 دقيقة.</p>
                 <p>إذا احتجت دعماً إضافياً أو تجهيز نموذج مخصص، تواصل معنا لنرسل لك نسخة قابلة للتعديل مع المتابعة.</p>
             `;
+
+            content.innerHTML = lesson.content_html?.trim() || defaultContent;
         });
     </script>
 </body>
