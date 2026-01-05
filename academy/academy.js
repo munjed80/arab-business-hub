@@ -1,0 +1,106 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const lessons = Array.isArray(window.academyLessons) ? window.academyLessons : [];
+  const categoryFilters = document.getElementById('categoryFilters');
+  const lessonGrid = document.getElementById('lessonGrid');
+  const searchInput = document.getElementById('lessonSearch');
+  const emptyState = document.getElementById('lessonEmpty');
+
+  if (!categoryFilters || !lessonGrid) return;
+
+  const iconTemplates = {
+    basics: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
+    identity: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H5z"/><path d="M7 19h10"/><circle cx="9" cy="10" r="1.2"/><path d="M12 10h5"/></svg>',
+    web: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/></svg>',
+    growth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-6 4 3 5-7"/><path d="M14 7h6v6"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>'
+  };
+
+  const categoryMap = {
+    'الأساسيات': { key: 'basics', label: 'الأساسيات' },
+    'الهوية والعلامة': { key: 'identity', label: 'الهوية والعلامة' },
+    'الموقع والتحويل': { key: 'web', label: 'الموقع والتحويل' },
+    'التسويق والنمو': { key: 'growth', label: 'التسويق والنمو' }
+  };
+
+  const uniqueCategories = ['الكل', ...new Set(lessons.map(item => item.category_ar))];
+  let activeCategory = 'الكل';
+  let query = '';
+
+  const renderFilters = () => {
+    categoryFilters.innerHTML = '';
+    uniqueCategories.forEach(cat => {
+      const pill = document.createElement('button');
+      pill.className = `filter-pill ${activeCategory === cat ? 'is-active' : ''}`;
+      pill.type = 'button';
+      pill.textContent = cat;
+      pill.setAttribute('data-category', cat);
+      pill.addEventListener('click', () => {
+        activeCategory = cat;
+        renderFilters();
+        renderLessons();
+      });
+      categoryFilters.appendChild(pill);
+    });
+  };
+
+  const formatDate = (value) => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
+  };
+
+  const renderLessons = () => {
+    const filtered = lessons.filter(item => {
+      const matchCategory = activeCategory === 'الكل' || item.category_ar === activeCategory;
+      const haystack = `${item.title_ar} ${item.excerpt_ar} ${item.keywords?.join(' ')}`.toLowerCase();
+      const matchQuery = haystack.includes(query.toLowerCase());
+      return matchCategory && matchQuery;
+    });
+
+    lessonGrid.innerHTML = '';
+
+    if (filtered.length === 0) {
+      if (emptyState) {
+        emptyState.classList.remove('hidden');
+      }
+      return;
+    }
+
+    emptyState?.classList.add('hidden');
+
+    filtered.forEach(item => {
+      const card = document.createElement('article');
+      card.className = 'lesson-card';
+
+      const catInfo = categoryMap[item.category_ar] || {};
+      const icon = iconTemplates[catInfo.key] || iconTemplates.basics;
+
+      card.innerHTML = `
+        <div class="lesson-card-top">
+            <div class="lesson-category">
+                <span class="icon-pill">${icon}</span>
+                <span class="category-label">${item.category_ar}</span>
+            </div>
+            <div class="lesson-meta">
+                <span class="meta-item">${iconTemplates.clock}<span>${item.minutes} دقائق</span></span>
+                <span class="meta-item">${iconTemplates.calendar}<span>${formatDate(item.date)}</span></span>
+            </div>
+        </div>
+        <h3 class="lesson-title">${item.title_ar}</h3>
+        <p class="lesson-excerpt">${item.excerpt_ar}</p>
+        <a class="lesson-link" href="lesson.html?slug=${encodeURIComponent(item.slug)}">قراءة الدرس</a>
+      `;
+
+      lessonGrid.appendChild(card);
+    });
+  };
+
+  renderFilters();
+  renderLessons();
+
+  searchInput?.addEventListener('input', (event) => {
+    query = event.target.value || '';
+    renderLessons();
+  });
+});
