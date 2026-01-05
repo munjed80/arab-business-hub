@@ -186,17 +186,31 @@ main > section:first-of-type {
     position: relative;
 }
 
-.nav-brand .site-title {
-    font-size: 1.1rem;
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-direction: row-reverse;
+}
+
+.brand-title {
+    font-size: 1.08rem;
     margin: 0;
     letter-spacing: 0.08em;
     font-weight: 800;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.25;
     color: transparent;
 }
 
-.site-title.brand-title-premium {
+.brand-title.brand-title-premium {
     background-image:
         linear-gradient(120deg, #2dd6c5 0%, #0f8f8c 25%, #4cddcf 55%, #d3c187 75%, #4cddcf 95%),
         linear-gradient(120deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.72) 50%, rgba(255, 255, 255, 0) 65%),
@@ -210,6 +224,38 @@ main > section:first-of-type {
     text-shadow: 0 2px 8px rgba(4, 12, 18, 0.35);
 }
 
+.brand-monogram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background-image: linear-gradient(135deg, #d9e2ec 0%, #8fd3d8 35%, #e0e6f1 65%, #40d7d1 90%);
+    background-size: 200% 200%;
+    color: #0c1a24;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28), 0 0 18px rgba(64, 215, 209, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    animation: monogramSheen 12s ease-in-out infinite;
+}
+
+.brand-monogram::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.38) 45%, rgba(255, 255, 255, 0) 68%);
+    mix-blend-mode: screen;
+    opacity: 0.65;
+    animation: monogramHighlight 9s ease-in-out infinite;
+    pointer-events: none;
+}
+
 @keyframes brandGradientFlow {
     0% {
         background-position: 0% 50%, -120% 50%, 12% 38%, 82% 70%;
@@ -219,6 +265,44 @@ main > section:first-of-type {
     }
     100% {
         background-position: 0% 50%, 180% 50%, 12% 38%, 82% 70%;
+    }
+}
+
+@keyframes monogramSheen {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes monogramHighlight {
+    0% { background-position: -120% 50%; opacity: 0.6; }
+    55% { background-position: 120% 50%; opacity: 0.9; }
+    100% { background-position: 180% 50%; opacity: 0.6; }
+}
+
+@media (max-width: 640px) {
+    .brand {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .nav-brand {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .brand-monogram {
+        font-size: 1.18rem;
+        padding: 3px 10px;
+        letter-spacing: 0.14em;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.22), 0 0 12px rgba(64, 215, 209, 0.16);
+    }
+
+    .brand-title {
+        line-height: 1.2;
     }
 }
 
