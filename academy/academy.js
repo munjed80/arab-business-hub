@@ -1,7 +1,7 @@
 import { academyLessons } from './academy-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const rawLessons = Array.isArray(academyLessons) ? academyLessons : [];
+  const allLessons = Array.isArray(academyLessons) ? academyLessons : [];
   const normalizeLesson = (lesson, index) => {
     const safeCategory = (lesson?.category || 'عام').toString().trim() || 'عام';
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   };
 
-  const allLessons = rawLessons.map((lesson, index) => normalizeLesson(lesson, index));
+  const normalizedLessons = allLessons.map((lesson, index) => normalizeLesson(lesson, index));
   const categoryFilters = document.getElementById('categoryFilters');
   const lessonGrid = document.getElementById('academyLessonsGrid') || document.getElementById('lessonGrid');
   const searchInput = document.getElementById('lessonSearch');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'عام': { key: 'basics' }
   };
 
-  const uniqueCategories = ['الكل', ...new Set(allLessons.map(item => item.category || 'عام'))];
+  const uniqueCategories = ['الكل', ...new Set(normalizedLessons.map(item => item.category || 'عام'))];
   let activeCategory = 'الكل';
   let query = '';
 
@@ -65,10 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
     return u.toString();
   };
 
-  const updateCount = (value) => {
+  const updateCount = (displayed) => {
     if (lessonCount) {
-      lessonCount.textContent = `عدد الدروس: ${value}`;
+      lessonCount.textContent = `عدد الدروس المعروضة: ${displayed} / ${normalizedLessons.length}`;
     }
+  };
+
+  const getFilteredLessons = () => {
+    return normalizedLessons.filter(item => {
+      const category = item.category?.toString().trim() || 'عام';
+      const matchCategory = activeCategory === 'الكل' || category === activeCategory;
+      const haystack = `${item.title || ''} ${item.summary || ''} ${(item.tags || []).join(' ')}`.toLowerCase();
+      const matchQuery = haystack.includes(query.toLowerCase());
+      return matchCategory && matchQuery;
+    });
   };
 
   const renderFilters = () => {
@@ -88,32 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.addEventListener('click', () => {
         activeCategory = cat;
         renderFilters();
-        renderLessons();
+        renderLessons(getFilteredLessons());
       });
       categoryFilters.appendChild(pill);
     });
   };
 
-  const renderLessons = () => {
-    const filtered = allLessons.filter(item => {
-      const category = item.category || 'عام';
-      const matchCategory = activeCategory === 'الكل' || category === activeCategory;
-      const haystack = `${item.title || ''} ${item.summary || ''} ${(item.tags || []).join(' ')}`.toLowerCase();
-      const matchQuery = haystack.includes(query.toLowerCase());
-      return matchCategory && matchQuery;
-    });
-
+  const renderLessons = (list = []) => {
+    const renderList = Array.isArray(list) ? list : [];
     lessonGrid.innerHTML = '';
-    updateCount(filtered.length);
+    updateCount(renderList.length);
 
-    if (filtered.length === 0) {
+    if (renderList.length === 0) {
       emptyState?.classList.remove('hidden');
       return;
     }
 
     emptyState?.classList.add('hidden');
 
-    filtered.forEach(item => {
+    renderList.forEach(item => {
       const displayCategory = item.category || 'عام';
       const catInfo = categoryMap[displayCategory] || {};
       const icon = iconTemplates[catInfo.key] || iconTemplates.basics;
@@ -142,14 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   renderFilters();
-  renderLessons();
+  renderLessons(getFilteredLessons());
 
   searchInput?.addEventListener('input', (event) => {
     query = event.target.value || '';
-    renderLessons();
+    renderLessons(getFilteredLessons());
   });
 
-  if (allLessons.length === 0) {
+  if (normalizedLessons.length === 0) {
     emptyState?.classList.remove('hidden');
     emptyState.textContent = 'لا توجد دروس متاحة حالياً.';
     updateCount(0);
