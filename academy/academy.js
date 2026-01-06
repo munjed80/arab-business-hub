@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyState = document.getElementById('lessonEmpty');
   const lessonCount = document.getElementById('lessonCount');
 
+  console.info('ABH Academy lessons loaded', { total: normalizedLessons.length });
+
   if (!categoryFilters || !lessonGrid) return;
 
   const iconTemplates = {
@@ -60,14 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const createLessonLink = (lessonId) => {
-    const u = new URL('academy/lesson.html', window.location.href);
-    u.searchParams.set('id', lessonId);
-    return u.toString();
+    const basePath = window.location.pathname.includes('/academy/')
+      ? './lesson.html'
+      : 'academy/lesson.html';
+
+    const url = `${basePath}?id=${encodeURIComponent(lessonId)}`;
+    return url;
   };
 
   const updateCount = (displayed) => {
     if (lessonCount) {
-      lessonCount.textContent = `عدد الدروس المعروضة: ${displayed} / ${normalizedLessons.length}`;
+      lessonCount.textContent = `عدد الدروس: ${displayed} / ${normalizedLessons.length}`;
     }
   };
 

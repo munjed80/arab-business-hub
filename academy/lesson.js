@@ -41,8 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return list;
   };
 
+  const renderHtmlContent = (html) => {
+    if (!html) return false;
+    content.innerHTML = html;
+    return true;
+  };
+
   const renderSections = (sections) => {
-    if (!Array.isArray(sections) || sections.length === 0) return;
+    if (!Array.isArray(sections) || sections.length === 0) return false;
 
     sections.forEach(section => {
       const wrapper = document.createElement('section');
@@ -72,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       content.appendChild(wrapper);
     });
+
+    return true;
   };
 
   if (!lesson) {
@@ -90,5 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
 
   content.innerHTML = '';
-  renderSections(lesson.content?.sections);
+
+  const didRenderHtml = renderHtmlContent(lesson.content?.html);
+  if (!didRenderHtml) {
+    renderSections(lesson.content?.sections);
+  }
 });
