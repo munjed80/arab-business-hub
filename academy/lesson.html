@@ -36,7 +36,7 @@
                         <ul class="nav-menu" id="navMenu">
                             <li><a href="../index.html">الرئيسية</a></li>
                             <li><a href="../services.html">الخدمات</a></li>
-                            <li><a href="../academy/" class="active">أكاديمية ABH</a></li>
+                            <li><a href="../academy.html" class="active">أكاديمية ABH</a></li>
                             <li><a href="../about.html">من نحن</a></li>
                             <li><a href="../pricing.html">الأسعار</a></li>
                             <li><a href="../contact.html">اتصل بنا</a></li>
@@ -66,7 +66,7 @@
                     <p>يتم تحميل تفاصيل الدرس...</p>
                 </div>
                 <div class="lesson-actions">
-                    <a class="btn btn-secondary btn-ghost" href="./">عودة للأكاديمية</a>
+                    <a class="btn btn-secondary btn-ghost" href="../academy.html">عودة للأكاديمية</a>
                     <a class="btn btn-primary btn-premium" href="../contact.html">اطلب استشارة</a>
                 </div>
             </div>
@@ -96,8 +96,7 @@
                     <div class="footer-section">
                         <h4>أكاديمية</h4>
                         <ul>
-                            <li><a href="./">الصفحة الرئيسية للأكاديمية</a></li>
-                            <li><a href="lesson.html?slug=marketing-ops-sprint">درس مميز</a></li>
+                            <li><a href="../academy.html">الصفحة الرئيسية للأكاديمية</a></li>
                             <li><a href="../contact.html">مساعدة في التطبيق</a></li>
                         </ul>
                     </div>
@@ -118,43 +117,6 @@
     </footer>
 
     <script src="../js/script.js"></script>
-    <script src="academy-data.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const slug = params.get('slug');
-            const lessons = Array.isArray(window.academyLessons) ? window.academyLessons : [];
-            const lesson = lessons.find(item => item.slug === slug) || lessons[0];
-
-            const metaContainer = document.getElementById('lessonMeta');
-            const title = document.getElementById('lessonTitle');
-            const summary = document.getElementById('lessonSummary');
-            const content = document.getElementById('lessonContent');
-
-            if (!lesson) {
-                title.textContent = 'لم يتم العثور على الدرس';
-                summary.textContent = 'تأكد من الرابط أو عُد للأكاديمية.';
-                metaContainer.innerHTML = '';
-                content.innerHTML = '<p>يرجى العودة إلى صفحة الأكاديمية لتصفح الدروس المتاحة.</p>';
-                return;
-            }
-
-            title.textContent = lesson.title_ar;
-            summary.textContent = lesson.excerpt_ar;
-            metaContainer.innerHTML = `
-                <span class="pill meta-pill">${lesson.category_ar}</span>
-                <span class="pill meta-pill">${lesson.minutes} دقائق</span>
-                <span class="pill meta-pill">${new Date(lesson.date).toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-            `;
-
-            const defaultContent = `
-                <p>هذا الدرس يقدم تطبيقاً عملياً حول: ${lesson.title_ar}.</p>
-                <p>استخدم القائمة المختصرة في بداية الدرس لتحديد أهم القرارات، ثم طبّق قائمة الفحص المرفقة لضمان جودة التنفيذ. يمكنك مشاركة الدرس مع فريقك أو استخدامه كجلسة عمل لمدة 30 دقيقة.</p>
-                <p>إذا احتجت دعماً إضافياً أو تجهيز نموذج مخصص، تواصل معنا لنرسل لك نسخة قابلة للتعديل مع المتابعة.</p>
-            `;
-
-            content.innerHTML = lesson.content_html?.trim() || defaultContent;
-        });
-    </script>
+    <script type="module" src="./lesson.js"></script>
 </body>
 </html>
