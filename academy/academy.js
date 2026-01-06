@@ -1,5 +1,30 @@
+import { academyLessons } from './academy-data.js';
+
+const iconTemplates = {
+  basics: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
+  identity: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H5z"/><path d="M7 19h10"/><circle cx="9" cy="10" r="1.2"/><path d="M12 10h5"/></svg>',
+  web: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/></svg>',
+  growth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-6 4 3 5-7"/><path d="M14 7h6v6"/></svg>',
+  operations: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v3H4z"/><path d="M6 14h12"/><path d="M9 17h6"/><circle cx="12" cy="11" r="1.4"/></svg>',
+  finance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M4 11h16"/><path d="M8 11v6"/><path d="M16 11v6"/></svg>',
+  data: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v2H5z"/><path d="M7 10h10v2H7z"/><path d="M9 14h6v2H9z"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>',
+  calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>'
+};
+
+const categoryMap = {
+  'الأساسيات': { key: 'basics', label: 'الأساسيات' },
+  'الهوية والعلامة': { key: 'identity', label: 'الهوية والعلامة' },
+  'الموقع والتحويل': { key: 'web', label: 'الموقع والتحويل' },
+  'التسويق والنمو': { key: 'growth', label: 'التسويق والنمو' },
+  'الإدارة المالية': { key: 'finance', label: 'الإدارة المالية' },
+  'البيانات والقياس': { key: 'data', label: 'البيانات والقياس' },
+  'التشغيل والإمداد': { key: 'operations', label: 'التشغيل والإمداد' },
+  'العمليات واتخاذ القرار': { key: 'operations', label: 'العمليات واتخاذ القرار' }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-  const lessons = Array.isArray(window.academyLessons) ? window.academyLessons : [];
+  const lessons = Array.isArray(academyLessons) ? academyLessons : [];
   const categoryFilters = document.getElementById('categoryFilters');
   const lessonGrid = document.getElementById('lessonGrid');
   const searchInput = document.getElementById('lessonSearch');
@@ -7,28 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!categoryFilters || !lessonGrid) return;
 
-  const iconTemplates = {
-    basics: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
-    identity: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H5z"/><path d="M7 19h10"/><circle cx="9" cy="10" r="1.2"/><path d="M12 10h5"/></svg>',
-    web: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/></svg>',
-    growth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-6 4 3 5-7"/><path d="M14 7h6v6"/></svg>',
-    clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>',
-    calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>'
-  };
-
-  const categoryMap = {
-    'الأساسيات': { key: 'basics', label: 'الأساسيات' },
-    'الهوية والعلامة': { key: 'identity', label: 'الهوية والعلامة' },
-    'الموقع والتحويل': { key: 'web', label: 'الموقع والتحويل' },
-    'التسويق والنمو': { key: 'growth', label: 'التسويق والنمو' }
-  };
-
   const uniqueCategories = ['الكل', ...new Set(lessons.map(item => item.category_ar))];
   let activeCategory = 'الكل';
   let query = '';
 
   const renderFilters = () => {
     categoryFilters.innerHTML = '';
+
+    if (uniqueCategories.length <= 1) {
+      categoryFilters.innerHTML = '<span class="filter-pill disabled">لا توجد فئات متاحة</span>';
+      return;
+    }
+
     uniqueCategories.forEach(cat => {
       const pill = document.createElement('button');
       pill.className = `filter-pill ${activeCategory === cat ? 'is-active' : ''}`;
@@ -50,6 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
   };
 
+  const createLessonLink = (lessonId) => {
+    const detailUrl = new URL('/academy/lesson.html', window.location.origin);
+    detailUrl.searchParams.set('id', lessonId);
+    return detailUrl.toString();
+  };
+
   const renderLessons = () => {
     const filtered = lessons.filter(item => {
       const matchCategory = activeCategory === 'الكل' || item.category_ar === activeCategory;
@@ -61,9 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lessonGrid.innerHTML = '';
 
     if (filtered.length === 0) {
-      if (emptyState) {
-        emptyState.classList.remove('hidden');
-      }
+      emptyState?.classList.remove('hidden');
       return;
     }
 
@@ -89,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <h3 class="lesson-title">${item.title_ar}</h3>
         <p class="lesson-excerpt">${item.excerpt_ar}</p>
-        <a class="lesson-link" href="lesson.html?slug=${encodeURIComponent(item.slug)}">قراءة الدرس</a>
+        <a class="lesson-link" href="${createLessonLink(item.id)}">اقرأ الدرس</a>
       `;
 
       lessonGrid.appendChild(card);
@@ -103,4 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
     query = event.target.value || '';
     renderLessons();
   });
+
+  if (lessons.length === 0) {
+    emptyState?.classList.remove('hidden');
+    emptyState.textContent = 'لا توجد دروس متاحة حالياً.';
+  }
 });
