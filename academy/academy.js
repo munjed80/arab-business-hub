@@ -1,11 +1,27 @@
 import { academyLessons } from './academy-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const lessons = Array.isArray(academyLessons) ? academyLessons : [];
+  const rawLessons = Array.isArray(academyLessons) ? academyLessons : [];
+  const normalizeLesson = (lesson, index) => {
+    const safeCategory = (lesson?.category || 'عام').toString().trim() || 'عام';
+
+    return {
+      id: (lesson?.id ?? `lesson-${index + 1}`).toString(),
+      title: (lesson?.title ?? 'درس بدون عنوان').toString(),
+      category: safeCategory,
+      durationMinutes: Number.isFinite(Number(lesson?.durationMinutes)) ? Number(lesson.durationMinutes) : 5,
+      publishedAt: (lesson?.publishedAt ?? '2024-01-01').toString(),
+      summary: (lesson?.summary ?? 'تفاصيل الدرس ستتوفر قريباً.').toString(),
+      tags: Array.isArray(lesson?.tags) ? lesson.tags : []
+    };
+  };
+
+  const allLessons = rawLessons.map((lesson, index) => normalizeLesson(lesson, index));
   const categoryFilters = document.getElementById('categoryFilters');
-  const lessonGrid = document.getElementById('lessonGrid');
+  const lessonGrid = document.getElementById('academyLessonsGrid') || document.getElementById('lessonGrid');
   const searchInput = document.getElementById('lessonSearch');
   const emptyState = document.getElementById('lessonEmpty');
+  const lessonCount = document.getElementById('lessonCount');
 
   if (!categoryFilters || !lessonGrid) return;
 
@@ -29,10 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     'الإدارة المالية': { key: 'finance' },
     'البيانات والقياس': { key: 'data' },
     'التشغيل والإمداد': { key: 'operations' },
-    'العمليات واتخاذ القرار': { key: 'operations' }
+    'العمليات واتخاذ القرار': { key: 'operations' },
+    'عام': { key: 'basics' }
   };
 
-  const uniqueCategories = ['الكل', ...new Set(lessons.map(item => item.category))];
+  const uniqueCategories = ['الكل', ...new Set(allLessons.map(item => item.category || 'عام'))];
   let activeCategory = 'الكل';
   let query = '';
 
@@ -46,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const u = new URL('academy/lesson.html', window.location.href);
     u.searchParams.set('id', lessonId);
     return u.toString();
+  };
+
+  const updateCount = (value) => {
+    if (lessonCount) {
+      lessonCount.textContent = `عدد الدروس: ${value}`;
+    }
   };
 
   const renderFilters = () => {
@@ -72,14 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const renderLessons = () => {
-    const filtered = lessons.filter(item => {
-      const matchCategory = activeCategory === 'الكل' || item.category === activeCategory;
-      const haystack = `${item.title} ${item.summary} ${item.tags?.join(' ')}`.toLowerCase();
+    const filtered = allLessons.filter(item => {
+      const category = item.category || 'عام';
+      const matchCategory = activeCategory === 'الكل' || category === activeCategory;
+      const haystack = `${item.title || ''} ${item.summary || ''} ${(item.tags || []).join(' ')}`.toLowerCase();
       const matchQuery = haystack.includes(query.toLowerCase());
       return matchCategory && matchQuery;
     });
 
     lessonGrid.innerHTML = '';
+    updateCount(filtered.length);
 
     if (filtered.length === 0) {
       emptyState?.classList.remove('hidden');
@@ -89,17 +114,18 @@ document.addEventListener('DOMContentLoaded', () => {
     emptyState?.classList.add('hidden');
 
     filtered.forEach(item => {
+      const displayCategory = item.category || 'عام';
+      const catInfo = categoryMap[displayCategory] || {};
+      const icon = iconTemplates[catInfo.key] || iconTemplates.basics;
+
       const card = document.createElement('article');
       card.className = 'lesson-card';
-
-      const catInfo = categoryMap[item.category] || {};
-      const icon = iconTemplates[catInfo.key] || iconTemplates.basics;
 
       card.innerHTML = `
         <div class="lesson-card-top">
             <div class="lesson-category">
                 <span class="icon-pill">${icon}</span>
-                <span class="category-label">${item.category}</span>
+                <span class="category-label">${displayCategory}</span>
             </div>
             <div class="lesson-meta">
                 <span class="meta-item">${iconTemplates.clock}<span>${item.durationMinutes} دقائق</span></span>
@@ -123,8 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLessons();
   });
 
-  if (lessons.length === 0) {
+  if (allLessons.length === 0) {
     emptyState?.classList.remove('hidden');
     emptyState.textContent = 'لا توجد دروس متاحة حالياً.';
+    updateCount(0);
   }
 });
