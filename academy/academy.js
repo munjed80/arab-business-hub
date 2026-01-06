@@ -1,28 +1,5 @@
 import { academyLessons } from './academy-data.js';
 
-const iconTemplates = {
-  basics: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
-  identity: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H5z"/><path d="M7 19h10"/><circle cx="9" cy="10" r="1.2"/><path d="M12 10h5"/></svg>',
-  web: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/></svg>',
-  growth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-6 4 3 5-7"/><path d="M14 7h6v6"/></svg>',
-  operations: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v3H4z"/><path d="M6 14h12"/><path d="M9 17h6"/><circle cx="12" cy="11" r="1.4"/></svg>',
-  finance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M4 11h16"/><path d="M8 11v6"/><path d="M16 11v6"/></svg>',
-  data: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v2H5z"/><path d="M7 10h10v2H7z"/><path d="M9 14h6v2H9z"/></svg>',
-  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>',
-  calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>'
-};
-
-const categoryMap = {
-  'الأساسيات': { key: 'basics', label: 'الأساسيات' },
-  'الهوية والعلامة': { key: 'identity', label: 'الهوية والعلامة' },
-  'الموقع والتحويل': { key: 'web', label: 'الموقع والتحويل' },
-  'التسويق والنمو': { key: 'growth', label: 'التسويق والنمو' },
-  'الإدارة المالية': { key: 'finance', label: 'الإدارة المالية' },
-  'البيانات والقياس': { key: 'data', label: 'البيانات والقياس' },
-  'التشغيل والإمداد': { key: 'operations', label: 'التشغيل والإمداد' },
-  'العمليات واتخاذ القرار': { key: 'operations', label: 'العمليات واتخاذ القرار' }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
   const lessons = Array.isArray(academyLessons) ? academyLessons : [];
   const categoryFilters = document.getElementById('categoryFilters');
@@ -32,9 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!categoryFilters || !lessonGrid) return;
 
-  const uniqueCategories = ['الكل', ...new Set(lessons.map(item => item.category_ar))];
+  const iconTemplates = {
+    basics: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>',
+    identity: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v10H5z"/><path d="M7 19h10"/><circle cx="9" cy="10" r="1.2"/><path d="M12 10h5"/></svg>',
+    web: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/></svg>',
+    growth: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-6 4 3 5-7"/><path d="M14 7h6v6"/></svg>',
+    operations: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v3H4z"/><path d="M6 14h12"/><path d="M9 17h6"/><circle cx="12" cy="11" r="1.4"/></svg>',
+    finance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v10H4z"/><path d="M4 11h16"/><path d="M8 11v6"/><path d="M16 11v6"/></svg>',
+    data: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14v2H5z"/><path d="M7 10h10v2H7z"/><path d="M9 14h6v2H9z"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 11h16"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>'
+  };
+
+  const categoryMap = {
+    'الأساسيات': { key: 'basics' },
+    'الهوية والعلامة': { key: 'identity' },
+    'الموقع والتحويل': { key: 'web' },
+    'التسويق والنمو': { key: 'growth' },
+    'الإدارة المالية': { key: 'finance' },
+    'البيانات والقياس': { key: 'data' },
+    'التشغيل والإمداد': { key: 'operations' },
+    'العمليات واتخاذ القرار': { key: 'operations' }
+  };
+
+  const uniqueCategories = ['الكل', ...new Set(lessons.map(item => item.category))];
   let activeCategory = 'الكل';
   let query = '';
+
+  const formatDate = (value) => {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
+  };
+
+  const createLessonLink = (lessonId) => {
+    const u = new URL('academy/lesson.html', window.location.href);
+    u.searchParams.set('id', lessonId);
+    return u.toString();
+  };
 
   const renderFilters = () => {
     categoryFilters.innerHTML = '';
@@ -59,22 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const formatDate = (value) => {
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return value;
-    return date.toLocaleDateString('ar-SA', { year: 'numeric', month: 'short', day: 'numeric' });
-  };
-
-  const createLessonLink = (lessonId) => {
-    const detailUrl = new URL('/academy/lesson.html', window.location.origin);
-    detailUrl.searchParams.set('id', lessonId);
-    return detailUrl.toString();
-  };
-
   const renderLessons = () => {
     const filtered = lessons.filter(item => {
-      const matchCategory = activeCategory === 'الكل' || item.category_ar === activeCategory;
-      const haystack = `${item.title_ar} ${item.excerpt_ar} ${item.keywords?.join(' ')}`.toLowerCase();
+      const matchCategory = activeCategory === 'الكل' || item.category === activeCategory;
+      const haystack = `${item.title} ${item.summary} ${item.tags?.join(' ')}`.toLowerCase();
       const matchQuery = haystack.includes(query.toLowerCase());
       return matchCategory && matchQuery;
     });
@@ -92,22 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('article');
       card.className = 'lesson-card';
 
-      const catInfo = categoryMap[item.category_ar] || {};
+      const catInfo = categoryMap[item.category] || {};
       const icon = iconTemplates[catInfo.key] || iconTemplates.basics;
 
       card.innerHTML = `
         <div class="lesson-card-top">
             <div class="lesson-category">
                 <span class="icon-pill">${icon}</span>
-                <span class="category-label">${item.category_ar}</span>
+                <span class="category-label">${item.category}</span>
             </div>
             <div class="lesson-meta">
-                <span class="meta-item">${iconTemplates.clock}<span>${item.minutes} دقائق</span></span>
-                <span class="meta-item">${iconTemplates.calendar}<span>${formatDate(item.date)}</span></span>
+                <span class="meta-item">${iconTemplates.clock}<span>${item.durationMinutes} دقائق</span></span>
+                <span class="meta-item">${iconTemplates.calendar}<span>${formatDate(item.publishedAt)}</span></span>
             </div>
         </div>
-        <h3 class="lesson-title">${item.title_ar}</h3>
-        <p class="lesson-excerpt">${item.excerpt_ar}</p>
+        <h3 class="lesson-title">${item.title}</h3>
+        <p class="lesson-excerpt">${item.summary}</p>
         <a class="lesson-link" href="${createLessonLink(item.id)}">اقرأ الدرس</a>
       `;
 
