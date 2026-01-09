@@ -626,6 +626,124 @@ body.is-open { overflow: hidden; }
 
 .hero-pills svg { width: 18px; height: 18px; stroke: currentColor; fill: none; }
 
+/* Execution flow diagram */
+/* Adjust --flow-accent, --flow-gold, and --flow-gap to tweak colors or spacing later. */
+.hero-flow {
+    background: rgba(8, 12, 20, 0.75);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+}
+
+.hero-flow-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-soft);
+    letter-spacing: 0.02em;
+}
+
+.execution-flow {
+    --flow-accent: rgba(79, 209, 197, 0.9);
+    --flow-gold: rgba(230, 194, 122, 0.95);
+    --flow-line: rgba(255, 255, 255, 0.24);
+    --flow-gap: 100;
+    width: 100%;
+    height: auto;
+}
+
+.execution-flow .flow-line line {
+    stroke: var(--flow-line);
+    stroke-width: 1;
+    stroke-linecap: round;
+}
+
+.execution-flow .node {
+    fill: rgba(79, 209, 197, 0.8);
+    filter: drop-shadow(0 0 10px rgba(79, 209, 197, 0.35));
+    transition: filter 0.4s ease, fill 0.4s ease;
+    animation: flowGlow 6s ease-in-out forwards;
+    transform-origin: center;
+    transform-box: fill-box;
+}
+
+.execution-flow .label {
+    fill: var(--color-text);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: fill 0.4s ease;
+    animation: flowLabel 6s ease-in-out forwards;
+}
+
+.execution-flow .stage-final .node {
+    fill: rgba(230, 194, 122, 0.85);
+    filter: drop-shadow(0 0 10px rgba(230, 194, 122, 0.35));
+}
+
+.execution-flow .stage-final .label { fill: var(--color-primary); }
+
+.execution-flow .stage {
+    cursor: pointer;
+    transition: opacity 0.35s ease;
+}
+
+.execution-flow:hover .stage { opacity: 0.45; }
+.execution-flow:hover .stage:hover { opacity: 1; }
+
+.execution-flow .stage:hover .node {
+    fill: var(--flow-accent);
+    filter: drop-shadow(0 0 12px rgba(79, 209, 197, 0.6));
+    animation-play-state: paused;
+}
+
+.execution-flow .stage:hover .label {
+    fill: var(--color-heading);
+    animation-play-state: paused;
+}
+
+.execution-flow .stage-final:hover .node {
+    fill: var(--flow-gold);
+    filter: drop-shadow(0 0 12px rgba(230, 194, 122, 0.6));
+}
+
+.execution-flow .stage:nth-child(1) .node,
+.execution-flow .stage:nth-child(1) .label { animation-delay: 0.2s; }
+.execution-flow .stage:nth-child(2) .node,
+.execution-flow .stage:nth-child(2) .label { animation-delay: 1.2s; }
+.execution-flow .stage:nth-child(3) .node,
+.execution-flow .stage:nth-child(3) .label { animation-delay: 2.2s; }
+.execution-flow .stage:nth-child(4) .node,
+.execution-flow .stage:nth-child(4) .label { animation-delay: 3.2s; }
+.execution-flow .stage:nth-child(5) .node,
+.execution-flow .stage:nth-child(5) .label { animation-delay: 4.2s; }
+
+.hero-flow--mobile { display: none; }
+
+.hero-flow--desktop .execution-flow--vertical {
+    max-width: 240px;
+    margin-inline: auto;
+}
+
+.execution-flow--horizontal .label { font-size: 0.85rem; }
+
+.hero-panel {
+    display: grid;
+    gap: var(--space-4);
+}
+
+@keyframes flowGlow {
+    0% { opacity: 0.35; transform: scale(1); }
+    35% { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 0.7; transform: scale(1); }
+}
+
+@keyframes flowLabel {
+    0% { opacity: 0.4; }
+    40% { opacity: 1; }
+    100% { opacity: 0.75; }
+}
+
 .hero-panel .panel-card {
     background: var(--color-card-dark);
     border-radius: var(--radius-lg);
@@ -1368,6 +1486,9 @@ input:focus, select:focus, textarea:focus {
 @media (max-width: 767px) {
     .hero-cta { width: 100%; }
     .hero-cta .btn { flex: 1 1 100%; }
+    .hero-flow--mobile { display: grid; }
+    .hero-flow--desktop { display: none; }
+    .hero-flow--mobile .execution-flow--horizontal { max-width: 520px; margin: 0 auto; }
 
     .navbar .container {
         min-height: 56px;
