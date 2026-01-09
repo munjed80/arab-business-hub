@@ -51,9 +51,33 @@ document.addEventListener('DOMContentLoaded', () => {
     'عام': { key: 'basics' }
   };
 
+  const queryCategoryMap = {
+    basics: 'الأساسيات',
+    finance: 'الإدارة المالية',
+    metrics: 'البيانات والقياس',
+    ops: 'التشغيل والإمداد',
+    decisions: 'العمليات واتخاذ القرار',
+    growth: 'التسويق والنمو'
+  };
+
   const uniqueCategories = ['الكل', ...new Set(normalizedLessons.map(item => item.category || 'عام'))];
   let activeCategory = 'الكل';
   let query = '';
+
+  const resolveCategoryParam = () => {
+    const raw = new URLSearchParams(window.location.search).get('category');
+    if (!raw) return null;
+    const normalized = raw.toString().trim().toLowerCase();
+    if (!normalized) return null;
+    if (queryCategoryMap[normalized]) return queryCategoryMap[normalized];
+    const directMatch = uniqueCategories.find(cat => cat.toLowerCase() === normalized);
+    return directMatch || null;
+  };
+
+  const requestedCategory = resolveCategoryParam();
+  if (requestedCategory && uniqueCategories.includes(requestedCategory)) {
+    activeCategory = requestedCategory;
+  }
 
   const formatDate = (value) => {
     const date = new Date(value);
