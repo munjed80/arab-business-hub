@@ -635,6 +635,7 @@ body.is-open { overflow: hidden; }
     padding: var(--space-3);
     display: grid;
     gap: var(--space-2);
+    margin-top: var(--space-3);
 }
 
 .hero-flow-label {
@@ -642,6 +643,48 @@ body.is-open { overflow: hidden; }
     font-weight: 700;
     color: var(--color-text-soft);
     letter-spacing: 0.02em;
+}
+
+.methodology {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: var(--space-3);
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.method-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.method-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: filter 0.3s ease, color 0.3s ease;
+}
+
+.method-item:hover,
+.method-item:focus-within {
+    color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+.method-item:hover .method-icon,
+.method-item:focus-within .method-icon {
+    filter: drop-shadow(0 0 10px rgba(79, 209, 197, 0.25));
 }
 
 .execution-flow {
@@ -1484,6 +1527,10 @@ input:focus, select:focus, textarea:focus {
 }
 
 @media (max-width: 767px) {
+    .hero-title {
+        font-size: clamp(1.95rem, 4.6vw + 0.6rem, 2.7rem);
+    }
+
     .hero-cta { width: 100%; }
     .hero-cta .btn { flex: 1 1 100%; }
     .hero-flow--mobile { display: grid; }

@@ -85,35 +85,95 @@
                 <!-- مخطط مسار التنفيذ: نسخة أفقية للموبايل -->
                 <div class="hero-flow hero-flow--mobile">
                     <div class="hero-flow-label">منهجية التنفيذ</div>
-                    <svg class="execution-flow execution-flow--horizontal" viewBox="0 0 520 120" role="img" aria-labelledby="execution-flow-title-mobile execution-flow-desc-mobile" direction="rtl">
-                        <title id="execution-flow-title-mobile">مسار التنفيذ</title>
-                        <desc id="execution-flow-desc-mobile">مراحل تنفيذ ABH من الاكتشاف إلى التحسين</desc>
-                        <g class="flow-line">
-                            <line x1="40" y1="40" x2="480" y2="40" />
-                        </g>
-                        <g class="stages">
-                            <g class="stage">
-                                <circle class="node" cx="40" cy="40" r="7" />
-                                <text class="label" x="40" y="82" text-anchor="middle" dominant-baseline="middle">اكتشاف</text>
-                            </g>
-                            <g class="stage">
-                                <circle class="node" cx="150" cy="40" r="7" />
-                                <text class="label" x="150" y="82" text-anchor="middle" dominant-baseline="middle">استراتيجية</text>
-                            </g>
-                            <g class="stage">
-                                <circle class="node" cx="260" cy="40" r="7" />
-                                <text class="label" x="260" y="82" text-anchor="middle" dominant-baseline="middle">تنفيذ</text>
-                            </g>
-                            <g class="stage">
-                                <circle class="node" cx="370" cy="40" r="7" />
-                                <text class="label" x="370" y="82" text-anchor="middle" dominant-baseline="middle">قياس</text>
-                            </g>
-                            <g class="stage stage-final">
-                                <circle class="node" cx="480" cy="40" r="7" />
-                                <text class="label" x="480" y="82" text-anchor="middle" dominant-baseline="middle">تحسين</text>
-                            </g>
-                        </g>
-                    </svg>
+                    <div class="methodology" role="list">
+                        <div class="method-item" data-step="discover" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="اكتشاف" focusable="false">
+                                <circle cx="11" cy="11" r="6.5" />
+                                <path d="M16.2 16.2l4 4" />
+                            </svg>
+                            <span>اكتشاف</span>
+                        </div>
+                        <div class="method-item" data-step="strategy" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="استراتيجية" focusable="false">
+                                <rect x="4" y="5" width="16" height="14" rx="2" />
+                                <path d="M7 15l4-4 3 2 3-3" />
+                                <circle cx="7" cy="15" r="1" />
+                            </svg>
+                            <span>استراتيجية</span>
+                        </div>
+                        <div class="method-item" data-step="execute" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="تنفيذ" focusable="false">
+                                <path d="M12 3c3 1.2 5.5 4.5 5.5 7.8 0 3.8-2.6 6.9-5.5 8.2-2.9-1.3-5.5-4.4-5.5-8.2C6.5 7.5 9 4.2 12 3z" />
+                                <path d="M12 8v4" />
+                                <path d="M8.5 14.5l-3 1 1-3" />
+                                <path d="M15.5 14.5l3 1-1-3" />
+                            </svg>
+                            <span>تنفيذ</span>
+                        </div>
+                        <div class="method-item" data-step="measure" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="قياس" focusable="false">
+                                <path d="M4 18h16" />
+                                <path d="M7 14l3-3 3 2 4-5" />
+                                <circle cx="7" cy="14" r="1" />
+                                <circle cx="10" cy="11" r="1" />
+                                <circle cx="13" cy="13" r="1" />
+                                <circle cx="17" cy="8" r="1" />
+                            </svg>
+                            <span>قياس</span>
+                        </div>
+                        <div class="method-item" data-step="optimize" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="تحسين" focusable="false">
+                                <path d="M7 12a5 5 0 0 1 8-3l2-2v6h-6l2-2a3 3 0 1 0 4 4" />
+                            </svg>
+                            <span>تحسين</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-flow hero-flow--desktop">
+                    <div class="hero-flow-label">منهجية التنفيذ</div>
+                    <div class="methodology" role="list">
+                        <div class="method-item" data-step="discover" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="اكتشاف" focusable="false">
+                                <circle cx="11" cy="11" r="6.5" />
+                                <path d="M16.2 16.2l4 4" />
+                            </svg>
+                            <span>اكتشاف</span>
+                        </div>
+                        <div class="method-item" data-step="strategy" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="استراتيجية" focusable="false">
+                                <rect x="4" y="5" width="16" height="14" rx="2" />
+                                <path d="M7 15l4-4 3 2 3-3" />
+                                <circle cx="7" cy="15" r="1" />
+                            </svg>
+                            <span>استراتيجية</span>
+                        </div>
+                        <div class="method-item" data-step="execute" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="تنفيذ" focusable="false">
+                                <path d="M12 3c3 1.2 5.5 4.5 5.5 7.8 0 3.8-2.6 6.9-5.5 8.2-2.9-1.3-5.5-4.4-5.5-8.2C6.5 7.5 9 4.2 12 3z" />
+                                <path d="M12 8v4" />
+                                <path d="M8.5 14.5l-3 1 1-3" />
+                                <path d="M15.5 14.5l3 1-1-3" />
+                            </svg>
+                            <span>تنفيذ</span>
+                        </div>
+                        <div class="method-item" data-step="measure" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="قياس" focusable="false">
+                                <path d="M4 18h16" />
+                                <path d="M7 14l3-3 3 2 4-5" />
+                                <circle cx="7" cy="14" r="1" />
+                                <circle cx="10" cy="11" r="1" />
+                                <circle cx="13" cy="13" r="1" />
+                                <circle cx="17" cy="8" r="1" />
+                            </svg>
+                            <span>قياس</span>
+                        </div>
+                        <div class="method-item" data-step="optimize" role="listitem">
+                            <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="تحسين" focusable="false">
+                                <path d="M7 12a5 5 0 0 1 8-3l2-2v6h-6l2-2a3 3 0 1 0 4 4" />
+                            </svg>
+                            <span>تحسين</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="hero-cta">
                     <a href="https://wa.me/966000000000" class="btn btn-primary btn-premium">ابدأ الشراكة الآن</a>
@@ -150,39 +210,6 @@
                 </div>
             </div>
             <div class="hero-panel">
-                <!-- مخطط مسار التنفيذ: نسخة عمودية للديسكتوب -->
-                <div class="hero-flow hero-flow--desktop">
-                    <div class="hero-flow-label">منهجية التنفيذ</div>
-                    <svg class="execution-flow execution-flow--vertical" viewBox="0 0 260 520" role="img" aria-labelledby="execution-flow-title execution-flow-desc" direction="rtl">
-                        <title id="execution-flow-title">مسار التنفيذ</title>
-                        <desc id="execution-flow-desc">مراحل تنفيذ ABH من الاكتشاف إلى التحسين</desc>
-                        <g class="flow-line">
-                            <line x1="70" y1="40" x2="70" y2="480" />
-                        </g>
-                        <g class="stages">
-                            <g class="stage">
-                                <circle class="node" cx="70" cy="60" r="7" />
-                                <text class="label" x="110" y="60" dominant-baseline="middle">اكتشاف</text>
-                            </g>
-                            <g class="stage">
-                                <circle class="node" cx="70" cy="160" r="7" />
-                                <text class="label" x="110" y="160" dominant-baseline="middle">استراتيجية</text>
-                            </g>
-                            <g class="stage">
-                                <circle class="node" cx="70" cy="260" r="7" />
-                                <text class="label" x="110" y="260" dominant-baseline="middle">تنفيذ</text>
-                            </g>
-                            <g class="stage">
-                                <circle class="node" cx="70" cy="360" r="7" />
-                                <text class="label" x="110" y="360" dominant-baseline="middle">قياس</text>
-                            </g>
-                            <g class="stage stage-final">
-                                <circle class="node" cx="70" cy="460" r="7" />
-                                <text class="label" x="110" y="460" dominant-baseline="middle">تحسين</text>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
                 <div class="panel-card panel-premium">
                     <div class="panel-ribbon">لوحة جاهزية السوق</div>
                     <div class="panel-header">
