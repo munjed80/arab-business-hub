@@ -51,7 +51,7 @@
     </header>
 
     <main>
-        <section class="academy-hero dark-section">
+        <section class="academy-hero dark-section" id="why-academy">
             <div class="hero-backdrop">
                 <span class="hero-glow glow-amber"></span>
                 <span class="hero-glow glow-cyan"></span>
@@ -68,7 +68,7 @@
                     <p class="hero-subtitle">محتوى تطبيقي يساعدك على اتخاذ القرار الصحيح قبل التنفيذ</p>
                     <div class="hero-flow hero-flow--mobile">
                         <div class="hero-flow-label">منهجية التنفيذ</div>
-                        <div class="methodology" role="list">
+                        <div class="methodology" id="lesson-method" role="list">
                             <div class="method-item" data-step="discover" role="listitem">
                                 <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="اكتشاف" focusable="false">
                                     <circle cx="11" cy="11" r="6.5" />
@@ -290,7 +290,7 @@
             </div>
         </section>
 
-        <section class="cta-banner dark-section">
+        <section class="cta-banner dark-section" id="suggest-lesson">
             <div class="container cta-banner-content">
                 <div>
                     <h3>تريد تطبيق الدروس سريعاً؟</h3>
@@ -301,31 +301,61 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="brand">
-                        <div class="brand-monogram" aria-hidden="true">ABH</div>
-                        <h3 class="brand-title brand-title-premium">مركز الأعمال العربي</h3>
+            <div class="footer-shell">
+                <div class="footer-top">
+                    <div class="footer-brand">
+                        <h3>مركز الأعمال العربي</h3>
+                        <p class="footer-tagline">شريكك في النمو الرقمي بتركيز على النتائج.</p>
+                        <div class="footer-contact">
+                            <a href="mailto:info@arab-business-hub.com" class="contact-chip">
+                                <span class="contact-icon icon-circle small">
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+                                </span>
+                                <span>info@arab-business-hub.com</span>
+                            </a>
+                            <a href="https://wa.me/966000000000" class="contact-chip">
+                                <span class="contact-icon icon-circle small premium-icon">
+                                    <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                                </span>
+                                <span>واتساب مباشر</span>
+                            </a>
+                        </div>
                     </div>
-                    <p>نصمم وننفذ الهوية، الموقع، والتسويق بحيث ترى أثر الاستثمار على النمو بوضوح.</p>
+                    <div class="footer-cta">
+                        <p class="footer-microcopy">لنبدأ ببناء حضور ينعكس على أرباحك.</p>
+                        <div class="footer-actions">
+                            <a href="contact.html" class="btn btn-primary btn-small">احجز استشارة</a>
+                            <a href="services.html" class="btn btn-secondary btn-small">استكشف الحلول</a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="footer-grid">
+                <div class="footer-divider" aria-hidden="true"></div>
+                <div class="footer-content">
                     <div class="footer-section">
-                        <h4>روابط</h4>
+                        <h4>روابط سريعة</h4>
                         <ul>
+                            <li><a href="index.html">الرئيسية</a></li>
                             <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
                             <li><a href="about.html">من نحن</a></li>
+                            <li><a href="pricing.html">الأسعار</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>أكاديمية</h4>
+                        <h4>الخدمات</h4>
                         <ul>
-                            <li><a href="academy.html">الصفحة الرئيسية للأكاديمية</a></li>
-                            <li><a href="contact.html">مساعدة في التطبيق</a></li>
+                            <li><a href="services.html#branding">العلامة التجارية</a></li>
+                            <li><a href="services.html#web">الموقع الإلكتروني</a></li>
+                            <li><a href="services.html#marketing">التسويق والنمو</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>للأخصائيين</h4>
+                        <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                        <ul class="footer-links-inline">
+                            <li><a href="apply.html">انضم كشريك مستقل</a></li>
+                            <li><a href="dashboard.html">لوحة المهام</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
@@ -335,6 +365,49 @@
                             <li><a href="privacy.html">سياسة الخصوصية</a></li>
                             <li><a href="terms.html">الشروط والأحكام</a></li>
                         </ul>
+                    </div>
+                </div>
+                <div class="footer-academy">
+                    <div class="footer-academy-body">
+                        <div class="footer-academy-intro">
+                            <div class="footer-academy-title">
+                                <span class="footer-academy-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M3 9l9-4 9 4-9 4-9-4z"></path>
+                                        <path d="M7 12v4c0 1.7 3.1 3 5 3s5-1.3 5-3v-4"></path>
+                                        <path d="M21 10v5"></path>
+                                    </svg>
+                                </span>
+                                <h3>أكاديمية ABH</h3>
+                            </div>
+                            <p class="footer-academy-text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
+                            <div class="footer-academy-actions">
+                                <a href="academy.html" class="btn btn-primary btn-small">تصفح الدروس</a>
+                                <a href="academy.html?sort=latest" class="footer-academy-secondary">أحدث الدروس</a>
+                            </div>
+                        </div>
+                        <div class="footer-academy-meta">
+                            <div class="footer-academy-group">
+                                <h4>الفئات</h4>
+                                <div class="footer-academy-chips">
+                                    <a class="academy-chip" href="academy.html?category=basics">الأساسيات</a>
+                                    <a class="academy-chip" href="academy.html?category=finance">الإدارة المالية</a>
+                                    <a class="academy-chip" href="academy.html?category=metrics">البيانات والقياس</a>
+                                    <a class="academy-chip" href="academy.html?category=ops">التشغيل والإمداد</a>
+                                    <a class="academy-chip" href="academy.html?category=decisions">العمليات واتخاذ القرار</a>
+                                    <a class="academy-chip" href="academy.html?category=growth">التسويق والنمو</a>
+                                </div>
+                            </div>
+                            <div class="footer-academy-group">
+                                <h4>روابط سريعة</h4>
+                                <ul class="footer-academy-list">
+                                    <li><a href="academy.html#why-academy">لماذا الأكاديمية؟</a></li>
+                                    <li><a href="academy.html#lesson-method">كيف نختار الدروس؟</a></li>
+                                    <li><a href="academy.html#suggest-lesson">اقترح درسًا</a></li>
+                                    <li><a href="contact.html">تواصل معنا</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="footer-legal">

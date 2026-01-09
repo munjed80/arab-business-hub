@@ -52,7 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const uniqueCategories = ['الكل', ...new Set(normalizedLessons.map(item => item.category || 'عام'))];
-  let activeCategory = 'الكل';
+  const categoryParam = new URLSearchParams(window.location.search).get('category');
+  const categoryParamMap = {
+    basics: 'الأساسيات',
+    finance: 'الإدارة المالية',
+    metrics: 'البيانات والقياس',
+    ops: 'التشغيل والإمداد',
+    decisions: 'العمليات واتخاذ القرار',
+    growth: 'التسويق والنمو'
+  };
+  const resolveCategoryParam = (value) => {
+    if (!value) return null;
+    const trimmed = value.toString().trim();
+    if (!trimmed) return null;
+    const normalized = trimmed.toLowerCase();
+    if (categoryParamMap[normalized]) return categoryParamMap[normalized];
+    return uniqueCategories.find(category => category === trimmed) || null;
+  };
+  const resolvedCategory = resolveCategoryParam(categoryParam);
+  let activeCategory = resolvedCategory && uniqueCategories.includes(resolvedCategory) ? resolvedCategory : 'الكل';
   let query = '';
 
   const formatDate = (value) => {
