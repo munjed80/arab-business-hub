@@ -549,6 +549,19 @@ body.is-open { overflow: hidden; }
 
 .btn-ghost:hover { background: rgba(255, 255, 255, 0.12); }
 
+.btn-link {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid transparent;
+    padding-inline: var(--space-3);
+}
+
+.btn-link:hover {
+    color: var(--color-primary-strong);
+    text-decoration: underline;
+    transform: translateY(-1px);
+}
+
 /* Hero */
 .hero {
     overflow: hidden;
@@ -584,10 +597,82 @@ body.is-open { overflow: hidden; }
     margin-bottom: var(--space-3);
 }
 
-.hero-title { margin-bottom: var(--space-3); }
+.hero-title {
+    margin-bottom: var(--space-3);
+    font-size: clamp(2.5rem, 2.1rem + 1.9vw, 3.7rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.hero-highlight {
+    background: linear-gradient(120deg, #f5d394, #6de0ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.hero-highlight::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 -8px;
+    height: 6px;
+    background: linear-gradient(90deg, rgba(245, 211, 148, 0.6), rgba(109, 224, 255, 0.4));
+    border-radius: 999px;
+    filter: blur(4px);
+}
+
 .hero-subtitle { max-width: 740px; }
 
+.hero-proof {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+}
+
+.hero-proof-card {
+    background: rgba(12, 17, 28, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    box-shadow: 0 18px 40px rgba(4, 6, 12, 0.45);
+}
+
+.proof-title {
+    margin: 0 0 var(--space-1);
+    font-weight: 700;
+    color: var(--color-heading);
+}
+
+.proof-detail {
+    margin: 0;
+    color: var(--color-text-soft);
+}
+
 .hero-cta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+
+.hero-cta .btn-link { border-radius: 999px; }
+
+.hero-trust {
+    margin-top: var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+    color: var(--color-text-soft);
+    font-size: 0.95rem;
+}
+
+.hero-trust-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.hero-trust-items span {
+    padding: var(--space-1) var(--space-3);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--color-border);
+}
 
 .hero-metrics {
     display: grid;
