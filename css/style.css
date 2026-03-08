@@ -1624,6 +1624,12 @@ input:focus, select:focus, textarea:focus {
     gap: var(--space-1);
 }
 
+/* Academy standalone section (above footer) */
+.academy-section {
+    padding: var(--space-8) 0;
+    margin-top: var(--space-4);
+}
+
 .footer-section h4 { margin-bottom: var(--space-2); }
 
 .footer-section p { margin-bottom: var(--space-2); }
