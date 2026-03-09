@@ -1,6 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">ABC IT Lab</title>
-  <desc id="desc">شعار مختبر ABC لتقنية المعلومات</desc>
-  <rect width="64" height="64" fill="#0f3b7d" rx="10" ry="10"/>
-  <path d="M14 46V18h8l10 13 10-13h8v28h-8V33l-10 12-10-12v13z" fill="#f7c948"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>ABC IT Lab</title>
+  <desc>ABC IT Lab – Digital Technology Solutions</desc>
+
+  <!-- Background: deep navy with rounded corners -->
+  <rect width="64" height="64" rx="11" ry="11" fill="#0d1522"/>
+
+  <!-- Bold geometric "A" lettermark in electric teal -->
+  <!-- Left leg: apex (32,10) → left foot outer (6,56) + inner (20,56) -->
+  <polygon points="32,10 6,56 20,56" fill="#4FD1C5"/>
+  <!-- Right leg: apex (32,10) → right foot inner (44,56) + outer (58,56) -->
+  <polygon points="32,10 44,56 58,56" fill="#4FD1C5"/>
+  <!-- Crossbar at ~60 % height (y = 37) connecting outer edges of both legs -->
+  <rect x="17" y="35" width="30" height="7" fill="#4FD1C5"/>
+
+  <!-- Gold circuit-node at apex -->
+  <circle cx="32" cy="10" r="4.5" fill="#E6C27A"/>
 </svg>
