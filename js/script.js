@@ -1,5 +1,5 @@
 /**
- * Arab Business Hub - Main JavaScript
+ * ABC IT Lab - Main JavaScript
  * Minimal JavaScript for interactive elements
  */
 

@@ -1,4 +1,4 @@
-/* Design System for Arab Business Hub */
+/* Design System for ABC IT Lab */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
 
 :root {
@@ -1006,7 +1006,7 @@ body.is-open { overflow: hidden; }
     justify-content: center;
 }
 
-/* ABH Academy */
+/* ABC IT Lab Academy */
 :root { --academy-icon-size: 28px; }
 
 .academy-hero { position: relative; overflow: hidden; }

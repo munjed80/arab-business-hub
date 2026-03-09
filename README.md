@@ -1,4 +1,4 @@
-# مركز الأعمال العربي | Arab Business Hub
+# مختبر ABC لتقنية المعلومات | ABC IT Lab
 
 [![Arabic](https://img.shields.io/badge/Language-Arabic-green.svg)](https://en.wikipedia.org/wiki/Arabic)
 [![HTML5](https://img.shields.io/badge/HTML-5-orange.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -7,7 +7,7 @@
 
 ## 📋 Overview
 
-**Arab Business Hub** is a professional, Arabic-first business services website designed specifically for Arab entrepreneurs. The platform offers comprehensive services to help small businesses grow, including branding, web development, digital marketing, and business growth support.
+**ABC IT Lab** is a professional, Arabic-first business services website designed specifically for Arab and Middle East businesses. The platform offers comprehensive services to help small businesses grow, including branding, web development, digital marketing, and business growth support.
 
 ### ✨ Key Features
 
@@ -43,7 +43,7 @@
 ## 📁 Project Structure
 
 ```
-arab-business-hub/
+abc-it-lab/
 ├── index.html          # Homepage
 ├── services.html       # Services page
 ├── about.html          # About page
@@ -68,8 +68,8 @@ arab-business-hub/
 
 1. **Clone or download the repository**:
    ```bash
-   git clone https://github.com/munjed80/arab-business-hub.git
-   cd arab-business-hub
+   git clone https://github.com/munjed80/abc-it-lab.git
+   cd abc-it-lab
    ```
 
 2. **Open the website**:
@@ -94,7 +94,7 @@ arab-business-hub/
 1. Push your code to GitHub
 2. Go to repository Settings → Pages
 3. Select branch (main/master) and root folder
-4. Your site will be live at `https://username.github.io/arab-business-hub`
+4. Your site will be live at `https://username.github.io/abc-it-lab`
 
 #### Deploy to Netlify:
 
@@ -253,7 +253,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📞 Support
 
 For questions or support:
-- 📧 Email: info@arab-business-hub.com
+- 📧 Email: info@abcitlab.com
 - 💬 Open an issue on GitHub
 - 📱 Contact through the website form
 
@@ -269,6 +269,6 @@ For questions or support:
 
 ---
 
-**Made with ❤️ for Arab Entrepreneurs**
+**Made with ❤️ for Arab and Middle East Businesses**
 
 *Last Updated: 2024*
