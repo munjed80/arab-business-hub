@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>ABC IT Lab</title>
+  <!-- Left leg -->
+  <polygon points="32,10 6,56 20,56" fill="#000000"/>
+  <!-- Right leg -->
+  <polygon points="32,10 44,56 58,56" fill="#000000"/>
+  <!-- Crossbar -->
+  <rect x="17" y="35" width="30" height="7" fill="#000000"/>
+  <!-- Apex node -->
+  <circle cx="32" cy="10" r="4.5" fill="#000000"/>
+</svg>
