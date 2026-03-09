@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   title.textContent = lesson.title;
   summary.textContent = lesson.summary;
-  document.title = `${lesson.title} | أكاديمية ABH`;
+  document.title = `${lesson.title} | أكاديمية ABC IT Lab`;
 
   metaContainer.innerHTML = `
     <span class="pill meta-pill">${lesson.category}</span>

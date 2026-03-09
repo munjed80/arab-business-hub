@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const emptyState = document.getElementById('lessonEmpty');
   const lessonCount = document.getElementById('lessonCount');
 
-  console.info('ABH Academy lessons loaded', { total: normalizedLessons.length });
+  console.info('ABC IT Lab Academy lessons loaded', { total: normalizedLessons.length });
 
   if (!categoryFilters || !lessonGrid) return;
 

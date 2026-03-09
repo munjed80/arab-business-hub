@@ -55,14 +55,14 @@
         };
         const normalizeName = (value) => (value || '').trim().toLowerCase();
 
-        const ADMIN_MODE_CODE = 'ABH-ADMIN-2024';
+        const ADMIN_MODE_CODE = 'ABC-ADMIN-2025';
         const ACCESS_CODES = Object.freeze([
-            'ABH-94K2-7XM',
-            'ABH-57GQ-29N',
-            'ABH-81PV-4T3',
-            'ABH-63WD-8YL',
-            'ABH-10CR-5ZU',
-            'ABH-46MN-2QS'
+            'ABC-94K2-7XM',
+            'ABC-57GQ-29N',
+            'ABC-81PV-4T3',
+            'ABC-63WD-8YL',
+            'ABC-10CR-5ZU',
+            'ABC-46MN-2QS'
         ].map(normalizeCode));
         const ACCESS_KEY = 'abh_access_code';
         const TASK_KEY = 'abh_dashboard_tasks';
