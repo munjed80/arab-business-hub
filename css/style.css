@@ -237,17 +237,17 @@ main > section:first-of-type {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 10px;
-    border-radius: var(--radius-sm);
+    padding: 5px 11px;
+    border-radius: var(--radius-md);
     font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: 0.12em;
+    font-size: 1.15rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    background-image: linear-gradient(135deg, #d9e2ec 0%, #8fd3d8 35%, #e0e6f1 65%, #40d7d1 90%);
+    background-image: linear-gradient(135deg, #dce6f0 0%, #8fd3d8 30%, #e2e8f3 60%, #3dd4ce 88%);
     background-size: 200% 200%;
-    color: #0c1a24;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28), 0 0 18px rgba(64, 215, 209, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #0a1820;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -258,9 +258,9 @@ main > section:first-of-type {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.38) 45%, rgba(255, 255, 255, 0) 68%);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 22%, rgba(255, 255, 255, 0.34) 46%, rgba(255, 255, 255, 0) 70%);
     mix-blend-mode: screen;
-    opacity: 0.65;
+    opacity: 0.6;
     animation: monogramHighlight 9s ease-in-out infinite;
     pointer-events: none;
 }
@@ -565,8 +565,8 @@ body.is-open { overflow: hidden; }
 /* Hero */
 .hero {
     overflow: hidden;
-    background: radial-gradient(circle at 20% 20%, rgba(217, 179, 108, 0.12), transparent 35%),
-                radial-gradient(circle at 80% 10%, rgba(87, 214, 255, 0.1), transparent 35%),
+    background: radial-gradient(ellipse at 20% 0%, rgba(217, 179, 108, 0.07), transparent 48%),
+                radial-gradient(ellipse at 80% 0%, rgba(79, 209, 197, 0.055), transparent 48%),
                 var(--color-body);
 }
 
@@ -605,7 +605,7 @@ body.is-open { overflow: hidden; }
 }
 
 .hero-highlight {
-    background: linear-gradient(120deg, #f5d394, #6de0ff);
+    background: linear-gradient(120deg, #e8c17a, #5cd8cc);
     -webkit-text-fill-color: transparent;
     background-clip: text;
     position: relative;
@@ -615,8 +615,8 @@ body.is-open { overflow: hidden; }
     content: "";
     position: absolute;
     inset: auto 0 -8px;
-    height: 6px;
-    background: linear-gradient(90deg, rgba(245, 211, 148, 0.6), rgba(109, 224, 255, 0.4));
+    height: 5px;
+    background: linear-gradient(90deg, rgba(232, 193, 122, 0.5), rgba(92, 216, 204, 0.35));
     border-radius: 999px;
     filter: blur(4px);
 }
@@ -919,6 +919,56 @@ body.is-open { overflow: hidden; }
     color: var(--color-primary);
     font-weight: 700;
 }
+
+/* Hero visual illustration */
+.hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-illustration {
+    width: 100%;
+    max-width: 520px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 32px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.055);
+    position: relative;
+}
+
+.hero-illustration::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(79, 209, 197, 0.08);
+    pointer-events: none;
+}
+
+.workspace-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Hero services line (trust/capability indicators below CTAs) */
+.hero-services-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-2);
+    margin-top: var(--space-3);
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.hero-services-line .sep {
+    opacity: 0.35;
+    font-size: 1rem;
+}
+
+
 
 /* Academy */
 .academy { position: relative; overflow: hidden; }
@@ -1689,7 +1739,7 @@ input:focus, select:focus, textarea:focus {
 
 /* Responsive */
 @media (min-width: 768px) {
-    .hero-grid { grid-template-columns: 1.1fr 0.9fr; }
+    .hero-grid { grid-template-columns: 1fr 1fr; }
     .navbar .container { padding: var(--space-4) 0; }
 
     .nav-toggle { display: none; }
@@ -1778,6 +1828,9 @@ input:focus, select:focus, textarea:focus {
     .hero-flow--mobile { display: grid; }
     .hero-flow--desktop { display: none; }
     .hero-flow--mobile .execution-flow--horizontal { max-width: 520px; margin: 0 auto; }
+
+    .hero-visual { margin-top: var(--space-2); }
+    .hero-illustration { max-width: 420px; }
 
     .navbar .container {
         min-height: 56px;
