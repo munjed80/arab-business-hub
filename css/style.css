@@ -237,7 +237,7 @@ main > section:first-of-type {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 11px;
+    padding: 6px 13px;
     border-radius: var(--radius-md);
     font-weight: 800;
     font-size: 1.15rem;
@@ -246,8 +246,13 @@ main > section:first-of-type {
     background-image: linear-gradient(135deg, #dce6f0 0%, #8fd3d8 30%, #e2e8f3 60%, #3dd4ce 88%);
     background-size: 200% 200%;
     color: #0a1820;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.32),
+        0 0 0 1px rgba(255, 255, 255, 0.14),
+        0 0 18px rgba(63, 210, 204, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.26),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -568,6 +573,16 @@ body.is-open { overflow: hidden; }
     background: radial-gradient(ellipse at 20% 0%, rgba(217, 179, 108, 0.07), transparent 48%),
                 radial-gradient(ellipse at 80% 0%, rgba(79, 209, 197, 0.055), transparent 48%),
                 var(--color-body);
+    padding: clamp(4rem, 8vw, 6.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+}
+
+/* Premium hero variant — richer background atmosphere */
+.hero.hero-premium {
+    background:
+        radial-gradient(ellipse at 15% 0%,  rgba(217, 179, 108, 0.1),  transparent 46%),
+        radial-gradient(ellipse at 78% 0%,  rgba(79,  209, 197, 0.08), transparent 46%),
+        radial-gradient(ellipse at 50% 110%, rgba(79,  209, 197, 0.05), transparent 55%),
+        var(--color-body);
 }
 
 .hero-backdrop {
@@ -595,6 +610,25 @@ body.is-open { overflow: hidden; }
     border: 1px solid var(--color-border);
     font-weight: 700;
     margin-bottom: var(--space-3);
+}
+
+/* Premium eyebrow badge — gold gradient border + dot accent */
+.hero-content .premium-eyebrow {
+    background: rgba(230, 194, 122, 0.07);
+    border-color: rgba(230, 194, 122, 0.32);
+    color: var(--color-primary);
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+}
+
+.eyebrow-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(230, 194, 122, 0.55);
 }
 
 .hero-title {
@@ -929,26 +963,50 @@ body.is-open { overflow: hidden; }
 
 .hero-illustration {
     width: 100%;
-    max-width: 520px;
+    max-width: 540px;
     border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: 0 32px 72px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.055);
+    overflow: visible;
     position: relative;
+}
+
+.hero-illustration::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: calc(var(--radius-lg) + 1px);
+    background: linear-gradient(
+        135deg,
+        rgba(230, 194, 122, 0.18) 0%,
+        rgba(79, 209, 197, 0.12) 50%,
+        rgba(230, 194, 122, 0.08) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    padding: 1px;
 }
 
 .hero-illustration::after {
     content: "";
     position: absolute;
-    inset: 0;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(79, 209, 197, 0.08);
+    inset: -18px;
+    border-radius: calc(var(--radius-lg) + 18px);
+    background: radial-gradient(ellipse at 50% 50%, rgba(79, 209, 197, 0.08), transparent 70%);
     pointer-events: none;
+    z-index: 0;
 }
 
 .workspace-svg {
     display: block;
     width: 100%;
     height: auto;
+    position: relative;
+    z-index: 2;
+    border-radius: var(--radius-lg);
+    filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.52)) drop-shadow(0 0 80px rgba(79, 209, 197, 0.06));
 }
 
 /* Hero services line (trust/capability indicators below CTAs) */
@@ -1739,7 +1797,7 @@ input:focus, select:focus, textarea:focus {
 
 /* Responsive */
 @media (min-width: 768px) {
-    .hero-grid { grid-template-columns: 1fr 1fr; }
+    .hero-grid { grid-template-columns: 1fr 1.1fr; gap: var(--space-5); }
     .navbar .container { padding: var(--space-4) 0; }
 
     .nav-toggle { display: none; }
@@ -1830,7 +1888,7 @@ input:focus, select:focus, textarea:focus {
     .hero-flow--mobile .execution-flow--horizontal { max-width: 520px; margin: 0 auto; }
 
     .hero-visual { margin-top: var(--space-2); }
-    .hero-illustration { max-width: 420px; }
+    .hero-illustration { max-width: 480px; margin: 0 auto; }
 
     .navbar .container {
         min-height: 56px;

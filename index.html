@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#0d1522">
-    <link rel="stylesheet" href="css/style.css?v=20240919-1">
+    <link rel="stylesheet" href="css/style.css?v=20250317-2">
 </head>
 <body class="theme-dark">
     <header class="site-header">
@@ -70,7 +70,7 @@
     <main>
 
     <!-- Hero Section -->
-    <section class="hero dark-section">
+    <section class="hero dark-section hero-premium">
         <div class="hero-backdrop">
             <span class="hero-glow glow-amber"></span>
             <span class="hero-glow glow-cyan"></span>
@@ -98,192 +98,343 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-illustration" role="img" aria-label="مساحة عمل رقمية احترافية تعكس أسلوب ABC IT Lab">
-                    <svg class="workspace-svg" viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" aria-labelledby="workspaceSvgTitle" focusable="false">
-                        <title id="workspaceSvgTitle">مساحة عمل رقمية احترافية — ABC IT Lab</title>
+                <div class="hero-illustration" role="img" aria-label="تصميم هوية رقمية احترافية بأسلوب ABC IT Lab — واجهة موقع، هوية بصرية، وبيانات نمو">
+                    <svg class="workspace-svg" viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" aria-labelledby="studioSvgTitle" focusable="false">
+                        <title id="studioSvgTitle">تصميم هوية رقمية احترافية — ABC IT Lab</title>
                         <defs>
-                            <linearGradient id="wsRoomBg" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#090f1c"/>
-                                <stop offset="72%" stop-color="#080d16"/>
-                                <stop offset="100%" stop-color="#060b12"/>
+                            <!-- Background gradient -->
+                            <linearGradient id="stBg" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#060f1d"/>
+                                <stop offset="100%" stop-color="#040a14"/>
                             </linearGradient>
-                            <radialGradient id="wsWarmLight" cx="65%" cy="0%" r="58%">
-                                <stop offset="0%" stop-color="#e8c17a" stop-opacity="0.1"/>
+                            <!-- Amber ambient glow -->
+                            <radialGradient id="stAmber" cx="80%" cy="0%" r="60%">
+                                <stop offset="0%" stop-color="#e8c17a" stop-opacity="0.14"/>
                                 <stop offset="100%" stop-color="#e8c17a" stop-opacity="0"/>
                             </radialGradient>
-                            <radialGradient id="wsCoolLight" cx="38%" cy="35%" r="52%">
-                                <stop offset="0%" stop-color="#4fd1c5" stop-opacity="0.07"/>
+                            <!-- Teal ambient glow -->
+                            <radialGradient id="stTeal" cx="10%" cy="55%" r="50%">
+                                <stop offset="0%" stop-color="#4fd1c5" stop-opacity="0.1"/>
                                 <stop offset="100%" stop-color="#4fd1c5" stop-opacity="0"/>
                             </radialGradient>
-                            <linearGradient id="wsDeskGrad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#192438"/>
-                                <stop offset="100%" stop-color="#0d1624"/>
+                            <!-- Browser frame gradient -->
+                            <linearGradient id="stFrame" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#18243a"/>
+                                <stop offset="100%" stop-color="#0d1828"/>
                             </linearGradient>
-                            <linearGradient id="wsScreenBg" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#0b192e"/>
-                                <stop offset="100%" stop-color="#071322"/>
+                            <!-- Browser chrome gradient -->
+                            <linearGradient id="stChrome" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#1b2840"/>
+                                <stop offset="100%" stop-color="#101c30"/>
                             </linearGradient>
-                            <linearGradient id="wsLaptopFrame" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#1c293d"/>
-                                <stop offset="100%" stop-color="#121c2c"/>
+                            <!-- Website bg gradient -->
+                            <linearGradient id="stWebBg" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#060d1c"/>
+                                <stop offset="100%" stop-color="#040918"/>
                             </linearGradient>
-                            <radialGradient id="wsScreenGlow" cx="50%" cy="100%" r="70%">
-                                <stop offset="0%" stop-color="#4fd1c5" stop-opacity="0.16"/>
-                                <stop offset="100%" stop-color="#4fd1c5" stop-opacity="0"/>
-                            </radialGradient>
-                            <filter id="wsShadow" x="-15%" y="-15%" width="130%" height="130%">
-                                <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#000" flood-opacity="0.65"/>
+                            <!-- CTA button gradient -->
+                            <linearGradient id="stCta" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#e8c17a"/>
+                                <stop offset="100%" stop-color="#f2daac"/>
+                            </linearGradient>
+                            <!-- Teal highlight gradient -->
+                            <linearGradient id="stTealHL" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#4fd1c5"/>
+                                <stop offset="100%" stop-color="#7ee8de"/>
+                            </linearGradient>
+                            <!-- Bar chart gradient -->
+                            <linearGradient id="stBar" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#4fd1c5" stop-opacity="0.9"/>
+                                <stop offset="100%" stop-color="#4fd1c5" stop-opacity="0.2"/>
+                            </linearGradient>
+                            <!-- Identity card gradient -->
+                            <linearGradient id="stLogo" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#4fd1c5"/>
+                                <stop offset="100%" stop-color="#e8c17a"/>
+                            </linearGradient>
+                            <!-- Browser drop shadow -->
+                            <filter id="stShadow" x="-12%" y="-12%" width="124%" height="124%">
+                                <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#000" flood-opacity="0.7"/>
                             </filter>
-                            <filter id="wsBlur" x="-30%" y="-30%" width="160%" height="160%">
-                                <feGaussianBlur stdDeviation="7"/>
+                            <!-- Float card shadow -->
+                            <filter id="stFloat" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000" flood-opacity="0.55"/>
                             </filter>
-                            <clipPath id="wsScreenClip">
-                                <rect x="158" y="100" width="204" height="150" rx="1"/>
+                            <!-- Soft blur filter -->
+                            <filter id="stBlur">
+                                <feGaussianBlur stdDeviation="6"/>
+                            </filter>
+                            <!-- Screen clip area -->
+                            <clipPath id="stScreenClip">
+                                <rect x="76" y="60" width="412" height="238"/>
                             </clipPath>
+                            <!-- Dot pattern texture -->
+                            <pattern id="stDots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.035)"/>
+                            </pattern>
                         </defs>
 
-                        <!-- Background -->
-                        <rect width="560" height="440" fill="url(#wsRoomBg)"/>
-                        <ellipse cx="364" cy="-10" rx="240" ry="160" fill="url(#wsWarmLight)"/>
-                        <ellipse cx="220" cy="200" rx="210" ry="230" fill="url(#wsCoolLight)"/>
-                        <!-- Subtle wall panel lines -->
-                        <line x1="140" y1="0" x2="140" y2="285" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
-                        <line x1="420" y1="0" x2="420" y2="285" stroke="rgba(255,255,255,0.018)" stroke-width="1"/>
+                        <!-- ===== BACKGROUND ===== -->
+                        <rect width="560" height="440" fill="url(#stBg)"/>
+                        <rect width="560" height="440" fill="url(#stDots)"/>
+                        <ellipse cx="450" cy="-15" rx="280" ry="210" fill="url(#stAmber)"/>
+                        <ellipse cx="60" cy="240" rx="220" ry="260" fill="url(#stTeal)"/>
 
-                        <!-- Desk surface -->
-                        <rect x="0" y="285" width="560" height="155" fill="url(#wsDeskGrad)"/>
-                        <rect x="0" y="285" width="560" height="1" fill="rgba(255,255,255,0.065)"/>
-                        <ellipse cx="260" cy="287" rx="145" ry="7" fill="rgba(255,255,255,0.012)"/>
+                        <!-- Decorative background arcs -->
+                        <circle cx="500" cy="420" r="200" fill="none" stroke="rgba(230,194,122,0.04)" stroke-width="1"/>
+                        <circle cx="500" cy="420" r="150" fill="none" stroke="rgba(230,194,122,0.03)" stroke-width="0.75"/>
 
-                        <!-- Laptop shadow on desk -->
-                        <ellipse cx="260" cy="296" rx="160" ry="14" fill="rgba(0,0,0,0.5)" filter="url(#wsBlur)"/>
+                        <!-- ===== BROWSER SHADOW (blur layer) ===== -->
+                        <rect x="90" y="30" width="412" height="272" rx="14" fill="rgba(0,0,0,0.65)" filter="url(#stShadow)"/>
 
-                        <!-- Laptop keyboard / base -->
-                        <rect x="132" y="274" width="256" height="18" rx="3" fill="url(#wsLaptopFrame)" filter="url(#wsShadow)"/>
-                        <!-- Touchpad -->
-                        <rect x="226" y="278" width="68" height="10" rx="2" fill="rgba(255,255,255,0.033)" stroke="rgba(255,255,255,0.052)" stroke-width="0.5"/>
-                        <!-- Hinge line -->
-                        <rect x="132" y="272" width="256" height="3" rx="1.5" fill="rgba(0,0,0,0.38)"/>
-                        <!-- Keyboard rows (subtle) -->
-                        <rect x="141" y="278" width="74" height="2" rx="1" fill="rgba(255,255,255,0.04)"/>
-                        <rect x="141" y="282" width="78" height="2" rx="1" fill="rgba(255,255,255,0.03)"/>
-                        <rect x="146" y="286" width="66" height="2" rx="1" fill="rgba(255,255,255,0.022)"/>
+                        <!-- ===== BROWSER FRAME ===== -->
+                        <rect x="76" y="18" width="412" height="280" rx="14" fill="url(#stFrame)"/>
+                        <!-- Browser chrome bar -->
+                        <rect x="76" y="18" width="412" height="42" rx="14" fill="url(#stChrome)"/>
+                        <rect x="76" y="46" width="412" height="14" fill="url(#stChrome)"/>
+                        <!-- Chrome / screen divider -->
+                        <line x1="76" y1="60" x2="488" y2="60" stroke="rgba(255,255,255,0.065)" stroke-width="1"/>
 
-                        <!-- Laptop screen outer frame -->
-                        <rect x="146" y="82" width="228" height="196" rx="6" fill="url(#wsLaptopFrame)" filter="url(#wsShadow)"/>
-                        <!-- Screen bezel -->
-                        <rect x="152" y="88" width="216" height="184" rx="4" fill="rgba(7,13,23,0.92)"/>
-                        <!-- Inner screen surface -->
-                        <rect x="158" y="100" width="204" height="150" rx="2" fill="url(#wsScreenBg)"/>
-                        <!-- Top bezel highlight -->
-                        <rect x="152" y="88" width="216" height="11" rx="4" fill="rgba(255,255,255,0.01)"/>
-                        <!-- Camera dot -->
-                        <circle cx="260" cy="92" r="2" fill="rgba(255,255,255,0.07)"/>
+                        <!-- macOS traffic light buttons -->
+                        <circle cx="104" cy="39" r="7" fill="rgba(255,98,89,0.65)" stroke="rgba(255,98,89,0.2)" stroke-width="0.5"/>
+                        <circle cx="126" cy="39" r="7" fill="rgba(255,189,68,0.65)" stroke="rgba(255,189,68,0.2)" stroke-width="0.5"/>
+                        <circle cx="148" cy="39" r="7" fill="rgba(39,201,63,0.55)" stroke="rgba(39,201,63,0.2)" stroke-width="0.5"/>
 
-                        <!-- Website UI on screen -->
-                        <g clip-path="url(#wsScreenClip)">
-                            <!-- Full screen bg -->
-                            <rect x="158" y="100" width="204" height="150" fill="#071020"/>
+                        <!-- URL bar -->
+                        <rect x="178" y="27" width="208" height="24" rx="12" fill="rgba(255,255,255,0.055)" stroke="rgba(255,255,255,0.09)" stroke-width="0.75"/>
+                        <!-- Lock icon (simplified) -->
+                        <circle cx="193" cy="39" r="4.5" fill="none" stroke="rgba(79,209,197,0.55)" stroke-width="1.2"/>
+                        <rect x="190" y="38" width="6" height="5" rx="1" fill="none" stroke="rgba(79,209,197,0.55)" stroke-width="1.2"/>
+                        <!-- URL text -->
+                        <text x="202" y="44" fill="rgba(255,255,255,0.42)" font-size="9" font-family="monospace" letter-spacing="0.02em">abcitlab.com</text>
 
-                            <!-- Navbar -->
-                            <rect x="158" y="100" width="204" height="18" fill="#050d1c"/>
-                            <!-- Logo mark in nav -->
-                            <circle cx="171" cy="109" r="3.5" fill="rgba(79,209,197,0.65)"/>
-                            <rect x="179" y="105" width="32" height="8" rx="3" fill="rgba(255,255,255,0.12)"/>
-                            <!-- Nav links -->
-                            <rect x="272" y="106" width="17" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
-                            <rect x="295" y="106" width="17" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
-                            <rect x="318" y="106" width="17" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
-                            <!-- Nav CTA -->
-                            <rect x="340" y="104" width="18" height="10" rx="5" fill="rgba(79,209,197,0.22)" stroke="rgba(79,209,197,0.42)" stroke-width="0.5"/>
+                        <!-- Browser frame outer border -->
+                        <rect x="76" y="18" width="412" height="280" rx="14" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
 
-                            <!-- Hero area on screen -->
-                            <rect x="158" y="118" width="204" height="74" fill="#07111f"/>
-                            <!-- Badge eyebrow -->
-                            <rect x="167" y="124" width="44" height="6" rx="3" fill="rgba(230,194,122,0.16)" stroke="rgba(230,194,122,0.28)" stroke-width="0.5"/>
-                            <!-- Heading line 1 -->
-                            <rect x="167" y="135" width="96" height="9" rx="3" fill="rgba(255,255,255,0.74)"/>
-                            <!-- Heading line 2 (accent) -->
-                            <rect x="167" y="148" width="76" height="9" rx="3" fill="rgba(79,209,197,0.62)"/>
-                            <!-- Subheading lines -->
-                            <rect x="167" y="162" width="106" height="4" rx="2" fill="rgba(255,255,255,0.17)"/>
-                            <rect x="167" y="169" width="86" height="4" rx="2" fill="rgba(255,255,255,0.11)"/>
+                        <!-- ===== WEBSITE CONTENT (clipped to screen) ===== -->
+                        <g clip-path="url(#stScreenClip)">
+
+                            <!-- Website background -->
+                            <rect x="76" y="60" width="412" height="238" fill="url(#stWebBg)"/>
+
+                            <!-- Website hero glow overlays -->
+                            <ellipse cx="440" cy="70" rx="160" ry="120" fill="rgba(230,194,122,0.065)"/>
+                            <ellipse cx="150" cy="130" rx="110" ry="90" fill="rgba(79,209,197,0.045)"/>
+
+                            <!-- === Website Navbar === -->
+                            <rect x="76" y="60" width="412" height="26" fill="rgba(4,9,20,0.96)"/>
+                            <!-- ABC logo badge in navbar -->
+                            <rect x="88" y="66" width="26" height="14" rx="4" fill="rgba(15,26,46,0.9)" stroke="rgba(79,209,197,0.3)" stroke-width="0.5"/>
+                            <text x="89" y="76" fill="rgba(200,220,240,0.9)" font-size="7" font-weight="800" letter-spacing="0.1em" font-family="sans-serif">ABC</text>
+                            <!-- Nav links (RTL: right side) -->
+                            <rect x="378" y="69" width="30" height="7" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+                            <rect x="344" y="69" width="30" height="7" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+                            <rect x="310" y="69" width="30" height="7" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+                            <!-- CTA button in nav -->
+                            <rect x="270" y="67" width="36" height="12" rx="6" fill="rgba(230,194,122,0.2)" stroke="rgba(230,194,122,0.42)" stroke-width="0.5"/>
+
+                            <!-- === Website Hero Section === -->
+                            <rect x="76" y="86" width="412" height="100" fill="#04091a"/>
+                            <!-- Hero section glow -->
+                            <ellipse cx="450" cy="90" rx="130" ry="80" fill="rgba(230,194,122,0.06)"/>
+
+                            <!-- Badge pill -->
+                            <rect x="200" y="95" width="72" height="13" rx="6.5" fill="rgba(230,194,122,0.12)" stroke="rgba(230,194,122,0.3)" stroke-width="0.5"/>
+                            <rect x="207" y="98.5" width="58" height="6" rx="2" fill="rgba(230,194,122,0.35)"/>
+
+                            <!-- Hero headline blocks -->
+                            <rect x="200" y="113" width="130" height="12" rx="3" fill="rgba(240,244,255,0.85)"/>
+                            <rect x="200" y="130" width="98" height="12" rx="3" fill="url(#stTealHL)" opacity="0.7"/>
+
+                            <!-- Subtext lines -->
+                            <rect x="200" y="148" width="116" height="5.5" rx="2" fill="rgba(255,255,255,0.2)"/>
+                            <rect x="200" y="157" width="90" height="5.5" rx="2" fill="rgba(255,255,255,0.13)"/>
+
                             <!-- CTA buttons -->
-                            <rect x="167" y="178" width="44" height="11" rx="5.5" fill="rgba(79,209,197,0.48)"/>
-                            <rect x="217" y="179" width="34" height="9" rx="4.5" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.11)" stroke-width="0.5"/>
+                            <rect x="200" y="168" width="56" height="14" rx="7" fill="url(#stCta)"/>
+                            <rect x="262" y="170" width="44" height="10" rx="5" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.13)" stroke-width="0.5"/>
 
-                            <!-- Services section on screen -->
-                            <rect x="158" y="195" width="204" height="55" fill="#060e1a"/>
+                            <!-- Right side: mini brand preview panel -->
+                            <rect x="348" y="90" width="134" height="90" rx="8" fill="rgba(10,18,36,0.9)"/>
+                            <!-- Inner mini browser -->
+                            <rect x="356" y="96" width="118" height="78" rx="5" fill="rgba(4,9,20,0.95)" stroke="rgba(255,255,255,0.07)" stroke-width="0.5"/>
+                            <!-- Mini browser chrome -->
+                            <rect x="356" y="96" width="118" height="14" rx="5" fill="rgba(8,14,28,0.9)"/>
+                            <!-- Mini traffic lights -->
+                            <circle cx="364" cy="103" r="2.5" fill="rgba(255,98,89,0.5)"/>
+                            <circle cx="372" cy="103" r="2.5" fill="rgba(255,189,68,0.5)"/>
+                            <circle cx="380" cy="103" r="2.5" fill="rgba(39,201,63,0.45)"/>
+                            <!-- Mini website content -->
+                            <rect x="364" y="116" width="72" height="8" rx="2" fill="rgba(240,244,255,0.5)"/>
+                            <rect x="364" y="128" width="50" height="8" rx="2" fill="url(#stTealHL)" opacity="0.5"/>
+                            <rect x="364" y="140" width="36" height="9" rx="4.5" fill="url(#stCta)" opacity="0.65"/>
+                            <!-- Subtle outer glow for mini browser -->
+                            <rect x="356" y="96" width="118" height="78" rx="5" fill="none" stroke="rgba(79,209,197,0.12)" stroke-width="0.75"/>
+
+                            <!-- === Website Services Section === -->
+                            <rect x="76" y="186" width="412" height="112" fill="#050c1a"/>
+
                             <!-- Section heading -->
-                            <rect x="167" y="200" width="60" height="5.5" rx="2" fill="rgba(255,255,255,0.28)"/>
-                            <!-- Service cards -->
-                            <rect x="162" y="209" width="54" height="36" rx="3" fill="rgba(255,255,255,0.026)" stroke="rgba(255,255,255,0.062)" stroke-width="0.5"/>
-                            <rect x="224" y="209" width="54" height="36" rx="3" fill="rgba(255,255,255,0.026)" stroke="rgba(255,255,255,0.062)" stroke-width="0.5"/>
-                            <rect x="286" y="209" width="54" height="36" rx="3" fill="rgba(255,255,255,0.026)" stroke="rgba(255,255,255,0.062)" stroke-width="0.5"/>
-                            <!-- Icon circles in cards -->
-                            <circle cx="174" cy="220" r="5" fill="rgba(230,194,122,0.2)" stroke="rgba(230,194,122,0.28)" stroke-width="0.5"/>
-                            <circle cx="236" cy="220" r="5" fill="rgba(79,209,197,0.2)" stroke="rgba(79,209,197,0.28)" stroke-width="0.5"/>
-                            <circle cx="298" cy="220" r="5" fill="rgba(230,194,122,0.14)" stroke="rgba(230,194,122,0.22)" stroke-width="0.5"/>
-                            <!-- Card text lines -->
-                            <rect x="165" y="229" width="43" height="3.5" rx="1.5" fill="rgba(255,255,255,0.13)"/>
-                            <rect x="165" y="235" width="33" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
-                            <rect x="165" y="240" width="37" height="3" rx="1.5" fill="rgba(255,255,255,0.055)"/>
-                            <rect x="227" y="229" width="43" height="3.5" rx="1.5" fill="rgba(255,255,255,0.13)"/>
-                            <rect x="227" y="235" width="33" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
-                            <rect x="227" y="240" width="37" height="3" rx="1.5" fill="rgba(255,255,255,0.055)"/>
-                            <rect x="289" y="229" width="43" height="3.5" rx="1.5" fill="rgba(255,255,255,0.13)"/>
-                            <rect x="289" y="235" width="33" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
-                            <rect x="289" y="240" width="37" height="3" rx="1.5" fill="rgba(255,255,255,0.055)"/>
+                            <rect x="200" y="194" width="88" height="8" rx="3" fill="rgba(240,244,255,0.38)"/>
+                            <rect x="200" y="205" width="60" height="5" rx="2" fill="rgba(255,255,255,0.15)"/>
+
+                            <!-- Service card 1 (Identity) -->
+                            <rect x="82" y="202" width="110" height="88" rx="7" fill="rgba(255,255,255,0.025)" stroke="rgba(230,194,122,0.14)" stroke-width="0.75"/>
+                            <!-- Icon circle -->
+                            <circle cx="104" cy="220" r="10" fill="rgba(230,194,122,0.16)" stroke="rgba(230,194,122,0.38)" stroke-width="0.75"/>
+                            <line x1="100" y1="220" x2="108" y2="220" stroke="rgba(230,194,122,0.75)" stroke-width="1.4" stroke-linecap="round"/>
+                            <line x1="104" y1="216" x2="104" y2="224" stroke="rgba(230,194,122,0.75)" stroke-width="1.4" stroke-linecap="round"/>
+                            <!-- Card text -->
+                            <rect x="90" y="235" width="82" height="6" rx="2" fill="rgba(255,255,255,0.35)"/>
+                            <rect x="90" y="244" width="64" height="4.5" rx="2" fill="rgba(255,255,255,0.15)"/>
+                            <rect x="90" y="251" width="72" height="4.5" rx="2" fill="rgba(255,255,255,0.1)"/>
+                            <!-- Link chip -->
+                            <rect x="90" y="276" width="56" height="9" rx="4.5" fill="rgba(230,194,122,0.14)" stroke="rgba(230,194,122,0.3)" stroke-width="0.5"/>
+
+                            <!-- Service card 2 (Web, highlighted) -->
+                            <rect x="200" y="202" width="110" height="88" rx="7" fill="rgba(79,209,197,0.04)" stroke="rgba(79,209,197,0.2)" stroke-width="0.75"/>
+                            <!-- Icon circle -->
+                            <circle cx="222" cy="220" r="10" fill="rgba(79,209,197,0.18)" stroke="rgba(79,209,197,0.42)" stroke-width="0.75"/>
+                            <rect x="218" y="216" width="8" height="6" rx="1" fill="none" stroke="rgba(79,209,197,0.8)" stroke-width="1.2"/>
+                            <line x1="218" y1="223" x2="226" y2="223" stroke="rgba(79,209,197,0.6)" stroke-width="1" stroke-linecap="round"/>
+                            <!-- Card text -->
+                            <rect x="208" y="235" width="82" height="6" rx="2" fill="rgba(255,255,255,0.35)"/>
+                            <rect x="208" y="244" width="64" height="4.5" rx="2" fill="rgba(255,255,255,0.15)"/>
+                            <rect x="208" y="251" width="72" height="4.5" rx="2" fill="rgba(255,255,255,0.1)"/>
+                            <rect x="208" y="276" width="56" height="9" rx="4.5" fill="rgba(79,209,197,0.14)" stroke="rgba(79,209,197,0.32)" stroke-width="0.5"/>
+
+                            <!-- Service card 3 (Growth) -->
+                            <rect x="318" y="202" width="110" height="88" rx="7" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.08)" stroke-width="0.75"/>
+                            <!-- Icon circle -->
+                            <circle cx="340" cy="220" r="10" fill="rgba(230,194,122,0.13)" stroke="rgba(230,194,122,0.3)" stroke-width="0.75"/>
+                            <polyline points="335,224 339,218 343,221 347,215" fill="none" stroke="rgba(230,194,122,0.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            <!-- Card text -->
+                            <rect x="326" y="235" width="82" height="6" rx="2" fill="rgba(255,255,255,0.35)"/>
+                            <rect x="326" y="244" width="64" height="4.5" rx="2" fill="rgba(255,255,255,0.15)"/>
+                            <rect x="326" y="251" width="72" height="4.5" rx="2" fill="rgba(255,255,255,0.1)"/>
+                            <rect x="326" y="276" width="56" height="9" rx="4.5" fill="rgba(230,194,122,0.12)" stroke="rgba(230,194,122,0.26)" stroke-width="0.5"/>
                         </g>
 
-                        <!-- Screen edge glow -->
-                        <rect x="158" y="100" width="204" height="150" rx="2" fill="none" stroke="rgba(79,209,197,0.09)" stroke-width="0.75"/>
-                        <!-- Screen bottom reflection on frame -->
-                        <rect x="152" y="250" width="216" height="22" rx="0" fill="rgba(0,0,0,0.28)"/>
+                        <!-- Screen edge glow ring -->
+                        <rect x="76" y="60" width="412" height="238" fill="none" stroke="rgba(79,209,197,0.07)" stroke-width="1"/>
 
-                        <!-- Screen glow on desk -->
-                        <ellipse cx="260" cy="291" rx="118" ry="11" fill="url(#wsScreenGlow)"/>
+                        <!-- ===== FLOATING IDENTITY CARD (LEFT) ===== -->
+                        <!-- Card shadow -->
+                        <rect x="6" y="44" width="116" height="174" rx="14" fill="rgba(0,0,0,0.5)" filter="url(#stFloat)"/>
+                        <!-- Card body -->
+                        <rect x="6" y="44" width="116" height="174" rx="14" fill="rgba(9,16,30,0.92)" stroke="rgba(255,255,255,0.10)" stroke-width="0.75"/>
+                        <!-- Card top amber tint -->
+                        <rect x="6" y="44" width="116" height="56" rx="14" fill="rgba(230,194,122,0.055)"/>
+                        <rect x="6" y="82" width="116" height="18" fill="rgba(230,194,122,0.055)"/>
+                        <!-- Card header label -->
+                        <rect x="18" y="56" width="52" height="7" rx="3" fill="rgba(230,194,122,0.55)"/>
+                        <rect x="18" y="67" width="78" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+                        <!-- Status badge -->
+                        <rect x="84" y="52" width="32" height="14" rx="7" fill="rgba(230,194,122,0.18)" stroke="rgba(230,194,122,0.45)" stroke-width="0.5"/>
+                        <rect x="90" y="56" width="20" height="6" rx="2" fill="rgba(230,194,122,0.45)"/>
 
-                        <!-- Coffee cup (right side of desk) -->
-                        <!-- Saucer -->
-                        <ellipse cx="462" cy="293" rx="22" ry="5" fill="rgba(16,26,44,0.85)" stroke="rgba(255,255,255,0.038)" stroke-width="0.5"/>
-                        <!-- Cup body -->
-                        <rect x="447" y="263" width="30" height="30" rx="4" fill="rgba(14,22,38,0.92)" stroke="rgba(255,255,255,0.052)" stroke-width="0.5"/>
-                        <!-- Cup top rim -->
-                        <ellipse cx="462" cy="263" rx="15" ry="4" fill="rgba(20,32,52,0.9)"/>
-                        <!-- Coffee surface -->
-                        <ellipse cx="462" cy="263" rx="11" ry="2.8" fill="rgba(26,16,10,0.96)"/>
-                        <!-- Cup handle -->
-                        <path d="M477 267 Q487 267 487 278 Q487 288 477 288" stroke="rgba(14,22,38,0.95)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                        <path d="M477 267 Q485 267 485 278 Q485 288 477 288" stroke="rgba(255,255,255,0.044)" stroke-width="1" fill="none" stroke-linecap="round"/>
-                        <!-- Steam wisps -->
-                        <path d="M455 256 Q457 247 454 239" stroke="rgba(255,255,255,0.055)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                        <path d="M462 254 Q465 245 462 237" stroke="rgba(255,255,255,0.048)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-                        <path d="M469 256 Q471 247 468 239" stroke="rgba(255,255,255,0.042)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                        <!-- Brand logo concept area -->
+                        <!-- Teal circle logo -->
+                        <circle cx="34" cy="116" r="22" fill="rgba(79,209,197,0.1)" stroke="rgba(79,209,197,0.38)" stroke-width="1.5"/>
+                        <circle cx="34" cy="116" r="13" fill="rgba(79,209,197,0.22)"/>
+                        <!-- ABC text inside circle -->
+                        <text x="24" y="120" fill="rgba(255,255,255,0.82)" font-size="8" font-weight="800" letter-spacing="0.1em" font-family="sans-serif">ABC</text>
+                        <!-- Gradient arc accent on logo circle -->
+                        <circle cx="34" cy="116" r="22" fill="none" stroke="url(#stLogo)" stroke-width="2" stroke-dasharray="30 110"/>
 
-                        <!-- Notebook / papers (left side of desk) -->
-                        <rect x="44" y="273" width="66" height="20" rx="2" fill="rgba(14,21,36,0.86)" stroke="rgba(255,255,255,0.042)" stroke-width="0.5" transform="rotate(-4,77,283)"/>
-                        <rect x="42" y="268" width="66" height="20" rx="2" fill="rgba(18,28,46,0.8)" stroke="rgba(255,255,255,0.058)" stroke-width="0.5" transform="rotate(-6,75,278)"/>
-                        <!-- Lines on notebook -->
-                        <line x1="50" y1="270" x2="100" y2="272" stroke="rgba(255,255,255,0.052)" stroke-width="0.6" transform="rotate(-6,75,278)"/>
-                        <line x1="50" y1="275" x2="100" y2="277" stroke="rgba(255,255,255,0.036)" stroke-width="0.6" transform="rotate(-6,75,278)"/>
-                        <line x1="50" y1="280" x2="100" y2="282" stroke="rgba(255,255,255,0.028)" stroke-width="0.6" transform="rotate(-6,75,278)"/>
-                        <!-- Pen on notebook -->
-                        <rect x="48" y="261" width="50" height="2.5" rx="1.25" fill="rgba(175,155,95,0.32)" transform="rotate(-7,73,262)"/>
+                        <!-- Color palette swatches -->
+                        <rect x="66" y="102" width="16" height="16" rx="4" fill="rgba(230,194,122,0.75)"/>
+                        <rect x="84" y="102" width="16" height="16" rx="4" fill="rgba(79,209,197,0.75)"/>
+                        <rect x="66" y="120" width="16" height="16" rx="4" fill="rgba(14,22,44,0.95)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+                        <rect x="84" y="120" width="16" height="16" rx="4" fill="rgba(240,244,255,0.7)"/>
 
-                        <!-- Small plant (far left of desk) -->
-                        <!-- Pot -->
-                        <rect x="20" y="275" width="27" height="17" rx="2" fill="rgba(28,18,14,0.78)" stroke="rgba(255,255,255,0.038)" stroke-width="0.5"/>
-                        <rect x="18" y="273" width="31" height="4" rx="2" fill="rgba(36,24,18,0.82)" stroke="rgba(255,255,255,0.038)" stroke-width="0.5"/>
-                        <!-- Plant leaves -->
-                        <path d="M33 273 Q23 255 26 241 Q37 257 33 273" fill="rgba(20,54,28,0.72)"/>
-                        <path d="M33 273 Q44 252 50 237 Q37 254 33 273" fill="rgba(26,64,34,0.66)"/>
-                        <path d="M33 273 Q28 258 20 247 Q30 259 33 273" fill="rgba(18,48,26,0.56)"/>
+                        <!-- Divider -->
+                        <line x1="18" y1="148" x2="108" y2="148" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
 
-                        <!-- Warm ambient glow from right (off-screen lamp) -->
-                        <rect x="485" y="0" width="75" height="440" fill="rgba(230,194,122,0.016)"/>
-                        <!-- Desk bottom shadow -->
-                        <rect x="0" y="432" width="560" height="8" fill="rgba(0,0,0,0.38)"/>
+                        <!-- Typography blocks -->
+                        <rect x="18" y="156" width="80" height="7" rx="2.5" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="18" y="167" width="62" height="5" rx="2" fill="rgba(255,255,255,0.15)"/>
+                        <rect x="18" y="176" width="72" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+                        <rect x="18" y="185" width="50" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+                        <!-- "هوية بصرية" label -->
+                        <rect x="18" y="198" width="48" height="11" rx="5.5" fill="rgba(230,194,122,0.14)" stroke="rgba(230,194,122,0.3)" stroke-width="0.5"/>
+                        <rect x="23" y="201" width="38" height="5" rx="2" fill="rgba(230,194,122,0.38)"/>
+
+                        <!-- ===== FLOATING METRICS CARD (RIGHT) ===== -->
+                        <!-- Card shadow -->
+                        <rect x="446" y="74" width="108" height="160" rx="14" fill="rgba(0,0,0,0.5)" filter="url(#stFloat)"/>
+                        <!-- Card body -->
+                        <rect x="446" y="74" width="108" height="160" rx="14" fill="rgba(6,12,24,0.94)" stroke="rgba(79,209,197,0.18)" stroke-width="0.75"/>
+                        <!-- Teal top accent stripe -->
+                        <rect x="446" y="74" width="108" height="4" rx="2" fill="url(#stTealHL)"/>
+                        <!-- Card title -->
+                        <rect x="458" y="86" width="60" height="7" rx="3" fill="rgba(255,255,255,0.62)"/>
+                        <rect x="458" y="97" width="40" height="5" rx="2" fill="rgba(79,209,197,0.45)"/>
+
+                        <!-- Growth badge -->
+                        <rect x="458" y="108" width="50" height="18" rx="9" fill="rgba(79,209,197,0.12)" stroke="rgba(79,209,197,0.32)" stroke-width="0.5"/>
+                        <!-- +48% label blocks -->
+                        <rect x="464" y="113" width="16" height="8" rx="2" fill="rgba(79,209,197,0.55)"/>
+                        <rect x="483" y="115" width="18" height="5" rx="2" fill="rgba(255,255,255,0.3)"/>
+
+                        <!-- Bar chart -->
+                        <rect x="458" y="157" width="12" height="24" rx="4" fill="url(#stBar)" opacity="0.55"/>
+                        <rect x="473" y="142" width="12" height="39" rx="4" fill="url(#stBar)" opacity="0.65"/>
+                        <rect x="488" y="149" width="12" height="32" rx="4" fill="url(#stBar)" opacity="0.75"/>
+                        <rect x="503" y="133" width="12" height="48" rx="4" fill="url(#stBar)" opacity="0.85"/>
+                        <rect x="518" y="139" width="12" height="42" rx="4" fill="url(#stBar)" opacity="0.9"/>
+                        <rect x="533" y="124" width="12" height="57" rx="4" fill="url(#stBar)" opacity="1"/>
+                        <!-- Trend line -->
+                        <polyline points="464,174 479,158 494,165 509,148 524,154 539,139" fill="none" stroke="rgba(79,209,197,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Chart baseline -->
+                        <line x1="456" y1="181" x2="548" y2="181" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+
+                        <!-- Bottom stats -->
+                        <rect x="458" y="186" width="44" height="5.5" rx="2" fill="rgba(255,255,255,0.22)"/>
+                        <rect x="458" y="195" width="62" height="5" rx="2" fill="rgba(255,255,255,0.12)"/>
+                        <rect x="458" y="204" width="38" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+                        <!-- Metrics card outer border glow -->
+                        <rect x="446" y="74" width="108" height="160" rx="14" fill="none" stroke="rgba(79,209,197,0.06)" stroke-width="1"/>
+
+                        <!-- ===== BOTTOM TRUST BADGE ===== -->
+                        <!-- Badge shadow -->
+                        <rect x="112" y="326" width="218" height="58" rx="16" fill="rgba(0,0,0,0.45)" filter="url(#stBlur)"/>
+                        <!-- Badge body -->
+                        <rect x="112" y="318" width="218" height="58" rx="16" fill="rgba(7,12,24,0.94)" stroke="rgba(255,255,255,0.10)" stroke-width="0.75"/>
+                        <!-- Avatar circles (stacked) -->
+                        <circle cx="136" cy="347" r="13.5" fill="rgba(18,32,58,0.95)" stroke="rgba(6,11,22,0.9)" stroke-width="1.5"/>
+                        <circle cx="156" cy="347" r="13.5" fill="rgba(79,209,197,0.22)" stroke="rgba(6,11,22,0.9)" stroke-width="1.5"/>
+                        <circle cx="176" cy="347" r="13.5" fill="rgba(230,194,122,0.22)" stroke="rgba(6,11,22,0.9)" stroke-width="1.5"/>
+                        <circle cx="196" cy="347" r="13.5" fill="rgba(18,32,58,0.95)" stroke="rgba(6,11,22,0.9)" stroke-width="1.5"/>
+                        <!-- Avatar face dots -->
+                        <circle cx="136" cy="343" r="4.5" fill="rgba(255,255,255,0.28)"/>
+                        <circle cx="156" cy="343" r="4.5" fill="rgba(79,209,197,0.7)"/>
+                        <circle cx="176" cy="343" r="4.5" fill="rgba(230,194,122,0.7)"/>
+                        <circle cx="196" cy="343" r="4.5" fill="rgba(255,255,255,0.28)"/>
+                        <!-- Star rating -->
+                        <text x="218" y="341" fill="rgba(230,194,122,0.88)" font-size="10" letter-spacing="1">★★★★★</text>
+                        <!-- Trust text lines -->
+                        <rect x="218" y="348" width="68" height="6" rx="2.5" fill="rgba(255,255,255,0.38)"/>
+                        <rect x="218" y="358" width="50" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+
+                        <!-- ===== DECORATIVE SPARKLE DOTS ===== -->
+                        <circle cx="50" cy="28" r="2" fill="rgba(230,194,122,0.55)"/>
+                        <circle cx="62" cy="14" r="1.2" fill="rgba(230,194,122,0.35)"/>
+                        <circle cx="22" cy="260" r="1.5" fill="rgba(79,209,197,0.45)"/>
+                        <circle cx="536" cy="48" r="2" fill="rgba(79,209,197,0.45)"/>
+                        <circle cx="548" cy="36" r="1.2" fill="rgba(79,209,197,0.3)"/>
+                        <circle cx="524" cy="300" r="1.5" fill="rgba(230,194,122,0.38)"/>
+
+                        <!-- Subtle connector lines from floating cards to browser -->
+                        <line x1="122" y1="118" x2="76" y2="118" stroke="rgba(255,255,255,0.04)" stroke-width="0.75" stroke-dasharray="4 4"/>
+                        <line x1="488" y1="154" x2="446" y2="154" stroke="rgba(79,209,197,0.06)" stroke-width="0.75" stroke-dasharray="4 4"/>
+
+                        <!-- Bottom gradient fade -->
+                        <linearGradient id="stFade" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#040a14" stop-opacity="0"/>
+                            <stop offset="100%" stop-color="#040a14" stop-opacity="0.9"/>
+                        </linearGradient>
+                        <rect x="0" y="385" width="560" height="55" fill="url(#stFade)"/>
                     </svg>
                 </div>
             </div>
