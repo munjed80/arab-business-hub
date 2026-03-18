@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-illustration" role="img" aria-label="تصميم هوية رقمية احترافية بأسلوب ABC IT Lab — واجهة موقع، هوية بصرية، وبيانات نمو">
+                <div class="hero-illustration" role="img" aria-label="تصميم هوية رقمية احترافية بأسلوب ABC IT Lab — واجهة موقع، هوية بصرية، وتصميم متجاوب">
                     <svg class="workspace-svg" viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" aria-labelledby="studioSvgTitle" focusable="false">
                         <title id="studioSvgTitle">تصميم هوية رقمية احترافية — ABC IT Lab</title>
                         <defs>
@@ -141,11 +141,6 @@
                             <linearGradient id="stTealHL" x1="0" y1="0" x2="1" y2="0">
                                 <stop offset="0%" stop-color="#4fd1c5"/>
                                 <stop offset="100%" stop-color="#7ee8de"/>
-                            </linearGradient>
-                            <!-- Bar chart gradient -->
-                            <linearGradient id="stBar" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#4fd1c5" stop-opacity="0.9"/>
-                                <stop offset="100%" stop-color="#4fd1c5" stop-opacity="0.2"/>
                             </linearGradient>
                             <!-- Identity card gradient -->
                             <linearGradient id="stLogo" x1="0" y1="0" x2="1" y2="1">
@@ -360,40 +355,52 @@
                         <rect x="18" y="198" width="48" height="11" rx="5.5" fill="rgba(230,194,122,0.14)" stroke="rgba(230,194,122,0.3)" stroke-width="0.5"/>
                         <rect x="23" y="201" width="38" height="5" rx="2" fill="rgba(230,194,122,0.38)"/>
 
-                        <!-- ===== FLOATING METRICS CARD (RIGHT) ===== -->
+                        <!-- ===== FLOATING MOBILE PREVIEW CARD (RIGHT) ===== -->
                         <!-- Card shadow -->
                         <rect x="446" y="74" width="108" height="160" rx="14" fill="rgba(0,0,0,0.5)" filter="url(#stFloat)"/>
                         <!-- Card body -->
                         <rect x="446" y="74" width="108" height="160" rx="14" fill="rgba(6,12,24,0.94)" stroke="rgba(79,209,197,0.18)" stroke-width="0.75"/>
                         <!-- Teal top accent stripe -->
                         <rect x="446" y="74" width="108" height="4" rx="2" fill="url(#stTealHL)"/>
-                        <!-- Card title -->
+                        <!-- Card title blocks -->
                         <rect x="458" y="86" width="60" height="7" rx="3" fill="rgba(255,255,255,0.62)"/>
                         <rect x="458" y="97" width="40" height="5" rx="2" fill="rgba(79,209,197,0.45)"/>
 
-                        <!-- Growth badge -->
-                        <rect x="458" y="108" width="50" height="18" rx="9" fill="rgba(79,209,197,0.12)" stroke="rgba(79,209,197,0.32)" stroke-width="0.5"/>
-                        <!-- +48% label blocks -->
-                        <rect x="464" y="113" width="16" height="8" rx="2" fill="rgba(79,209,197,0.55)"/>
-                        <rect x="483" y="115" width="18" height="5" rx="2" fill="rgba(255,255,255,0.3)"/>
+                        <!-- Live / active status badge -->
+                        <rect x="458" y="108" width="50" height="16" rx="8" fill="rgba(79,209,197,0.12)" stroke="rgba(79,209,197,0.32)" stroke-width="0.5"/>
+                        <!-- Live status indicator dot -->
+                        <circle cx="468" cy="116" r="3.5" fill="rgba(39,201,63,0.82)"/>
+                        <rect x="475" y="112" width="26" height="5" rx="2" fill="rgba(255,255,255,0.38)"/>
+                        <rect x="475" y="120" width="18" height="4" rx="2" fill="rgba(79,209,197,0.35)"/>
 
-                        <!-- Bar chart -->
-                        <rect x="458" y="157" width="12" height="24" rx="4" fill="url(#stBar)" opacity="0.55"/>
-                        <rect x="473" y="142" width="12" height="39" rx="4" fill="url(#stBar)" opacity="0.65"/>
-                        <rect x="488" y="149" width="12" height="32" rx="4" fill="url(#stBar)" opacity="0.75"/>
-                        <rect x="503" y="133" width="12" height="48" rx="4" fill="url(#stBar)" opacity="0.85"/>
-                        <rect x="518" y="139" width="12" height="42" rx="4" fill="url(#stBar)" opacity="0.9"/>
-                        <rect x="533" y="124" width="12" height="57" rx="4" fill="url(#stBar)" opacity="1"/>
-                        <!-- Trend line -->
-                        <polyline points="464,174 479,158 494,165 509,148 524,154 539,139" fill="none" stroke="rgba(79,209,197,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <!-- Chart baseline -->
-                        <line x1="456" y1="181" x2="548" y2="181" stroke="rgba(255,255,255,0.07)" stroke-width="0.75"/>
+                        <!-- Mobile phone frame (centered: card x=446, center=500) -->
+                        <rect x="479" y="130" width="42" height="76" rx="8" fill="rgba(9,16,30,0.9)" stroke="rgba(79,209,197,0.45)" stroke-width="1.25"/>
+                        <!-- Notch -->
+                        <rect x="490" y="132" width="20" height="5" rx="2.5" fill="rgba(79,209,197,0.18)"/>
+                        <!-- Phone screen area -->
+                        <rect x="482" y="139" width="36" height="58" rx="3" fill="rgba(4,9,20,0.95)"/>
+                        <!-- Home indicator bar -->
+                        <rect x="492" y="202" width="16" height="2" rx="1" fill="rgba(255,255,255,0.2)"/>
 
-                        <!-- Bottom stats -->
-                        <rect x="458" y="186" width="44" height="5.5" rx="2" fill="rgba(255,255,255,0.22)"/>
-                        <rect x="458" y="195" width="62" height="5" rx="2" fill="rgba(255,255,255,0.12)"/>
-                        <rect x="458" y="204" width="38" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
-                        <!-- Metrics card outer border glow -->
+                        <!-- Mini website in phone screen -->
+                        <!-- Phone navbar -->
+                        <rect x="482" y="139" width="36" height="9" fill="rgba(8,14,28,0.95)"/>
+                        <rect x="484" y="141" width="8" height="5" rx="1.5" fill="rgba(230,194,122,0.55)"/>
+                        <!-- Phone hero section -->
+                        <rect x="482" y="148" width="36" height="28" fill="rgba(4,9,20,0.9)"/>
+                        <rect x="485" y="153" width="22" height="5" rx="2" fill="rgba(240,244,255,0.7)"/>
+                        <rect x="485" y="161" width="16" height="4" rx="2" fill="url(#stTealHL)" opacity="0.55"/>
+                        <rect x="485" y="168" width="14" height="6" rx="3" fill="url(#stCta)" opacity="0.8"/>
+                        <!-- Phone services row -->
+                        <rect x="482" y="176" width="36" height="1" fill="rgba(255,255,255,0.07)"/>
+                        <circle cx="491" cy="184" r="4" fill="rgba(230,194,122,0.15)" stroke="rgba(230,194,122,0.4)" stroke-width="0.75"/>
+                        <circle cx="500" cy="184" r="4" fill="rgba(79,209,197,0.15)" stroke="rgba(79,209,197,0.4)" stroke-width="0.75"/>
+                        <circle cx="509" cy="184" r="4" fill="rgba(230,194,122,0.12)" stroke="rgba(230,194,122,0.3)" stroke-width="0.75"/>
+
+                        <!-- Bottom label blocks -->
+                        <rect x="458" y="215" width="44" height="5.5" rx="2" fill="rgba(255,255,255,0.22)"/>
+                        <rect x="458" y="224" width="62" height="5" rx="2" fill="rgba(255,255,255,0.12)"/>
+                        <!-- Mobile card outer border glow -->
                         <rect x="446" y="74" width="108" height="160" rx="14" fill="none" stroke="rgba(79,209,197,0.06)" stroke-width="1"/>
 
                         <!-- ===== BOTTOM TRUST BADGE ===== -->
@@ -427,7 +434,7 @@
 
                         <!-- Subtle connector lines from floating cards to browser -->
                         <line x1="122" y1="118" x2="76" y2="118" stroke="rgba(255,255,255,0.04)" stroke-width="0.75" stroke-dasharray="4 4"/>
-                        <line x1="488" y1="154" x2="446" y2="154" stroke="rgba(79,209,197,0.06)" stroke-width="0.75" stroke-dasharray="4 4"/>
+                        <line x1="488" y1="168" x2="446" y2="168" stroke="rgba(79,209,197,0.06)" stroke-width="0.75" stroke-dasharray="4 4"/>
 
                         <!-- Bottom gradient fade -->
                         <linearGradient id="stFade" x1="0" y1="0" x2="0" y2="1">
