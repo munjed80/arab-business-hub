@@ -5,14 +5,19 @@
   <!-- Background: deep navy with rounded corners -->
   <rect width="64" height="64" rx="11" ry="11" fill="#0d1522"/>
 
-  <!-- Bold geometric "A" lettermark in electric teal -->
-  <!-- Left leg: apex (32,10) → left foot outer (6,56) + inner (20,56) -->
-  <polygon points="32,10 6,56 20,56" fill="#4FD1C5"/>
-  <!-- Right leg: apex (32,10) → right foot inner (44,56) + outer (58,56) -->
-  <polygon points="32,10 44,56 58,56" fill="#4FD1C5"/>
-  <!-- Crossbar at ~60 % height (y = 37) connecting outer edges of both legs -->
-  <rect x="17" y="35" width="30" height="7" fill="#4FD1C5"/>
+  <!-- "ABC" bold text centered -->
+  <text
+    x="32"
+    y="38"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="'Arial Black', 'Impact', 'Helvetica Neue', Arial, sans-serif"
+    font-size="22"
+    font-weight="900"
+    letter-spacing="-0.5"
+    fill="#4FD1C5"
+  >ABC</text>
 
-  <!-- Gold circuit-node at apex -->
-  <circle cx="32" cy="10" r="4.5" fill="#E6C27A"/>
+  <!-- Gold accent underline -->
+  <rect x="16" y="45" width="32" height="3" rx="1.5" fill="#E6C27A"/>
 </svg>
