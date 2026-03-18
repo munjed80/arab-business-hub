@@ -1,11 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <title>ABC IT Lab</title>
-  <!-- Left leg -->
-  <polygon points="32,10 6,56 20,56" fill="#000000"/>
-  <!-- Right leg -->
-  <polygon points="32,10 44,56 58,56" fill="#000000"/>
-  <!-- Crossbar -->
-  <rect x="17" y="35" width="30" height="7" fill="#000000"/>
-  <!-- Apex node -->
-  <circle cx="32" cy="10" r="4.5" fill="#000000"/>
+  <!-- "ABC" bold text – solid black for Safari pinned tab (color is set by Safari) -->
+  <text
+    x="32"
+    y="38"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="'Arial Black', 'Impact', 'Helvetica Neue', Arial, sans-serif"
+    font-size="22"
+    font-weight="900"
+    letter-spacing="-0.5"
+    fill="#000000"
+  >ABC</text>
+  <!-- Accent underline -->
+  <rect x="16" y="45" width="32" height="3" rx="1.5" fill="#000000"/>
 </svg>
