@@ -999,7 +999,7 @@ body.is-open { overflow: hidden; }
     z-index: 0;
 }
 
-.workspace-svg {
+.workspace-img {
     display: block;
     width: 100%;
     height: auto;
