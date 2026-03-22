@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="أكاديمية ABC IT Lab تقدم دروساً تطبيقية لمساعدة رواد الأعمال على اتخاذ قرارات دقيقة قبل التنفيذ.">
-    <title>أكاديمية ABC IT Lab - ABC IT Lab</title>
+    <meta name="description" content="أكاديمية ABC IT Lab تقدم دروساً تطبيقية لمساعدة رواد الأعمال على اتخاذ قرارات دقيقة قبل التنفيذ." data-i18n-content="academy.meta.desc">
+    <title data-i18n="academy.meta.title">أكاديمية ABC IT Lab - ABC IT Lab</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#0d1522">
+    <link rel="canonical" href="https://abcitlab.com/academy.html">
+    <link id="hreflang-ar" rel="alternate" hreflang="ar" href="https://abcitlab.com/academy.html">
+    <link id="hreflang-en" rel="alternate" hreflang="en" href="https://abcitlab.com/academy.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://abcitlab.com/academy.html">
+    <meta property="og:title" content="أكاديمية ABC IT Lab" data-i18n-content="academy.og.title">
+    <meta property="og:description" content="دروس عملية مبسطة لمساعدة رواد الأعمال على بناء مشاريع ناجحة." data-i18n-content="academy.og.desc">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:url" content="https://abcitlab.com/academy.html">
+    <meta property="og:image" content="https://abcitlab.com/og-image.png">
+    <meta property="og:site_name" content="ABC IT Lab">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="theme-dark">
@@ -22,30 +33,36 @@
                         <h1 class="brand-title brand-title-premium">ABC IT Lab</h1>
                     </div>
                 </div>
-                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="nav-actions">
+                    <button class="lang-switcher" id="langSwitcher" aria-label="Switch Language">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-label">EN</span>
+                    </button>
+                    <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.toggle" aria-label="فتح القائمة" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
                 <div class="nav-overlay" id="navOverlay" aria-hidden="true">
-                    <div class="nav-panel" role="dialog" aria-label="قائمة الموقع">
+                    <div class="nav-panel" role="dialog" data-i18n-aria="nav.panel.label" aria-label="قائمة الموقع">
                         <div class="nav-panel-header">
-                            <h2 class="nav-panel-title">ABC IT Lab</h2>
-                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة">
+                            <h2 class="nav-panel-title" data-i18n="nav.panel.title">ABC IT Lab</h2>
+                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة" data-i18n-aria="nav.close">
                                 <span></span>
                                 <span></span>
                             </button>
                         </div>
                         <ul class="nav-menu" id="navMenu">
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="academy.html" class="active">أكاديمية ABC IT Lab</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
-                            <li><a href="contact.html">تواصل معنا</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="academy.html" class="active" data-i18n="nav.academy">أكاديمية ABC IT Lab</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
+                            <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                         </ul>
                         <div class="nav-panel-cta">
-                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link">ابدأ مشروعك معنا</a>
+                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link"><span data-i18n="nav.cta">ابدأ مشروعك معنا</span></a>
                         </div>
                     </div>
                 </div>
@@ -64,13 +81,13 @@
                 <div class="hero-content">
                     <p class="eyebrow premium-eyebrow">
                         <span class="eyebrow-dot"></span>
-                        محتوى عملي مبسط
-                        <span class="eyebrow-note">دروس + أمثلة + خطوات قابلة للتطبيق</span>
+                        <span data-i18n="academy.eyebrow">محتوى عملي مبسط</span>
+                        <span class="eyebrow-note" data-i18n="academy.eyebrow.note">دروس + أمثلة + خطوات قابلة للتطبيق</span>
                     </p>
-                    <h1 class="hero-title academy-title">الأكاديمية</h1>
-                    <p class="hero-subtitle">محتوى عملي مبسط يساعدك على فهم أساسيات بناء المشروع، الهوية، التسويق، والعمل الرقمي بطريقة واضحة ومباشرة</p>
+                    <h1 class="hero-title academy-title" data-i18n="academy.hero.title">الأكاديمية</h1>
+                    <p class="hero-subtitle" data-i18n="academy.hero.subtitle">محتوى عملي مبسط يساعدك على فهم أساسيات بناء المشروع، الهوية، التسويق، والعمل الرقمي بطريقة واضحة ومباشرة</p>
                     <div class="hero-flow hero-flow--mobile">
-                        <div class="hero-flow-label">منهجية التنفيذ</div>
+                        <div class="hero-flow-label" data-i18n="academy.method.label">منهجية التنفيذ</div>
                         <div class="methodology" id="lesson-method" role="list">
                             <div class="method-item" data-step="discover" role="listitem">
                                 <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="اكتشاف" focusable="false">
@@ -116,7 +133,7 @@
                         </div>
                     </div>
                     <div class="hero-flow hero-flow--desktop">
-                        <div class="hero-flow-label">منهجية التنفيذ</div>
+                        <div class="hero-flow-label" data-i18n="academy.method.label">منهجية التنفيذ</div>
                         <div class="methodology" role="list">
                             <div class="method-item" data-step="discover" role="listitem">
                                 <svg class="method-icon" viewBox="0 0 24 24" role="img" aria-label="اكتشاف" focusable="false">
@@ -162,8 +179,8 @@
                         </div>
                     </div>
                     <div class="hero-cta">
-                        <a href="#lessonBrowse" class="btn btn-primary btn-premium">اقرأ الدروس</a>
-                        <a href="contact.html" class="btn btn-secondary btn-ghost">تواصل معنا</a>
+                        <a href="#lessonBrowse" class="btn btn-primary btn-premium"><span data-i18n="academy.cta1">اقرأ الدروس</span></a>
+                        <a href="contact.html" class="btn btn-secondary btn-ghost" data-i18n="nav.contact">تواصل معنا</a>
                     </div>
                     <div class="hero-metrics">
                         <div class="metric-card">
@@ -218,8 +235,8 @@
         <section class="academy-categories dark-section" id="lessonBrowse">
             <div class="container">
                 <div class="section-head">
-                    <h2 class="section-title">فئات الأكاديمية</h2>
-                    <p class="section-subtitle">اختر الموضوع الذي يناسبك وابدأ التعلم الآن.</p>
+                    <h2 class="section-title" data-i18n="academy.categories.title">فئات الأكاديمية</h2>
+                    <p class="section-subtitle" data-i18n="academy.categories.subtitle">اختر الموضوع الذي يناسبك وابدأ التعلم الآن.</p>
                 </div>
                 <div class="academy-grid">
                     <article class="academy-category">
@@ -228,11 +245,11 @@
                                 <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
                             </span>
                             <div>
-                                <h3>الأساسيات</h3>
-                                <p class="category-subtitle">ابدأ من هنا إذا كنت في بداية مشروعك.</p>
+                                <h3 data-i18n="academy.cat1.title">الأساسيات</h3>
+                                <p class="category-subtitle" data-i18n="academy.cat1.subtitle">ابدأ من هنا إذا كنت في بداية مشروعك.</p>
                             </div>
                         </div>
-                        <p class="academy-description">دروس بسيطة تساعدك على فهم ما تحتاجه لبناء مشروعك بطريقة صحيحة.</p>
+                        <p class="academy-description" data-i18n="academy.cat1.desc">دروس بسيطة تساعدك على فهم ما تحتاجه لبناء مشروعك بطريقة صحيحة.</p>
                     </article>
                     <article class="academy-category">
                         <div class="category-header">
@@ -240,11 +257,11 @@
                                 <svg viewBox="0 0 24 24"><path d="M5 5h14v10H5z"/><path d="M7 19h10"/><circle cx="9" cy="10" r="1.2"/><path d="M12 10h5"/></svg>
                             </span>
                             <div>
-                                <h3>الهوية البصرية</h3>
-                                <p class="category-subtitle">كيف تبني هوية مميزة تعبر عنك.</p>
+                                <h3 data-i18n="academy.cat2.title">الهوية البصرية</h3>
+                                <p class="category-subtitle" data-i18n="academy.cat2.subtitle">كيف تبني هوية مميزة تعبر عنك.</p>
                             </div>
                         </div>
-                        <p class="academy-description">تعرف على مبادئ تصميم الهوية البصرية وكيف تختار ما يناسب مشروعك.</p>
+                        <p class="academy-description" data-i18n="academy.cat2.desc">تعرف على مبادئ تصميم الهوية البصرية وكيف تختار ما يناسب مشروعك.</p>
                     </article>
                     <article class="academy-category">
                         <div class="category-header">
@@ -252,11 +269,11 @@
                                 <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/></svg>
                             </span>
                             <div>
-                                <h3>الموقع الإلكتروني</h3>
-                                <p class="category-subtitle">ما يجب أن يحتويه موقعك لجذب العملاء.</p>
+                                <h3 data-i18n="academy.cat3.title">الموقع الإلكتروني</h3>
+                                <p class="category-subtitle" data-i18n="academy.cat3.subtitle">ما يجب أن يحتويه موقعك لجذب العملاء.</p>
                             </div>
                         </div>
-                        <p class="academy-description">دروس عملية حول بناء موقع واضح يساعد الزائر على التواصل معك.</p>
+                        <p class="academy-description" data-i18n="academy.cat3.desc">دروس عملية حول بناء موقع واضح يساعد الزائر على التواصل معك.</p>
                     </article>
                     <article class="academy-category">
                         <div class="category-header">
@@ -264,11 +281,11 @@
                                 <svg viewBox="0 0 24 24"><path d="M4 17l5-6 4 3 5-7"/><path d="M14 7h6v6"/></svg>
                             </span>
                             <div>
-                                <h3>التسويق والنمو</h3>
-                                <p class="category-subtitle">كيف تصل لعملائك وتنمو مشروعك.</p>
+                                <h3 data-i18n="academy.cat4.title">التسويق والنمو</h3>
+                                <p class="category-subtitle" data-i18n="academy.cat4.subtitle">كيف تصل لعملائك وتنمو مشروعك.</p>
                             </div>
                         </div>
-                        <p class="academy-description">أساسيات التسويق الرقمي وكيف تبني حضورًا يجذب العملاء المناسبين.</p>
+                        <p class="academy-description" data-i18n="academy.cat4.desc">أساسيات التسويق الرقمي وكيف تبني حضورًا يجذب العملاء المناسبين.</p>
                     </article>
                 </div>
             </div>
@@ -278,28 +295,28 @@
             <div class="container">
                 <div class="lessons-head">
                     <div>
-                        <h2 class="section-title">تصفح الدروس</h2>
-                        <p class="section-subtitle">الدروس مكتوبة بأسلوب سهل حتى يستفيد منها المبتدئ وصاحب الخبرة.</p>
+                        <h2 class="section-title" data-i18n="academy.lessons.title">تصفح الدروس</h2>
+                        <p class="section-subtitle" data-i18n="academy.lessons.subtitle">الدروس مكتوبة بأسلوب سهل حتى يستفيد منها المبتدئ وصاحب الخبرة.</p>
                     </div>
                     <div class="lessons-actions">
-                        <input type="search" id="lessonSearch" class="lesson-search" placeholder="ابحث في الدروس" aria-label="بحث في الدروس">
+                        <input type="search" id="lessonSearch" class="lesson-search" placeholder="ابحث في الدروس" aria-label="بحث في الدروس" data-i18n-placeholder="academy.search.placeholder" data-i18n-aria="academy.search.aria">
                         <div class="lesson-count" id="lessonCount" aria-live="polite">عدد الدروس: 0 / 0</div>
                         <div class="filters" id="categoryFilters" aria-label="فلاتر الفئات"></div>
                     </div>
                 </div>
 
                 <div class="lesson-grid" id="academyLessonsGrid" aria-live="polite"></div>
-                <p class="empty-state hidden" id="lessonEmpty">لا توجد دروس مطابقة حالياً. جرّب فئة أو كلمة بحث أخرى.</p>
+                <p class="empty-state hidden" id="lessonEmpty" data-i18n="academy.empty">لا توجد دروس مطابقة حالياً. جرّب فئة أو كلمة بحث أخرى.</p>
             </div>
         </section>
 
         <section class="cta-banner dark-section" id="suggest-lesson">
             <div class="container cta-banner-content">
                 <div>
-                    <h3>جاهز لتطوير مشروعك؟</h3>
-                    <p>دعنا نحول فكرتك إلى حضور احترافي يساعدك على جذب العملاء وبناء الثقة.</p>
+                    <h3 data-i18n="academy.cta.title">جاهز لتطوير مشروعك؟</h3>
+                    <p data-i18n="academy.cta.text">دعنا نحول فكرتك إلى حضور احترافي يساعدك على جذب العملاء وبناء الثقة.</p>
                 </div>
-                <a class="btn btn-primary btn-premium" href="contact.html">ابدأ الآن</a>
+                <a class="btn btn-primary btn-premium" href="contact.html"><span data-i18n="academy.cta.btn">ابدأ الآن</span></a>
             </div>
         </section>
     </main>
@@ -309,8 +326,8 @@
             <div class="footer-shell">
                 <div class="footer-top">
                     <div class="footer-brand">
-                        <h3>مختبر ABC لتقنية المعلومات</h3>
-                        <p class="footer-tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
+                        <h3 data-i18n="footer.brand">مختبر ABC لتقنية المعلومات</h3>
+                        <p class="footer-tagline" data-i18n="footer.tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
                         <div class="footer-contact">
                             <a href="mailto:info@abcitlab.com" class="contact-chip">
                                 <span class="contact-icon icon-circle small">
@@ -322,31 +339,31 @@
                                 <span class="contact-icon icon-circle small premium-icon">
                                     <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
                                 </span>
-                                <span>واتساب مباشر</span>
+                                <span data-i18n="footer.whatsapp">واتساب مباشر</span>
                             </a>
                         </div>
                     </div>
                     <div class="footer-cta">
-                        <p class="footer-microcopy">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
+                        <p class="footer-microcopy" data-i18n="footer.cta.text">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
                         <div class="footer-actions">
-                            <a href="contact.html" class="btn btn-primary btn-small">تواصل معنا</a>
-                            <a href="services.html" class="btn btn-secondary btn-small">اطلع على الخدمات</a>
+                            <a href="contact.html" class="btn btn-primary btn-small" data-i18n="nav.contact">تواصل معنا</a>
+                            <a href="services.html" class="btn btn-secondary btn-small"><span data-i18n="footer.services.btn">اطلع على الخدمات</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-divider" aria-hidden="true"></div>
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h4>روابط سريعة</h4>
+                        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                         <ul>
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الخدمات</h4>
+                        <h4 data-i18n="footer.services">الخدمات</h4>
                         <ul>
                             <li><a href="services.html#branding">العلامة التجارية</a></li>
                             <li><a href="services.html#web">الموقع الإلكتروني</a></li>
@@ -354,19 +371,19 @@
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>للأخصائيين</h4>
-                        <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                        <h4 data-i18n="footer.specialists">للأخصائيين</h4>
+                        <p data-i18n="footer.specialists.text">نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
                         <ul class="footer-links-inline">
-                            <li><a href="apply.html">انضم كشريك مستقل</a></li>
-                            <li><a href="dashboard.html">لوحة المهام</a></li>
+                            <li><a href="apply.html" data-i18n="footer.join">انضم كشريك مستقل</a></li>
+                            <li><a href="dashboard.html" data-i18n="footer.dashboard">لوحة المهام</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الثقة والدعم</h4>
+                        <h4 data-i18n="footer.trust">الثقة والدعم</h4>
                         <ul>
-                            <li><a href="contact.html">طلب عرض سريع</a></li>
-                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                            <li><a href="terms.html">الشروط والأحكام</a></li>
+                            <li><a href="contact.html" data-i18n="footer.quote">طلب عرض سريع</a></li>
+                            <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html" data-i18n="footer.terms">الشروط والأحكام</a></li>
                         </ul>
                     </div>
                 </div>
@@ -381,45 +398,46 @@
                                         <path d="M21 10v5"></path>
                                     </svg>
                                 </span>
-                                <h3>أكاديمية ABC IT Lab</h3>
+                                <h3 data-i18n="footer.academy.title">أكاديمية ABC IT Lab</h3>
                             </div>
-                            <p class="footer-academy-text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
+                            <p class="footer-academy-text" data-i18n="footer.academy.text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
                             <div class="footer-academy-actions">
-                                <a href="academy.html" class="btn btn-primary btn-small">تصفح الدروس</a>
-                                <a href="academy.html?sort=latest" class="footer-academy-secondary">أحدث الدروس</a>
+                                <a href="academy.html" class="btn btn-primary btn-small"><span data-i18n="footer.browse">تصفح الدروس</span></a>
+                                <a href="academy.html?sort=latest" class="footer-academy-secondary"><span data-i18n="footer.latest">أحدث الدروس</span></a>
                             </div>
                         </div>
                         <div class="footer-academy-meta">
                             <div class="footer-academy-group">
-                                <h4>الفئات</h4>
+                                <h4 data-i18n="footer.categories">الفئات</h4>
                                 <div class="footer-academy-chips">
-                                    <a class="academy-chip" href="academy.html?category=basics">الأساسيات</a>
-                                    <a class="academy-chip" href="academy.html?category=finance">الإدارة المالية</a>
-                                    <a class="academy-chip" href="academy.html?category=metrics">البيانات والقياس</a>
-                                    <a class="academy-chip" href="academy.html?category=ops">التشغيل والإمداد</a>
-                                    <a class="academy-chip" href="academy.html?category=decisions">العمليات واتخاذ القرار</a>
-                                    <a class="academy-chip" href="academy.html?category=growth">التسويق والنمو</a>
+                                    <a class="academy-chip" href="academy.html?category=basics"><span data-i18n="footer.cat.basics">الأساسيات</span></a>
+                                    <a class="academy-chip" href="academy.html?category=finance"><span data-i18n="footer.cat.finance">الإدارة المالية</span></a>
+                                    <a class="academy-chip" href="academy.html?category=metrics"><span data-i18n="footer.cat.metrics">البيانات والقياس</span></a>
+                                    <a class="academy-chip" href="academy.html?category=ops"><span data-i18n="footer.cat.ops">التشغيل والإمداد</span></a>
+                                    <a class="academy-chip" href="academy.html?category=decisions"><span data-i18n="footer.cat.decisions">العمليات واتخاذ القرار</span></a>
+                                    <a class="academy-chip" href="academy.html?category=growth"><span data-i18n="footer.cat.growth">التسويق والنمو</span></a>
                                 </div>
                             </div>
                             <div class="footer-academy-group">
-                                <h4>روابط سريعة</h4>
+                                <h4 data-i18n="footer.quicklinks2">روابط سريعة</h4>
                                 <ul class="footer-academy-list">
-                                    <li><a href="academy.html#why-academy">لماذا الأكاديمية؟</a></li>
-                                    <li><a href="academy.html#lesson-method">كيف نختار الدروس؟</a></li>
-                                    <li><a href="academy.html#suggest-lesson">اقترح درسًا</a></li>
-                                    <li><a href="contact.html">تواصل معنا</a></li>
+                                    <li><a href="academy.html#why-academy" data-i18n="footer.why.academy">لماذا الأكاديمية؟</a></li>
+                                    <li><a href="academy.html#lesson-method" data-i18n="footer.lesson.method">كيف نختار الدروس؟</a></li>
+                                    <li><a href="academy.html#suggest-lesson" data-i18n="footer.suggest">اقترح درسًا</a></li>
+                                    <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="footer-legal">
-                    <p class="copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
+                    <p class="copyright" data-i18n="footer.copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
     <script type="module" src="academy/academy.js"></script>
 </body>

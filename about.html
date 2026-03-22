@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="تعرف على ABC IT Lab - فريقنا، رؤيتنا، ورسالتنا في دعم رواد الأعمال العرب">
+    <meta name="description" content="تعرف على ABC IT Lab - فريقنا، رؤيتنا، ورسالتنا في دعم رواد الأعمال العرب" data-i18n-content="about.meta.desc">
     <meta name="keywords" content="من نحن، فريق العمل، رؤية، رسالة، قيم">
     <meta name="author" content="ABC IT Lab">
     <link rel="canonical" href="https://abcitlab.com/about.html">
-    <meta property="og:title" content="من نحن - ABC IT Lab">
-    <meta property="og:description" content="تعرف على فريق ABC IT Lab ورؤيته في تمكين رواد الأعمال من بناء حضور رقمي قوي.">
+    <link id="hreflang-ar" rel="alternate" hreflang="ar" href="https://abcitlab.com/about.html">
+    <link id="hreflang-en" rel="alternate" hreflang="en" href="https://abcitlab.com/about.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://abcitlab.com/about.html">
+    <meta property="og:title" content="من نحن - ABC IT Lab" data-i18n-content="about.og.title">
+    <meta property="og:description" content="تعرف على فريق ABC IT Lab ورؤيته في تمكين رواد الأعمال من بناء حضور رقمي قوي." data-i18n-content="about.og.desc">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
     <meta property="og:url" content="https://abcitlab.com/about.html">
@@ -18,10 +21,10 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:site_name" content="ABC IT Lab">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="من نحن - ABC IT Lab">
-    <meta name="twitter:description" content="تعرف على فريق ABC IT Lab ورؤيته في تمكين رواد الأعمال من بناء حضور رقمي قوي.">
+    <meta name="twitter:title" content="من نحن - ABC IT Lab" data-i18n-content="about.og.title">
+    <meta name="twitter:description" content="تعرف على فريق ABC IT Lab ورؤيته في تمكين رواد الأعمال من بناء حضور رقمي قوي." data-i18n-content="about.og.desc">
     <meta name="twitter:image" content="https://abcitlab.com/og-image.png">
-    <title>من نحن - ABC IT Lab</title>
+    <title data-i18n="about.meta.title">من نحن - ABC IT Lab</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -42,30 +45,36 @@
                         <h1 class="brand-title brand-title-premium">ABC IT Lab</h1>
                     </div>
                 </div>
-                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="nav-actions">
+                    <button class="lang-switcher" id="langSwitcher" aria-label="Switch Language">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-label">EN</span>
+                    </button>
+                    <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.toggle" aria-label="فتح القائمة" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
                 <div class="nav-overlay" id="navOverlay" aria-hidden="true">
                     <div class="nav-panel">
                         <div class="nav-panel-header">
-                            <span class="nav-panel-subtitle">القائمة</span>
-                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة">
+                            <span class="nav-panel-subtitle" data-i18n="nav.panel.subtitle">القائمة</span>
+                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة" data-i18n-aria="nav.close">
                                 <span></span>
                                 <span></span>
                             </button>
                         </div>
                         <ul class="nav-menu" id="navMenu">
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="academy.html">أكاديمية ABC IT Lab</a></li>
-                            <li><a href="about.html" class="active">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
-                            <li><a href="contact.html">تواصل معنا</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="academy.html" data-i18n="nav.academy">أكاديمية ABC IT Lab</a></li>
+                            <li><a href="about.html" class="active" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
+                            <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                         </ul>
                         <div class="nav-panel-cta">
-                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link">ابدأ مشروعك معنا</a>
+                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link"><span data-i18n="nav.cta">ابدأ مشروعك معنا</span></a>
                         </div>
                     </div>
                 </div>
@@ -78,8 +87,8 @@
     <!-- Page Header -->
     <section class="page-header dark-section">
         <div class="container">
-            <h1>من نحن</h1>
-            <p>فريق يعمل على مساعدة أصحاب المشاريع والأعمال العربية في بناء حضور احترافي وواضح</p>
+            <h1><span data-i18n="about.ph.title">من نحن</span></h1>
+            <p><span data-i18n="about.ph.subtitle">فريق يعمل على مساعدة أصحاب المشاريع والأعمال العربية في بناء حضور احترافي وواضح</span></p>
         </div>
     </section>
 
@@ -87,10 +96,10 @@
     <section class="about-story dark-section">
         <div class="container">
             <div class="about-content">
-                <h2>من نحن</h2>
-                <p>نحن فريق يعمل على مساعدة أصحاب المشاريع والأعمال العربية في بناء حضور احترافي وواضح.</p>
+                <h2 data-i18n="about.story.title">من نحن</h2>
+                <p data-i18n="about.story.p1">نحن فريق يعمل على مساعدة أصحاب المشاريع والأعمال العربية في بناء حضور احترافي وواضح.</p>
 
-                <p>نؤمن أن النجاح لا يحتاج إلى تعقيد، بل إلى فهم جيد، تنفيذ صحيح، ورسالة تصل للعميل بسهولة.</p>
+                <p data-i18n="about.story.p2">نؤمن أن النجاح لا يحتاج إلى تعقيد، بل إلى فهم جيد، تنفيذ صحيح، ورسالة تصل للعميل بسهولة.</p>
             </div>
         </div>
     </section>
@@ -103,16 +112,16 @@
                     <div class="vm-icon icon-circle premium-icon">
                         <svg class="icon" aria-hidden="true"><use href="#icon-eye"></use></svg>
                     </div>
-                    <h3>رؤيتنا</h3>
-                    <p>أن نكون شريكًا موثوقًا لكل صاحب مشروع عربي يريد أن يبني عملاً محترفًا، حديثًا، وقابلًا للنمو.</p>
+                    <h3 data-i18n="about.vision.title">رؤيتنا</h3>
+                    <p data-i18n="about.vision.text">أن نكون شريكًا موثوقًا لكل صاحب مشروع عربي يريد أن يبني عملاً محترفًا، حديثًا، وقابلًا للنمو.</p>
                 </div>
 
                 <div class="vm-card">
                     <div class="vm-icon icon-circle premium-icon">
                         <svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg>
                     </div>
-                    <h3>رسالتنا</h3>
-                    <p>أن نقدم خدمات تساعد المشاريع على الظهور بشكل أفضل، وبناء ثقة حقيقية مع العملاء، والانطلاق بخطوات مدروسة وواضحة.</p>
+                    <h3 data-i18n="about.mission.title">رسالتنا</h3>
+                    <p data-i18n="about.mission.text">أن نقدم خدمات تساعد المشاريع على الظهور بشكل أفضل، وبناء ثقة حقيقية مع العملاء، والانطلاق بخطوات مدروسة وواضحة.</p>
                 </div>
             </div>
         </div>
@@ -121,38 +130,38 @@
     <!-- Values -->
     <section class="values-section light-section">
         <div class="container">
-            <h2 class="section-title">قيمنا</h2>
+            <h2 class="section-title" data-i18n="about.values.title">قيمنا</h2>
             <div class="values-grid">
                 <div class="value-card">
                     <div class="value-icon icon-circle">
                         <svg class="icon" aria-hidden="true"><use href="#icon-stack"></use></svg>
                     </div>
-                    <h3>الوضوح</h3>
-                    <p>نشرح لك ما تحتاجه ببساطة بعيدًا عن التعقيد والمصطلحات المربكة.</p>
+                    <h3 data-i18n="about.val1.title">الوضوح</h3>
+                    <p data-i18n="about.val1.text">نشرح لك ما تحتاجه ببساطة بعيدًا عن التعقيد والمصطلحات المربكة.</p>
                 </div>
 
                 <div class="value-card">
                     <div class="value-icon icon-circle">
                         <svg class="icon" aria-hidden="true"><use href="#icon-analytics"></use></svg>
                     </div>
-                    <h3>الجودة</h3>
-                    <p>لا نقدم كلامًا عامًا، بل خطوات وخدمات يمكن تنفيذها وتفيد مشروعك فعليًا.</p>
+                    <h3 data-i18n="about.val2.title">الجودة</h3>
+                    <p data-i18n="about.val2.text">لا نقدم كلامًا عامًا، بل خطوات وخدمات يمكن تنفيذها وتفيد مشروعك فعليًا.</p>
                 </div>
 
                 <div class="value-card">
                     <div class="value-icon icon-circle">
                         <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg>
                     </div>
-                    <h3>الالتزام</h3>
-                    <p>نعرف تحديات أصحاب الأعمال العرب ونصمم الحلول بما يناسب جمهورهم وسوقهم.</p>
+                    <h3 data-i18n="about.val3.title">الالتزام</h3>
+                    <p data-i18n="about.val3.text">نعرف تحديات أصحاب الأعمال العرب ونصمم الحلول بما يناسب جمهورهم وسوقهم.</p>
                 </div>
 
                 <div class="value-card">
                     <div class="value-icon icon-circle">
                         <svg class="icon" aria-hidden="true"><use href="#icon-handshake"></use></svg>
                     </div>
-                    <h3>التركيز على النتيجة</h3>
-                    <p>هدفنا ليس فقط أن يبدو العمل جميلًا، بل أن يكون مفيدًا ويجذب العميل ويخدم النمو.</p>
+                    <h3 data-i18n="about.val4.title">التركيز على النتيجة</h3>
+                    <p data-i18n="about.val4.text">هدفنا ليس فقط أن يبدو العمل جميلًا، بل أن يكون مفيدًا ويجذب العميل ويخدم النمو.</p>
                 </div>
             </div>
         </div>
@@ -161,30 +170,30 @@
     <!-- Our Approach -->
     <section class="approach-section light-section">
         <div class="container">
-            <h2 class="section-title">كيف نعمل معك</h2>
+            <h2 class="section-title" data-i18n="about.approach.title">كيف نعمل معك</h2>
             <div class="approach-steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>نفهم احتياجك</h3>
-                    <p>نستمع لك ونحدد معك ما تحتاجه بالضبط قبل أي خطوة</p>
+                    <h3 data-i18n="about.step1.title">نفهم احتياجك</h3>
+                    <p data-i18n="about.step1.text">نستمع لك ونحدد معك ما تحتاجه بالضبط قبل أي خطوة</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>نضع خطة واضحة</h3>
-                    <p>نبني خطة بسيطة ومرتبة تناسب مرحلتك وميزانيتك</p>
+                    <h3 data-i18n="about.step2.title">نضع خطة واضحة</h3>
+                    <p data-i18n="about.step2.text">نبني خطة بسيطة ومرتبة تناسب مرحلتك وميزانيتك</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>ننفذ باحترافية</h3>
-                    <p>نسلمك العمل بجودة عالية وبمواعيد واضحة ومحددة</p>
+                    <h3 data-i18n="about.step3.title">ننفذ باحترافية</h3>
+                    <p data-i18n="about.step3.text">نسلمك العمل بجودة عالية وبمواعيد واضحة ومحددة</p>
                 </div>
 
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>نتابع معك</h3>
-                    <p>لا نختفي بعد التسليم، بل نتابع معك لضمان نجاح مشروعك</p>
+                    <h3 data-i18n="about.step4.title">نتابع معك</h3>
+                    <p data-i18n="about.step4.text">لا نختفي بعد التسليم، بل نتابع معك لضمان نجاح مشروعك</p>
                 </div>
             </div>
         </div>
@@ -193,9 +202,9 @@
     <!-- CTA Section -->
     <section class="cta-section dark-section">
         <div class="container">
-            <h2>جاهز لتطوير مشروعك؟</h2>
-            <p>دعنا نحول فكرتك إلى حضور احترافي يساعدك على جذب العملاء وبناء الثقة.</p>
-            <a href="contact.html" class="btn btn-primary btn-large">تواصل معنا</a>
+            <h2 data-i18n="about.cta.title">جاهز لتطوير مشروعك؟</h2>
+            <p data-i18n="about.cta.text">دعنا نحول فكرتك إلى حضور احترافي يساعدك على جذب العملاء وبناء الثقة.</p>
+            <a href="contact.html" class="btn btn-primary btn-large" data-i18n="nav.contact">تواصل معنا</a>
         </div>
     </section>
 
@@ -208,8 +217,8 @@
             <div class="footer-shell">
                 <div class="footer-top">
                     <div class="footer-brand">
-                        <h3>مختبر ABC لتقنية المعلومات</h3>
-                        <p class="footer-tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
+                        <h3 data-i18n="footer.brand">مختبر ABC لتقنية المعلومات</h3>
+                        <p class="footer-tagline" data-i18n="footer.tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
                         <div class="footer-contact">
                             <a href="mailto:info@abcitlab.com" class="contact-chip">
                                 <span class="contact-icon icon-circle small">
@@ -221,31 +230,31 @@
                                 <span class="contact-icon icon-circle small premium-icon">
                                     <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
                                 </span>
-                                <span>واتساب مباشر</span>
+                                <span data-i18n="footer.whatsapp">واتساب مباشر</span>
                             </a>
                         </div>
                     </div>
                     <div class="footer-cta">
-                        <p class="footer-microcopy">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
+                        <p class="footer-microcopy" data-i18n="footer.cta.text">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
                         <div class="footer-actions">
-                            <a href="contact.html" class="btn btn-primary btn-small">تواصل معنا</a>
-                            <a href="services.html" class="btn btn-secondary btn-small">اطلع على الخدمات</a>
+                            <a href="contact.html" class="btn btn-primary btn-small" data-i18n="nav.contact">تواصل معنا</a>
+                            <a href="services.html" class="btn btn-secondary btn-small"><span data-i18n="footer.services.btn">اطلع على الخدمات</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-divider" aria-hidden="true"></div>
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h4>روابط سريعة</h4>
+                        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                         <ul>
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الخدمات</h4>
+                        <h4 data-i18n="footer.services">الخدمات</h4>
                         <ul>
                             <li><a href="services.html#branding">العلامة التجارية</a></li>
                             <li><a href="services.html#web">الموقع الإلكتروني</a></li>
@@ -253,19 +262,19 @@
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>للأخصائيين</h4>
-                        <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                        <h4 data-i18n="footer.specialists">للأخصائيين</h4>
+                        <p data-i18n="footer.specialists.text">نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
                         <ul class="footer-links-inline">
-                            <li><a href="apply.html">انضم كشريك مستقل</a></li>
-                            <li><a href="dashboard.html">لوحة المهام</a></li>
+                            <li><a href="apply.html" data-i18n="footer.join">انضم كشريك مستقل</a></li>
+                            <li><a href="dashboard.html" data-i18n="footer.dashboard">لوحة المهام</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الثقة والدعم</h4>
+                        <h4 data-i18n="footer.trust">الثقة والدعم</h4>
                         <ul>
-                            <li><a href="contact.html">طلب عرض سريع</a></li>
-                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                            <li><a href="terms.html">الشروط والأحكام</a></li>
+                            <li><a href="contact.html" data-i18n="footer.quote">طلب عرض سريع</a></li>
+                            <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html" data-i18n="footer.terms">الشروط والأحكام</a></li>
                         </ul>
                     </div>
                 </div>
@@ -280,46 +289,47 @@
                                         <path d="M21 10v5"></path>
                                     </svg>
                                 </span>
-                                <h3>أكاديمية ABC IT Lab</h3>
+                                <h3 data-i18n="footer.academy.title">أكاديمية ABC IT Lab</h3>
                             </div>
-                            <p class="footer-academy-text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
+                            <p class="footer-academy-text" data-i18n="footer.academy.text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
                             <div class="footer-academy-actions">
-                                <a href="academy.html" class="btn btn-primary btn-small">تصفح الدروس</a>
-                                <a href="academy.html?sort=latest" class="footer-academy-secondary">أحدث الدروس</a>
+                                <a href="academy.html" class="btn btn-primary btn-small"><span data-i18n="footer.browse">تصفح الدروس</span></a>
+                                <a href="academy.html?sort=latest" class="footer-academy-secondary"><span data-i18n="footer.latest">أحدث الدروس</span></a>
                             </div>
                         </div>
                         <div class="footer-academy-meta">
                             <div class="footer-academy-group">
-                                <h4>الفئات</h4>
+                                <h4 data-i18n="footer.categories">الفئات</h4>
                                 <div class="footer-academy-chips">
-                                    <a class="academy-chip" href="academy.html?category=basics">الأساسيات</a>
-                                    <a class="academy-chip" href="academy.html?category=finance">الإدارة المالية</a>
-                                    <a class="academy-chip" href="academy.html?category=metrics">البيانات والقياس</a>
-                                    <a class="academy-chip" href="academy.html?category=ops">التشغيل والإمداد</a>
-                                    <a class="academy-chip" href="academy.html?category=decisions">العمليات واتخاذ القرار</a>
-                                    <a class="academy-chip" href="academy.html?category=growth">التسويق والنمو</a>
+                                    <a class="academy-chip" href="academy.html?category=basics"><span data-i18n="footer.cat.basics">الأساسيات</span></a>
+                                    <a class="academy-chip" href="academy.html?category=finance"><span data-i18n="footer.cat.finance">الإدارة المالية</span></a>
+                                    <a class="academy-chip" href="academy.html?category=metrics"><span data-i18n="footer.cat.metrics">البيانات والقياس</span></a>
+                                    <a class="academy-chip" href="academy.html?category=ops"><span data-i18n="footer.cat.ops">التشغيل والإمداد</span></a>
+                                    <a class="academy-chip" href="academy.html?category=decisions"><span data-i18n="footer.cat.decisions">العمليات واتخاذ القرار</span></a>
+                                    <a class="academy-chip" href="academy.html?category=growth"><span data-i18n="footer.cat.growth">التسويق والنمو</span></a>
                                 </div>
                             </div>
                             <div class="footer-academy-group">
-                                <h4>روابط سريعة</h4>
+                                <h4 data-i18n="footer.quicklinks2">روابط سريعة</h4>
                                 <ul class="footer-academy-list">
-                                    <li><a href="academy.html#why-academy">لماذا الأكاديمية؟</a></li>
-                                    <li><a href="academy.html#lesson-method">كيف نختار الدروس؟</a></li>
-                                    <li><a href="academy.html#suggest-lesson">اقترح درسًا</a></li>
-                                    <li><a href="contact.html">تواصل معنا</a></li>
+                                    <li><a href="academy.html#why-academy" data-i18n="footer.why.academy">لماذا الأكاديمية؟</a></li>
+                                    <li><a href="academy.html#lesson-method" data-i18n="footer.lesson.method">كيف نختار الدروس؟</a></li>
+                                    <li><a href="academy.html#suggest-lesson" data-i18n="footer.suggest">اقترح درسًا</a></li>
+                                    <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="footer-legal">
-                    <p class="copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
+                    <p class="copyright" data-i18n="footer.copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </div>
     </footer>
 
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

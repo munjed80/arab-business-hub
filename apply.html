@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="انضم كأخصائي مستقل للعمل مع ABC IT Lab في تنفيذ المشاريع الرقمية.">
+    <meta name="description" content="انضم كأخصائي مستقل للعمل مع ABC IT Lab في تنفيذ المشاريع الرقمية." data-i18n-content="apply.meta.desc">
     <meta name="author" content="ABC IT Lab">
     <link rel="canonical" href="https://abcitlab.com/apply.html">
-    <meta property="og:title" content="للأخصائيين - ABC IT Lab">
-    <meta property="og:description" content="سجّل ككاتب محتوى، مسوّق، أو مدير مشاريع للعمل مع فريق ABC IT Lab.">
+    <link id="hreflang-ar" rel="alternate" hreflang="ar" href="https://abcitlab.com/apply.html">
+    <link id="hreflang-en" rel="alternate" hreflang="en" href="https://abcitlab.com/apply.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://abcitlab.com/apply.html">
+    <meta property="og:title" content="للأخصائيين - ABC IT Lab" data-i18n-content="apply.og.title">
+    <meta property="og:description" content="سجّل ككاتب محتوى، مسوّق، أو مدير مشاريع للعمل مع فريق ABC IT Lab." data-i18n-content="apply.og.desc">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
     <meta property="og:url" content="https://abcitlab.com/apply.html">
@@ -17,10 +20,10 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:site_name" content="ABC IT Lab">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="للأخصائيين - ABC IT Lab">
-    <meta name="twitter:description" content="انضم إلى شبكة الأخصائيين لدينا للعمل على مشاريع تنفيذية.">
+    <meta name="twitter:title" content="للأخصائيين - ABC IT Lab" data-i18n-content="apply.og.title">
+    <meta name="twitter:description" content="انضم إلى شبكة الأخصائيين لدينا للعمل على مشاريع تنفيذية." data-i18n-content="apply.og.desc">
     <meta name="twitter:image" content="https://abcitlab.com/og-image.png">
-    <title>للأخصائيين - ABC IT Lab</title>
+    <title data-i18n="apply.meta.title">للأخصائيين - ABC IT Lab</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -41,30 +44,36 @@
                         <h1 class="brand-title brand-title-premium">ABC IT Lab</h1>
                     </div>
                 </div>
-                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="nav-actions">
+                    <button class="lang-switcher" id="langSwitcher" aria-label="Switch Language">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-label">EN</span>
+                    </button>
+                    <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.toggle" aria-label="فتح القائمة" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
                 <div class="nav-overlay" id="navOverlay" aria-hidden="true">
                     <div class="nav-panel">
                         <div class="nav-panel-header">
-                            <span class="nav-panel-subtitle">القائمة</span>
-                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة">
+                            <span class="nav-panel-subtitle" data-i18n="nav.panel.subtitle">القائمة</span>
+                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة" data-i18n-aria="nav.close">
                                 <span></span>
                                 <span></span>
                             </button>
                         </div>
                         <ul class="nav-menu" id="navMenu">
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="academy.html">أكاديمية ABC IT Lab</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
-                            <li><a href="contact.html">تواصل معنا</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="academy.html" data-i18n="nav.academy">أكاديمية ABC IT Lab</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
+                            <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                         </ul>
                         <div class="nav-panel-cta">
-                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link">ابدأ مشروعك معنا</a>
+                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link"><span data-i18n="nav.cta">ابدأ مشروعك معنا</span></a>
                         </div>
                     </div>
                 </div>
@@ -75,49 +84,49 @@
     <main>
         <section class="page-header dark-section">
             <div class="container">
-                <h1>ابدأ مشروعك معنا</h1>
-                <p>املأ النموذج التالي وساعدنا على فهم فكرتك واحتياجك، حتى نقدم لك الحل الأنسب بشكل واضح وسريع</p>
+                <h1><span data-i18n="apply.ph.title">ابدأ مشروعك معنا</span></h1>
+                <p><span data-i18n="apply.ph.subtitle">املأ النموذج التالي وساعدنا على فهم فكرتك واحتياجك، حتى نقدم لك الحل الأنسب بشكل واضح وسريع</span></p>
             </div>
         </section>
 
         <section class="apply-section dark-section">
             <div class="container">
                 <div class="apply-card">
-                    <h2>معلومات المشروع</h2>
-                    <p class="lead">كلما كانت التفاصيل أوضح، استطعنا تقديم اقتراح أدق وأنسب لمشروعك.</p>
+                    <h2 data-i18n="apply.card.title">معلومات المشروع</h2>
+                    <p class="lead" data-i18n="apply.card.lead">كلما كانت التفاصيل أوضح، استطعنا تقديم اقتراح أدق وأنسب لمشروعك.</p>
 
                     <form id="applyForm" class="apply-form">
                         <div class="form-group">
-                            <label for="fullName">الاسم الكامل *</label>
-                            <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل">
+                            <label for="fullName" data-i18n="apply.label.name">الاسم الكامل *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل" data-i18n-placeholder="apply.placeholder.name">
                         </div>
                         <div class="form-group">
-                            <label for="role">اسم المشروع *</label>
-                            <input type="text" id="role" name="role" required placeholder="مثال: متجر إلكتروني، مطعم، شركة خدمات">
+                            <label for="role" data-i18n="apply.label.project">اسم المشروع *</label>
+                            <input type="text" id="role" name="role" required placeholder="مثال: متجر إلكتروني، مطعم، شركة خدمات" data-i18n-placeholder="apply.placeholder.project">
                         </div>
                         <div class="form-group">
-                            <label for="skills">نوع النشاط *</label>
-                            <textarea id="skills" name="skills" rows="3" required placeholder="أخبرنا عن طبيعة نشاطك ومجال عملك"></textarea>
+                            <label for="skills" data-i18n="apply.label.type">نوع النشاط *</label>
+                            <textarea id="skills" name="skills" rows="3" required placeholder="أخبرنا عن طبيعة نشاطك ومجال عملك" data-i18n-placeholder="apply.placeholder.type"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="portfolio">الخدمة المطلوبة *</label>
-                            <input type="text" id="portfolio" name="portfolio" required placeholder="مثال: هوية بصرية، موقع، تسويق، استشارة">
+                            <label for="portfolio" data-i18n="apply.label.service">الخدمة المطلوبة *</label>
+                            <input type="text" id="portfolio" name="portfolio" required placeholder="مثال: هوية بصرية، موقع، تسويق، استشارة" data-i18n-placeholder="apply.placeholder.service">
                         </div>
                         <div class="form-group">
-                            <label for="email">البريد الإلكتروني *</label>
+                            <label for="email" data-i18n="apply.label.email">البريد الإلكتروني *</label>
                             <input type="email" id="email" name="email" required placeholder="example@domain.com">
                         </div>
                         <div class="form-group">
-                            <label for="whatsapp">رقم الهاتف *</label>
+                            <label for="whatsapp" data-i18n="apply.label.phone">رقم الهاتف *</label>
                             <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+966 XX XXX XXXX">
                         </div>
 
                         <div class="apply-actions">
-                            <button type="submit" class="btn btn-primary">إرسال تفاصيل المشروع</button>
-                            <button type="button" id="copyDetails" class="btn btn-secondary">نسخ التفاصيل</button>
+                            <button type="submit" class="btn btn-primary"><span data-i18n="apply.submit">إرسال تفاصيل المشروع</span></button>
+                            <button type="button" id="copyDetails" class="btn btn-secondary"><span data-i18n="apply.copy">نسخ التفاصيل</span></button>
                             <span id="copyStatus" class="inline-note"></span>
                         </div>
-                        <p class="inline-note">كلما كانت التفاصيل أوضح، استطعنا تقديم اقتراح أدق وأنسب لمشروعك.</p>
+                        <p class="inline-note"><span data-i18n="apply.note">كلما كانت التفاصيل أوضح، استطعنا تقديم اقتراح أدق وأنسب لمشروعك.</span></p>
                     </form>
                 </div>
             </div>
@@ -130,8 +139,8 @@
             <div class="footer-shell">
                 <div class="footer-top">
                     <div class="footer-brand">
-                        <h3>مختبر ABC لتقنية المعلومات</h3>
-                        <p class="footer-tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
+                        <h3 data-i18n="footer.brand">مختبر ABC لتقنية المعلومات</h3>
+                        <p class="footer-tagline" data-i18n="footer.tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
                         <div class="footer-contact">
                             <a href="mailto:info@abcitlab.com" class="contact-chip">
                                 <span class="contact-icon icon-circle small">
@@ -143,31 +152,31 @@
                                 <span class="contact-icon icon-circle small premium-icon">
                                     <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
                                 </span>
-                                <span>واتساب مباشر</span>
+                                <span data-i18n="footer.whatsapp">واتساب مباشر</span>
                             </a>
                         </div>
                     </div>
                     <div class="footer-cta">
-                        <p class="footer-microcopy">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
+                        <p class="footer-microcopy" data-i18n="footer.cta.text">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
                         <div class="footer-actions">
-                            <a href="contact.html" class="btn btn-primary btn-small">تواصل معنا</a>
-                            <a href="services.html" class="btn btn-secondary btn-small">اطلع على الخدمات</a>
+                            <a href="contact.html" class="btn btn-primary btn-small" data-i18n="nav.contact">تواصل معنا</a>
+                            <a href="services.html" class="btn btn-secondary btn-small"><span data-i18n="footer.services.btn">اطلع على الخدمات</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-divider" aria-hidden="true"></div>
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h4>روابط سريعة</h4>
+                        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                         <ul>
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الخدمات</h4>
+                        <h4 data-i18n="footer.services">الخدمات</h4>
                         <ul>
                             <li><a href="services.html#branding">العلامة التجارية</a></li>
                             <li><a href="services.html#web">الموقع الإلكتروني</a></li>
@@ -175,19 +184,19 @@
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>للأخصائيين</h4>
-                        <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                        <h4 data-i18n="footer.specialists">للأخصائيين</h4>
+                        <p data-i18n="footer.specialists.text">نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
                         <ul class="footer-links-inline">
-                            <li><a href="apply.html">انضم كشريك مستقل</a></li>
-                            <li><a href="dashboard.html">لوحة المهام</a></li>
+                            <li><a href="apply.html" data-i18n="footer.join">انضم كشريك مستقل</a></li>
+                            <li><a href="dashboard.html" data-i18n="footer.dashboard">لوحة المهام</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الثقة والدعم</h4>
+                        <h4 data-i18n="footer.trust">الثقة والدعم</h4>
                         <ul>
-                            <li><a href="contact.html">طلب عرض سريع</a></li>
-                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                            <li><a href="terms.html">الشروط والأحكام</a></li>
+                            <li><a href="contact.html" data-i18n="footer.quote">طلب عرض سريع</a></li>
+                            <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html" data-i18n="footer.terms">الشروط والأحكام</a></li>
                         </ul>
                     </div>
                 </div>
@@ -202,46 +211,47 @@
                                         <path d="M21 10v5"></path>
                                     </svg>
                                 </span>
-                                <h3>أكاديمية ABC IT Lab</h3>
+                                <h3 data-i18n="footer.academy.title">أكاديمية ABC IT Lab</h3>
                             </div>
-                            <p class="footer-academy-text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
+                            <p class="footer-academy-text" data-i18n="footer.academy.text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
                             <div class="footer-academy-actions">
-                                <a href="academy.html" class="btn btn-primary btn-small">تصفح الدروس</a>
-                                <a href="academy.html?sort=latest" class="footer-academy-secondary">أحدث الدروس</a>
+                                <a href="academy.html" class="btn btn-primary btn-small"><span data-i18n="footer.browse">تصفح الدروس</span></a>
+                                <a href="academy.html?sort=latest" class="footer-academy-secondary"><span data-i18n="footer.latest">أحدث الدروس</span></a>
                             </div>
                         </div>
                         <div class="footer-academy-meta">
                             <div class="footer-academy-group">
-                                <h4>الفئات</h4>
+                                <h4 data-i18n="footer.categories">الفئات</h4>
                                 <div class="footer-academy-chips">
-                                    <a class="academy-chip" href="academy.html?category=basics">الأساسيات</a>
-                                    <a class="academy-chip" href="academy.html?category=finance">الإدارة المالية</a>
-                                    <a class="academy-chip" href="academy.html?category=metrics">البيانات والقياس</a>
-                                    <a class="academy-chip" href="academy.html?category=ops">التشغيل والإمداد</a>
-                                    <a class="academy-chip" href="academy.html?category=decisions">العمليات واتخاذ القرار</a>
-                                    <a class="academy-chip" href="academy.html?category=growth">التسويق والنمو</a>
+                                    <a class="academy-chip" href="academy.html?category=basics"><span data-i18n="footer.cat.basics">الأساسيات</span></a>
+                                    <a class="academy-chip" href="academy.html?category=finance"><span data-i18n="footer.cat.finance">الإدارة المالية</span></a>
+                                    <a class="academy-chip" href="academy.html?category=metrics"><span data-i18n="footer.cat.metrics">البيانات والقياس</span></a>
+                                    <a class="academy-chip" href="academy.html?category=ops"><span data-i18n="footer.cat.ops">التشغيل والإمداد</span></a>
+                                    <a class="academy-chip" href="academy.html?category=decisions"><span data-i18n="footer.cat.decisions">العمليات واتخاذ القرار</span></a>
+                                    <a class="academy-chip" href="academy.html?category=growth"><span data-i18n="footer.cat.growth">التسويق والنمو</span></a>
                                 </div>
                             </div>
                             <div class="footer-academy-group">
-                                <h4>روابط سريعة</h4>
+                                <h4 data-i18n="footer.quicklinks2">روابط سريعة</h4>
                                 <ul class="footer-academy-list">
-                                    <li><a href="academy.html#why-academy">لماذا الأكاديمية؟</a></li>
-                                    <li><a href="academy.html#lesson-method">كيف نختار الدروس؟</a></li>
-                                    <li><a href="academy.html#suggest-lesson">اقترح درسًا</a></li>
-                                    <li><a href="contact.html">تواصل معنا</a></li>
+                                    <li><a href="academy.html#why-academy" data-i18n="footer.why.academy">لماذا الأكاديمية؟</a></li>
+                                    <li><a href="academy.html#lesson-method" data-i18n="footer.lesson.method">كيف نختار الدروس؟</a></li>
+                                    <li><a href="academy.html#suggest-lesson" data-i18n="footer.suggest">اقترح درسًا</a></li>
+                                    <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="footer-legal">
-                    <p class="copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
+                    <p class="copyright" data-i18n="footer.copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </div>
     </footer>
 
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
     <script>
         (function() {

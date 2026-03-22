@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Show success message
             formMessage.className = 'form-message success';
-            formMessage.textContent = 'شكراً لتواصلك معنا! سنرد على رسالتك خلال 24 ساعة.';
+            formMessage.textContent = window.I18n ? window.I18n.t('contact.success') : 'شكراً لتواصلك معنا! سنرد على رسالتك خلال 24 ساعة.';
             
             // Reset form
             contactForm.reset();

@@ -88,9 +88,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return url;
   };
 
+  const t = (key) => (window.I18n?.t(key)) || key;
+
   const updateCount = (displayed) => {
     if (lessonCount) {
-      lessonCount.textContent = `عدد الدروس: ${displayed} / ${normalizedLessons.length}`;
+      const label = t('academy.js.count');
+      lessonCount.textContent = `${label}: ${displayed} / ${normalizedLessons.length}`;
     }
   };
 
@@ -116,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const pill = document.createElement('button');
       pill.className = `filter-pill ${activeCategory === cat ? 'is-active' : ''}`;
       pill.type = 'button';
-      pill.textContent = cat;
+      // Translate "الكل" filter label
+      pill.textContent = cat === 'الكل' ? t('academy.js.all') : cat;
       pill.setAttribute('data-category', cat);
       pill.addEventListener('click', () => {
         activeCategory = cat;
@@ -154,13 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="category-label">${displayCategory}</span>
             </div>
             <div class="lesson-meta">
-                <span class="meta-item">${iconTemplates.clock}<span>${item.durationMinutes} دقائق</span></span>
+                <span class="meta-item">${iconTemplates.clock}<span>${item.durationMinutes} ${t('academy.js.minutes')}</span></span>
                 <span class="meta-item">${iconTemplates.calendar}<span>${formatDate(item.publishedAt)}</span></span>
             </div>
         </div>
         <h3 class="lesson-title">${item.title}</h3>
         <p class="lesson-excerpt">${item.summary}</p>
-        <a class="lesson-link" href="${createLessonLink(item.id)}">اقرأ الدرس</a>
+        <a class="lesson-link" href="${createLessonLink(item.id)}">${t('academy.js.read')}</a>
       `;
 
       lessonGrid.appendChild(card);
@@ -180,4 +184,15 @@ document.addEventListener('DOMContentLoaded', () => {
     emptyState.textContent = 'لا توجد دروس متاحة حالياً.';
     updateCount(0);
   }
+
+  // Re-render when language changes
+  document.addEventListener('i18n:langchange', () => {
+    renderFilters();
+    renderLessons(getFilteredLessons());
+    updateCount(getFilteredLessons().length);
+    if (searchInput) {
+      searchInput.placeholder = t('academy.search.placeholder');
+      searchInput.setAttribute('aria-label', t('academy.search.aria'));
+    }
+  });
 });

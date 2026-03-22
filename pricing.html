@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="باقات أسعار مرنة من ABC IT Lab: هوية بصرية، مواقع إلكترونية، تسويق رقمي، واستشارات نمو">
+    <meta name="description" content="باقات أسعار مرنة من ABC IT Lab: هوية بصرية، مواقع إلكترونية، تسويق رقمي، واستشارات نمو" data-i18n-content="pricing.meta.desc">
     <meta name="keywords" content="أسعار خدمات الأعمال، باقات شركات ناشئة، تصميم مواقع، تسويق رقمي، استشارات">
     <meta name="author" content="ABC IT Lab">
     <link rel="canonical" href="https://abcitlab.com/pricing.html">
-    <meta property="og:title" content="باقات الأسعار - ABC IT Lab">
-    <meta property="og:description" content="خطط مدروسة تناسب احتياجات رواد الأعمال مع إمكانية تخصيص كاملة للميزات والدفع.">
+    <link id="hreflang-ar" rel="alternate" hreflang="ar" href="https://abcitlab.com/pricing.html">
+    <link id="hreflang-en" rel="alternate" hreflang="en" href="https://abcitlab.com/pricing.html?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://abcitlab.com/pricing.html">
+    <meta property="og:title" content="باقات الأسعار - ABC IT Lab" data-i18n-content="pricing.og.title">
+    <meta property="og:description" content="خطط مدروسة تناسب احتياجات رواد الأعمال مع إمكانية تخصيص كاملة للميزات والدفع." data-i18n-content="pricing.og.desc">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
     <meta property="og:url" content="https://abcitlab.com/pricing.html">
@@ -18,10 +21,10 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:site_name" content="ABC IT Lab">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="باقات الأسعار - ABC IT Lab">
-    <meta name="twitter:description" content="خطط مدروسة تناسب احتياجات رواد الأعمال مع إمكانية تخصيص كاملة للميزات والدفع.">
+    <meta name="twitter:title" content="باقات الأسعار - ABC IT Lab" data-i18n-content="pricing.og.title">
+    <meta name="twitter:description" content="خطط مدروسة تناسب احتياجات رواد الأعمال مع إمكانية تخصيص كاملة للميزات والدفع." data-i18n-content="pricing.og.desc">
     <meta name="twitter:image" content="https://abcitlab.com/og-image.png">
-    <title>الأسعار - ABC IT Lab</title>
+    <title data-i18n="pricing.meta.title">الأسعار - ABC IT Lab</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -42,30 +45,36 @@
                         <h1 class="brand-title brand-title-premium">ABC IT Lab</h1>
                     </div>
                 </div>
-                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="nav-actions">
+                    <button class="lang-switcher" id="langSwitcher" aria-label="Switch Language">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-label">EN</span>
+                    </button>
+                    <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.toggle" aria-label="فتح القائمة" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
                 <div class="nav-overlay" id="navOverlay" aria-hidden="true">
                     <div class="nav-panel">
                         <div class="nav-panel-header">
-                            <span class="nav-panel-subtitle">القائمة</span>
-                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة">
+                            <span class="nav-panel-subtitle" data-i18n="nav.panel.subtitle">القائمة</span>
+                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة" data-i18n-aria="nav.close">
                                 <span></span>
                                 <span></span>
                             </button>
                         </div>
                         <ul class="nav-menu" id="navMenu">
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="academy.html">أكاديمية ABC IT Lab</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html" class="active">الأسعار</a></li>
-                            <li><a href="contact.html">تواصل معنا</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="academy.html" data-i18n="nav.academy">أكاديمية ABC IT Lab</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" class="active" data-i18n="nav.pricing">الأسعار</a></li>
+                            <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                         </ul>
                         <div class="nav-panel-cta">
-                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link">ابدأ مشروعك معنا</a>
+                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link"><span data-i18n="nav.cta">ابدأ مشروعك معنا</span></a>
                         </div>
                     </div>
                 </div>
@@ -78,8 +87,8 @@
     <!-- Page Header -->
     <section class="page-header dark-section">
         <div class="container">
-            <h1>باقات واضحة تناسب احتياجك</h1>
-            <p>اختر الخدمة أو الباقة التي تناسب مرحلة مشروعك، وإذا كنت تحتاج حلاً خاصًا يمكننا تجهيز عرض مناسب لك</p>
+            <h1><span data-i18n="pricing.ph.title">باقات واضحة تناسب احتياجك</span></h1>
+            <p><span data-i18n="pricing.ph.subtitle">اختر الخدمة أو الباقة التي تناسب مرحلة مشروعك، وإذا كنت تحتاج حلاً خاصًا يمكننا تجهيز عرض مناسب لك</span></p>
         </div>
     </section>
 
@@ -93,14 +102,14 @@
                         <div class="pricing-icon icon-circle premium-icon">
                             <svg class="icon" aria-hidden="true"><use href="#icon-rocket"></use></svg>
                         </div>
-                        <h3>الباقة الأساسية</h3>
+                        <h3 data-i18n="pricing.p1.title">الباقة الأساسية</h3>
                     </div>
                     <div class="pricing-body">
                         <div class="price">
-                            <span class="currency">بداية من</span>
-                            <span class="amount">حسب المشروع</span>
+                            <span class="currency" data-i18n="pricing.p1.from">بداية من</span>
+                            <span class="amount" data-i18n="pricing.p1.amount">حسب المشروع</span>
                         </div>
-                        <p class="pricing-desc">مناسبة للمشاريع الجديدة التي تحتاج بداية احترافية وواضحة.</p>
+                        <p class="pricing-desc" data-i18n="pricing.p1.desc">مناسبة للمشاريع الجديدة التي تحتاج بداية احترافية وواضحة.</p>
                         <ul class="pricing-features">
                             <li>✓ هوية بصرية واضحة ومميزة</li>
                             <li>✓ موقع احترافي سهل وواضح</li>
@@ -114,19 +123,19 @@
 
                 <!-- Grow Package -->
                 <div class="pricing-card featured is-light">
-                    <div class="pricing-badge">الأكثر طلباً</div>
+                    <div class="pricing-badge" data-i18n="pricing.p2.badge">الأكثر طلباً</div>
                     <div class="pricing-header">
                         <div class="pricing-icon icon-circle premium-icon">
                             <svg class="icon" aria-hidden="true"><use href="#icon-web"></use></svg>
                         </div>
-                        <h3>الباقة المتقدمة</h3>
+                        <h3 data-i18n="pricing.p2.title">الباقة المتقدمة</h3>
                     </div>
                     <div class="pricing-body">
                         <div class="price">
-                            <span class="currency">بداية من</span>
-                            <span class="amount">حسب النطاق</span>
+                            <span class="currency" data-i18n="pricing.p2.from">بداية من</span>
+                            <span class="amount" data-i18n="pricing.p2.amount">حسب النطاق</span>
                         </div>
-                        <p class="pricing-desc">مناسبة للأعمال التي تريد تطوير حضورها والوصول إلى العملاء بشكل أفضل.</p>
+                        <p class="pricing-desc" data-i18n="pricing.p2.desc">مناسبة للأعمال التي تريد تطوير حضورها والوصول إلى العملاء بشكل أفضل.</p>
                         <ul class="pricing-features">
                             <li>✓ هوية متكاملة ومواد احترافية</li>
                             <li>✓ موقع متعدد الصفحات مع محتوى</li>
@@ -145,14 +154,14 @@
                         <div class="pricing-icon icon-circle premium-icon">
                             <svg class="icon" aria-hidden="true"><use href="#icon-growth"></use></svg>
                         </div>
-                        <h3>حلول مخصصة</h3>
+                        <h3 data-i18n="pricing.p3.title">حلول مخصصة</h3>
                     </div>
                     <div class="pricing-body">
                         <div class="price">
-                            <span class="currency">بداية من</span>
-                            <span class="amount">مخصص</span>
+                            <span class="currency" data-i18n="pricing.p3.from">بداية من</span>
+                            <span class="amount" data-i18n="pricing.p3.amount">مخصص</span>
                         </div>
-                        <p class="pricing-desc">إذا كان مشروعك يحتاج إلى متطلبات خاصة، سنبني لك حلاً يناسبك بدقة.</p>
+                        <p class="pricing-desc" data-i18n="pricing.p3.desc">إذا كان مشروعك يحتاج إلى متطلبات خاصة، سنبني لك حلاً يناسبك بدقة.</p>
                         <ul class="pricing-features">
                             <li>✓ تحليل شامل لاحتياجات مشروعك</li>
                             <li>✓ حل مبني خصيصاً لك</li>
@@ -171,22 +180,22 @@
     <!-- FAQ Section -->
     <section class="faq-section light-section">
         <div class="container">
-            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <h2 class="section-title" data-i18n="pricing.faq.title">الأسئلة الشائعة</h2>
 
             <div class="faq-list">
                 <div class="faq-item">
-                    <h3>كيف نحدد السعر المناسب؟</h3>
-                    <p>نستمع إلى احتياجاتك ونقيّم حجم المشروع، ثم نشاركك عرضاً واضحاً يشمل المراحل والنتائج المتوقعة.</p>
+                    <h3 data-i18n="pricing.faq.q1">كيف نحدد السعر المناسب؟</h3>
+                    <p data-i18n="pricing.faq.a1">نستمع إلى احتياجاتك ونقيّم حجم المشروع، ثم نشاركك عرضاً واضحاً يشمل المراحل والنتائج المتوقعة.</p>
                 </div>
 
                 <div class="faq-item">
-                    <h3>ما طريقة الدفع؟</h3>
-                    <p>دفعة مقدمة لبدء العمل ثم دفعات حسب المراحل. التحويل البنكي والدفع الإلكتروني متاحان.</p>
+                    <h3 data-i18n="pricing.faq.q2">ما طريقة الدفع؟</h3>
+                    <p data-i18n="pricing.faq.a2">دفعة مقدمة لبدء العمل ثم دفعات حسب المراحل. التحويل البنكي والدفع الإلكتروني متاحان.</p>
                 </div>
 
                 <div class="faq-item">
-                    <h3>كم يستغرق التسليم؟</h3>
-                    <p>يختلف حسب المشروع. عادةً: الهوية البصرية (7-10 أيام)، الموقع (2-3 أسابيع)، التسويق (خطة شهرية مستمرة).</p>
+                    <h3 data-i18n="pricing.faq.q3">كم يستغرق التسليم؟</h3>
+                    <p data-i18n="pricing.faq.a3">يختلف حسب المشروع. عادةً: الهوية البصرية (7-10 أيام)، الموقع (2-3 أسابيع)، التسويق (خطة شهرية مستمرة).</p>
                 </div>
             </div>
         </div>
@@ -195,9 +204,9 @@
     <!-- CTA Section -->
     <section class="cta-section dark-section">
         <div class="container">
-            <h2>جاهز لتطوير مشروعك؟</h2>
-            <p>أخبرنا بما تحتاجه وسنقدم لك عرضاً واضحاً يناسب مشروعك.</p>
-            <a href="contact.html" class="btn btn-primary btn-large">اطلب عرض سعر</a>
+            <h2 data-i18n="pricing.cta.title">جاهز لتطوير مشروعك؟</h2>
+            <p data-i18n="pricing.cta.text">أخبرنا بما تحتاجه وسنقدم لك عرضاً واضحاً يناسب مشروعك.</p>
+            <a href="contact.html" class="btn btn-primary btn-large"><span data-i18n="pricing.cta.btn">اطلب عرض سعر</span></a>
         </div>
     </section>
 
@@ -210,8 +219,8 @@
             <div class="footer-shell">
                 <div class="footer-top">
                     <div class="footer-brand">
-                        <h3>مختبر ABC لتقنية المعلومات</h3>
-                        <p class="footer-tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
+                        <h3 data-i18n="footer.brand">مختبر ABC لتقنية المعلومات</h3>
+                        <p class="footer-tagline" data-i18n="footer.tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
                         <div class="footer-contact">
                             <a href="mailto:info@abcitlab.com" class="contact-chip">
                                 <span class="contact-icon icon-circle small">
@@ -223,31 +232,31 @@
                                 <span class="contact-icon icon-circle small premium-icon">
                                     <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
                                 </span>
-                                <span>واتساب مباشر</span>
+                                <span data-i18n="footer.whatsapp">واتساب مباشر</span>
                             </a>
                         </div>
                     </div>
                     <div class="footer-cta">
-                        <p class="footer-microcopy">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
+                        <p class="footer-microcopy" data-i18n="footer.cta.text">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
                         <div class="footer-actions">
-                            <a href="contact.html" class="btn btn-primary btn-small">تواصل معنا</a>
-                            <a href="services.html" class="btn btn-secondary btn-small">اطلع على الخدمات</a>
+                            <a href="contact.html" class="btn btn-primary btn-small" data-i18n="nav.contact">تواصل معنا</a>
+                            <a href="services.html" class="btn btn-secondary btn-small"><span data-i18n="footer.services.btn">اطلع على الخدمات</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-divider" aria-hidden="true"></div>
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h4>روابط سريعة</h4>
+                        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                         <ul>
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الخدمات</h4>
+                        <h4 data-i18n="footer.services">الخدمات</h4>
                         <ul>
                             <li><a href="services.html#branding">العلامة التجارية</a></li>
                             <li><a href="services.html#web">الموقع الإلكتروني</a></li>
@@ -255,19 +264,19 @@
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>للأخصائيين</h4>
-                        <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                        <h4 data-i18n="footer.specialists">للأخصائيين</h4>
+                        <p data-i18n="footer.specialists.text">نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
                         <ul class="footer-links-inline">
-                            <li><a href="apply.html">انضم كشريك مستقل</a></li>
-                            <li><a href="dashboard.html">لوحة المهام</a></li>
+                            <li><a href="apply.html" data-i18n="footer.join">انضم كشريك مستقل</a></li>
+                            <li><a href="dashboard.html" data-i18n="footer.dashboard">لوحة المهام</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الثقة والدعم</h4>
+                        <h4 data-i18n="footer.trust">الثقة والدعم</h4>
                         <ul>
-                            <li><a href="contact.html">طلب عرض سريع</a></li>
-                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                            <li><a href="terms.html">الشروط والأحكام</a></li>
+                            <li><a href="contact.html" data-i18n="footer.quote">طلب عرض سريع</a></li>
+                            <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html" data-i18n="footer.terms">الشروط والأحكام</a></li>
                         </ul>
                     </div>
                 </div>
@@ -282,46 +291,47 @@
                                         <path d="M21 10v5"></path>
                                     </svg>
                                 </span>
-                                <h3>أكاديمية ABC IT Lab</h3>
+                                <h3 data-i18n="footer.academy.title">أكاديمية ABC IT Lab</h3>
                             </div>
-                            <p class="footer-academy-text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
+                            <p class="footer-academy-text" data-i18n="footer.academy.text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
                             <div class="footer-academy-actions">
-                                <a href="academy.html" class="btn btn-primary btn-small">تصفح الدروس</a>
-                                <a href="academy.html?sort=latest" class="footer-academy-secondary">أحدث الدروس</a>
+                                <a href="academy.html" class="btn btn-primary btn-small"><span data-i18n="footer.browse">تصفح الدروس</span></a>
+                                <a href="academy.html?sort=latest" class="footer-academy-secondary"><span data-i18n="footer.latest">أحدث الدروس</span></a>
                             </div>
                         </div>
                         <div class="footer-academy-meta">
                             <div class="footer-academy-group">
-                                <h4>الفئات</h4>
+                                <h4 data-i18n="footer.categories">الفئات</h4>
                                 <div class="footer-academy-chips">
-                                    <a class="academy-chip" href="academy.html?category=basics">الأساسيات</a>
-                                    <a class="academy-chip" href="academy.html?category=finance">الإدارة المالية</a>
-                                    <a class="academy-chip" href="academy.html?category=metrics">البيانات والقياس</a>
-                                    <a class="academy-chip" href="academy.html?category=ops">التشغيل والإمداد</a>
-                                    <a class="academy-chip" href="academy.html?category=decisions">العمليات واتخاذ القرار</a>
-                                    <a class="academy-chip" href="academy.html?category=growth">التسويق والنمو</a>
+                                    <a class="academy-chip" href="academy.html?category=basics"><span data-i18n="footer.cat.basics">الأساسيات</span></a>
+                                    <a class="academy-chip" href="academy.html?category=finance"><span data-i18n="footer.cat.finance">الإدارة المالية</span></a>
+                                    <a class="academy-chip" href="academy.html?category=metrics"><span data-i18n="footer.cat.metrics">البيانات والقياس</span></a>
+                                    <a class="academy-chip" href="academy.html?category=ops"><span data-i18n="footer.cat.ops">التشغيل والإمداد</span></a>
+                                    <a class="academy-chip" href="academy.html?category=decisions"><span data-i18n="footer.cat.decisions">العمليات واتخاذ القرار</span></a>
+                                    <a class="academy-chip" href="academy.html?category=growth"><span data-i18n="footer.cat.growth">التسويق والنمو</span></a>
                                 </div>
                             </div>
                             <div class="footer-academy-group">
-                                <h4>روابط سريعة</h4>
+                                <h4 data-i18n="footer.quicklinks2">روابط سريعة</h4>
                                 <ul class="footer-academy-list">
-                                    <li><a href="academy.html#why-academy">لماذا الأكاديمية؟</a></li>
-                                    <li><a href="academy.html#lesson-method">كيف نختار الدروس؟</a></li>
-                                    <li><a href="academy.html#suggest-lesson">اقترح درسًا</a></li>
-                                    <li><a href="contact.html">تواصل معنا</a></li>
+                                    <li><a href="academy.html#why-academy" data-i18n="footer.why.academy">لماذا الأكاديمية؟</a></li>
+                                    <li><a href="academy.html#lesson-method" data-i18n="footer.lesson.method">كيف نختار الدروس؟</a></li>
+                                    <li><a href="academy.html#suggest-lesson" data-i18n="footer.suggest">اقترح درسًا</a></li>
+                                    <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="footer-legal">
-                    <p class="copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
+                    <p class="copyright" data-i18n="footer.copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </div>
     </footer>
 
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

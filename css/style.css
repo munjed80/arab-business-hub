@@ -1928,3 +1928,174 @@ input:focus, select:focus, textarea:focus {
         opacity: 1 !important;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   BILINGUAL SYSTEM — Language Switcher & LTR Overrides
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Language Switcher Button ── */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+.lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 13px;
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text);
+    font-family: var(--font-family);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-switcher::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(79,209,197,0.08), rgba(230,194,122,0.08));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.lang-switcher:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(79,209,197,0.12);
+}
+
+.lang-switcher:hover::before {
+    opacity: 1;
+}
+
+.lang-switcher:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.lang-icon {
+    font-size: 0.85em;
+    line-height: 1;
+}
+
+.lang-label {
+    position: relative;
+}
+
+/* ── LTR (English) Global Direction Overrides ── */
+[dir="ltr"] body {
+    direction: ltr;
+}
+
+/* Brand layout fix for LTR */
+[dir="ltr"] .brand {
+    flex-direction: row;
+}
+
+/* Hero services line separator */
+[dir="ltr"] .hero-services-line .sep {
+    margin: 0 0.3em;
+}
+
+/* Nav panel position for LTR */
+[dir="ltr"] .nav-panel {
+    left: auto;
+    right: 0;
+}
+
+/* Contact form direction */
+[dir="ltr"] .contact-form input,
+[dir="ltr"] .contact-form textarea,
+[dir="ltr"] .contact-form select {
+    text-align: left;
+}
+
+/* Footer alignment for LTR */
+[dir="ltr"] .footer-brand,
+[dir="ltr"] .footer-section,
+[dir="ltr"] .footer-academy-intro {
+    text-align: left;
+}
+
+/* Approach steps for LTR */
+[dir="ltr"] .step-number {
+    margin-inline-end: 0;
+    margin-inline-start: 0;
+}
+
+/* Lesson cards for LTR */
+[dir="ltr"] .lesson-card,
+[dir="ltr"] .lesson-meta {
+    text-align: left;
+}
+
+/* Pricing features for LTR */
+[dir="ltr"] .pricing-features li {
+    text-align: left;
+}
+
+/* Button groups — keep gap consistent */
+[dir="ltr"] .hero-cta,
+[dir="ltr"] .service-cta {
+    flex-direction: row;
+}
+
+/* Service detail list items */
+[dir="ltr"] .service-features li {
+    text-align: left;
+}
+
+/* Value/approach cards */
+[dir="ltr"] .value-card,
+[dir="ltr"] .step {
+    text-align: left;
+}
+
+/* FAQ items */
+[dir="ltr"] .faq-item {
+    text-align: left;
+}
+
+/* Map placeholder */
+[dir="ltr"] .map-placeholder {
+    text-align: center;
+}
+
+/* Academy methodology */
+[dir="ltr"] .methodology {
+    flex-direction: row;
+}
+
+/* Footer legal */
+[dir="ltr"] .footer-legal {
+    text-align: center;
+}
+
+/* Mobile brand for LTR */
+@media (max-width: 640px) {
+    [dir="ltr"] .brand {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Make language switcher always readable */
+@media (max-width: 400px) {
+    .lang-switcher {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+}

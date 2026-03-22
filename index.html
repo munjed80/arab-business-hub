@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="مختبر ABC لتقنية المعلومات — نصمم ونطور حلولاً تقنية تخدم مشروعك: هوية رقمية، موقع احترافي، وحلول تقنية عملية.">
+    <meta name="description" content="مختبر ABC لتقنية المعلومات — نصمم ونطور حلولاً تقنية تخدم مشروعك: هوية رقمية، موقع احترافي، وحلول تقنية عملية." data-i18n-content="home.meta.desc">
     <meta name="keywords" content="ABC IT Lab، مختبر تقنية المعلومات، تصميم مواقع، هوية رقمية، حلول تقنية، استشارات تقنية، تطوير الأعمال">
     <meta name="author" content="ABC IT Lab">
     <link rel="canonical" href="https://abcitlab.com/">
-    <meta property="og:title" content="مختبر ABC لتقنية المعلومات | حلول رقمية ذكية لتنمية أعمالك">
-    <meta property="og:description" content="نساعدك على تطوير مشروعك من خلال تصميم الهوية، بناء المواقع، وتحسين حضورك الرقمي بأسلوب واضح واحترافي.">
+    <link id="hreflang-ar" rel="alternate" hreflang="ar" href="https://abcitlab.com/">
+    <link id="hreflang-en" rel="alternate" hreflang="en" href="https://abcitlab.com/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://abcitlab.com/">
+    <meta property="og:title" content="مختبر ABC لتقنية المعلومات | حلول رقمية ذكية لتنمية أعمالك" data-i18n-content="home.og.title">
+    <meta property="og:description" content="نساعدك على تطوير مشروعك من خلال تصميم الهوية، بناء المواقع، وتحسين حضورك الرقمي بأسلوب واضح واحترافي." data-i18n-content="home.og.desc">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ar_AR">
     <meta property="og:url" content="https://abcitlab.com/">
@@ -18,10 +21,10 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:site_name" content="ABC IT Lab">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="مختبر ABC لتقنية المعلومات | حلول رقمية ذكية لتنمية أعمالك">
-    <meta name="twitter:description" content="نساعدك على تطوير مشروعك من خلال تصميم الهوية، بناء المواقع، وتحسين حضورك الرقمي بأسلوب واضح واحترافي.">
+    <meta name="twitter:title" content="مختبر ABC لتقنية المعلومات | حلول رقمية ذكية لتنمية أعمالك" data-i18n-content="home.og.title">
+    <meta name="twitter:description" content="نساعدك على تطوير مشروعك من خلال تصميم الهوية، بناء المواقع، وتحسين حضورك الرقمي بأسلوب واضح واحترافي." data-i18n-content="home.og.desc">
     <meta name="twitter:image" content="https://abcitlab.com/og-image.png">
-    <title>مختبر ABC لتقنية المعلومات | حلول رقمية ذكية لتنمية أعمالك</title>
+    <title data-i18n="home.meta.title">مختبر ABC لتقنية المعلومات | حلول رقمية ذكية لتنمية أعمالك</title>
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -42,30 +45,36 @@
                         <h1 class="brand-title brand-title-premium">ABC IT Lab</h1>
                     </div>
                 </div>
-                <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <div class="nav-actions">
+                    <button class="lang-switcher" id="langSwitcher" aria-label="Switch Language">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-label">EN</span>
+                    </button>
+                    <button class="nav-toggle" id="navToggle" data-i18n-aria="nav.toggle" aria-label="فتح القائمة" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
                 <div class="nav-overlay" id="navOverlay" aria-hidden="true">
-                    <div class="nav-panel" role="dialog" aria-label="قائمة الموقع">
+                    <div class="nav-panel" role="dialog" data-i18n-aria="nav.panel.label" aria-label="قائمة الموقع">
                         <div class="nav-panel-header">
-                            <h2 class="nav-panel-title">ABC IT Lab</h2>
-                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة">
+                            <h2 class="nav-panel-title" data-i18n="nav.panel.title">ABC IT Lab</h2>
+                            <button class="nav-close" id="navClose" aria-label="إغلاق القائمة" data-i18n-aria="nav.close">
                                 <span></span>
                                 <span></span>
                             </button>
                         </div>
                         <ul class="nav-menu" id="navMenu">
-                            <li><a href="index.html" class="active">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="academy.html">أكاديمية ABC IT Lab</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
-                            <li><a href="contact.html">تواصل معنا</a></li>
+                            <li><a href="index.html" class="active" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="academy.html" data-i18n="nav.academy">أكاديمية ABC IT Lab</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
+                            <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                         </ul>
                         <div class="nav-panel-cta">
-                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link">ابدأ مشروعك معنا</a>
+                            <a href="contact.html" class="btn btn-primary btn-premium nav-cta-link"><span data-i18n="nav.cta">ابدأ مشروعك معنا</span></a>
                         </div>
                     </div>
                 </div>
@@ -85,22 +94,22 @@
             <div class="hero-content">
                 <p class="eyebrow premium-eyebrow">
                     <span class="eyebrow-dot"></span>
-                    حلول رقمية عملية للأعمال
+                    <span data-i18n="home.eyebrow">حلول رقمية عملية للأعمال</span>
                 </p>
-                <h1 class="hero-title">نبني حضورًا رقميًا <span class="hero-highlight">يعكس قيمة عملك</span></h1>
-                <p class="hero-subtitle">من الهوية البصرية إلى الموقع والحضور الرقمي، نساعدك على تقديم مشروعك بصورة أكثر وضوحًا واحترافًا.</p>
+                <h1 class="hero-title" data-i18n="home.hero.title">نبني حضورًا رقميًا <span class="hero-highlight">يعكس قيمة عملك</span></h1>
+                <p class="hero-subtitle" data-i18n="home.hero.subtitle">من الهوية البصرية إلى الموقع والحضور الرقمي، نساعدك على تقديم مشروعك بصورة أكثر وضوحًا واحترافًا.</p>
                 <div class="hero-cta">
-                    <a href="contact.html" class="btn btn-primary btn-premium">ابدأ مشروعك معنا</a>
-                    <a href="services.html" class="btn btn-secondary btn-ghost">استعرض خدماتنا</a>
+                    <a href="contact.html" class="btn btn-primary btn-premium"><span data-i18n="home.cta1">ابدأ مشروعك معنا</span></a>
+                    <a href="services.html" class="btn btn-secondary btn-ghost"><span data-i18n="home.cta2">استعرض خدماتنا</span></a>
                 </div>
                 <div class="hero-services-line">
-                    <span>هوية بصرية</span>
+                    <span data-i18n="home.service.line1">هوية بصرية</span>
                     <span class="sep" aria-hidden="true">·</span>
-                    <span>موقع احترافي</span>
+                    <span data-i18n="home.service.line2">موقع احترافي</span>
                     <span class="sep" aria-hidden="true">·</span>
-                    <span>حضور رقمي</span>
+                    <span data-i18n="home.service.line3">حضور رقمي</span>
                     <span class="sep" aria-hidden="true">·</span>
-                    <span>استشارات عملية</span>
+                    <span data-i18n="home.service.line4">استشارات عملية</span>
                 </div>
             </div>
             <div class="hero-visual">
@@ -114,35 +123,35 @@
     <!-- Capabilities -->
     <section class="services-overview dark-section">
         <div class="container">
-            <h2 class="section-title">خدمات مصممة لتخدم نمو مشروعك</h2>
-            <p class="section-subtitle">سواء كنت تبدأ من الصفر أو تريد تطوير مشروعك الحالي، نوفر لك ما تحتاجه.</p>
+            <h2 class="section-title" data-i18n="home.services.title">خدمات مصممة لتخدم نمو مشروعك</h2>
+            <p class="section-subtitle" data-i18n="home.services.subtitle">سواء كنت تبدأ من الصفر أو تريد تطوير مشروعك الحالي، نوفر لك ما تحتاجه.</p>
 
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon icon-circle">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l5-3 5 3v5l-5 3-5-3z"/><path d="M7 12l5 3 5-3"/><path d="M7 12V7"/><path d="M17 12V7"/></svg>
                     </div>
-                    <h3>الهوية البصرية</h3>
-                    <p>نصمم هوية واضحة ومميزة تعكس شخصية مشروعك، من الشعار إلى الألوان والأسلوب البصري.</p>
-                    <a href="services.html#branding" class="service-link">اعرف المزيد</a>
+                    <h3 data-i18n="home.card1.title">الهوية البصرية</h3>
+                    <p data-i18n="home.card1.text">نصمم هوية واضحة ومميزة تعكس شخصية مشروعك، من الشعار إلى الألوان والأسلوب البصري.</p>
+                    <a href="services.html#branding" class="service-link"><span data-i18n="home.card1.link">اعرف المزيد</span></a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon icon-circle">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M8 10h8"/><path d="M8 14h5"/><path d="M4 9h16"/></svg>
                     </div>
-                    <h3>تصميم وتطوير المواقع</h3>
-                    <p>نبني مواقع عربية احترافية سريعة وواضحة، تساعد الزائر على التواصل أو الشراء بسهولة.</p>
-                    <a href="services.html#web" class="service-link">اعرف المزيد</a>
+                    <h3 data-i18n="home.card2.title">تصميم وتطوير المواقع</h3>
+                    <p data-i18n="home.card2.text">نبني مواقع عربية احترافية سريعة وواضحة، تساعد الزائر على التواصل أو الشراء بسهولة.</p>
+                    <a href="services.html#web" class="service-link"><span data-i18n="home.card2.link">اعرف المزيد</span></a>
                 </div>
 
                 <div class="service-card">
                     <div class="service-icon icon-circle">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17c4-4 12-4 16 0"/><path d="M6 7a2 2 0 114 0 2 2 0 01-4 0z"/><path d="M14 6h6"/><path d="M14 10h4"/></svg>
                     </div>
-                    <h3>التسويق والنمو</h3>
-                    <p>نساعدك في تحسين ظهورك وتحويل الاهتمام إلى فرص حقيقية لنمو مشروعك.</p>
-                    <a href="services.html#marketing" class="service-link">اعرف المزيد</a>
+                    <h3 data-i18n="home.card3.title">التسويق والنمو</h3>
+                    <p data-i18n="home.card3.text">نساعدك في تحسين ظهورك وتحويل الاهتمام إلى فرص حقيقية لنمو مشروعك.</p>
+                    <a href="services.html#marketing" class="service-link"><span data-i18n="home.card3.link">اعرف المزيد</span></a>
                 </div>
 
                 <div class="service-card">
@@ -358,11 +367,11 @@
     <!-- CTA Section -->
     <section class="cta-section dark-section">
         <div class="container">
-            <h2>جاهز لتطوير مشروعك؟</h2>
-            <p>دعنا نحول فكرتك إلى حضور احترافي يساعدك على جذب العملاء وبناء الثقة.</p>
+            <h2><span data-i18n="home.cta.title">جاهز لتطوير مشروعك؟</span></h2>
+            <p data-i18n="home.cta.text">دعنا نحول فكرتك إلى حضور احترافي يساعدك على جذب العملاء وبناء الثقة.</p>
             <div class="hero-cta">
-                <a href="contact.html" class="btn btn-primary">ابدأ الآن</a>
-                <a href="services.html" class="btn btn-secondary">اطلع على خدماتنا</a>
+                <a href="contact.html" class="btn btn-primary"><span data-i18n="home.cta.btn">ابدأ الآن</span></a>
+                <a href="services.html" class="btn btn-secondary"><span data-i18n="home.cta2">اطلع على خدماتنا</span></a>
             </div>
         </div>
     </section>
@@ -381,33 +390,33 @@
                                     <path d="M21 10v5"></path>
                                 </svg>
                             </span>
-                            <h3>أكاديمية ABC IT Lab</h3>
+                            <h3 data-i18n="footer.academy.title">أكاديمية ABC IT Lab</h3>
                         </div>
-                        <p class="footer-academy-text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
+                        <p class="footer-academy-text" data-i18n="footer.academy.text">دروس عملية قصيرة (5–7 دقائق) تساعدك على اتخاذ قرارات أفضل وبناء عمل أقوى.</p>
                         <div class="footer-academy-actions">
-                            <a href="academy.html" class="btn btn-primary btn-small">تصفح الدروس</a>
-                            <a href="academy.html?sort=latest" class="footer-academy-secondary">أحدث الدروس</a>
+                            <a href="academy.html" class="btn btn-primary btn-small"><span data-i18n="footer.browse">تصفح الدروس</span></a>
+                            <a href="academy.html?sort=latest" class="footer-academy-secondary"><span data-i18n="footer.latest">أحدث الدروس</span></a>
                         </div>
                     </div>
                     <div class="footer-academy-meta">
                         <div class="footer-academy-group">
-                            <h4>الفئات</h4>
+                            <h4 data-i18n="footer.categories">الفئات</h4>
                             <div class="footer-academy-chips">
-                                <a class="academy-chip" href="academy.html?category=basics">الأساسيات</a>
-                                <a class="academy-chip" href="academy.html?category=finance">الإدارة المالية</a>
-                                <a class="academy-chip" href="academy.html?category=metrics">البيانات والقياس</a>
-                                <a class="academy-chip" href="academy.html?category=ops">التشغيل والإمداد</a>
-                                <a class="academy-chip" href="academy.html?category=decisions">العمليات واتخاذ القرار</a>
-                                <a class="academy-chip" href="academy.html?category=growth">التسويق والنمو</a>
+                                <a class="academy-chip" href="academy.html?category=basics"><span data-i18n="footer.cat.basics">الأساسيات</span></a>
+                                <a class="academy-chip" href="academy.html?category=finance"><span data-i18n="footer.cat.finance">الإدارة المالية</span></a>
+                                <a class="academy-chip" href="academy.html?category=metrics"><span data-i18n="footer.cat.metrics">البيانات والقياس</span></a>
+                                <a class="academy-chip" href="academy.html?category=ops"><span data-i18n="footer.cat.ops">التشغيل والإمداد</span></a>
+                                <a class="academy-chip" href="academy.html?category=decisions"><span data-i18n="footer.cat.decisions">العمليات واتخاذ القرار</span></a>
+                                <a class="academy-chip" href="academy.html?category=growth"><span data-i18n="footer.cat.growth">التسويق والنمو</span></a>
                             </div>
                         </div>
                         <div class="footer-academy-group">
-                            <h4>روابط سريعة</h4>
+                            <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                             <ul class="footer-academy-list">
-                                <li><a href="academy.html#why-academy">لماذا الأكاديمية؟</a></li>
-                                <li><a href="academy.html#lesson-method">كيف نختار الدروس؟</a></li>
-                                <li><a href="academy.html#suggest-lesson">اقترح درسًا</a></li>
-                                <li><a href="contact.html">تواصل معنا</a></li>
+                                <li><a href="academy.html#why-academy" data-i18n="footer.why.academy">لماذا الأكاديمية؟</a></li>
+                                <li><a href="academy.html#lesson-method" data-i18n="footer.lesson.method">كيف نختار الدروس؟</a></li>
+                                <li><a href="academy.html#suggest-lesson" data-i18n="footer.suggest">اقترح درسًا</a></li>
+                                <li><a href="contact.html" data-i18n="nav.contact">تواصل معنا</a></li>
                             </ul>
                         </div>
                     </div>
@@ -425,8 +434,8 @@
             <div class="footer-shell">
                 <div class="footer-top">
                     <div class="footer-brand">
-                        <h3>مختبر ABC لتقنية المعلومات</h3>
-                        <p class="footer-tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
+                        <h3 data-i18n="footer.brand">مختبر ABC لتقنية المعلومات</h3>
+                        <p class="footer-tagline" data-i18n="footer.tagline">مختبر ABC لتقنية المعلومات — حلول رقمية عملية تساعد المشاريع على النمو بثقة.</p>
                         <div class="footer-contact">
                             <a href="mailto:info@abcitlab.com" class="contact-chip">
                                 <span class="contact-icon icon-circle small">
@@ -438,31 +447,31 @@
                                 <span class="contact-icon icon-circle small premium-icon">
                                     <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
                                 </span>
-                                <span>واتساب مباشر</span>
+                                <span data-i18n="footer.whatsapp">واتساب مباشر</span>
                             </a>
                         </div>
                     </div>
                     <div class="footer-cta">
-                        <p class="footer-microcopy">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
+                        <p class="footer-microcopy" data-i18n="footer.cta.text">جاهز لتطوير مشروعك؟ ابدأ الآن.</p>
                         <div class="footer-actions">
-                            <a href="contact.html" class="btn btn-primary btn-small">تواصل معنا</a>
-                            <a href="services.html" class="btn btn-secondary btn-small">اطلع على الخدمات</a>
+                            <a href="contact.html" class="btn btn-primary btn-small" data-i18n="nav.contact">تواصل معنا</a>
+                            <a href="services.html" class="btn btn-secondary btn-small"><span data-i18n="footer.services.btn">اطلع على الخدمات</span></a>
                         </div>
                     </div>
                 </div>
                 <div class="footer-divider" aria-hidden="true"></div>
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h4>روابط سريعة</h4>
+                        <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                         <ul>
-                            <li><a href="index.html">الرئيسية</a></li>
-                            <li><a href="services.html">الخدمات</a></li>
-                            <li><a href="about.html">من نحن</a></li>
-                            <li><a href="pricing.html">الأسعار</a></li>
+                            <li><a href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+                            <li><a href="services.html" data-i18n="nav.services">الخدمات</a></li>
+                            <li><a href="about.html" data-i18n="nav.about">من نحن</a></li>
+                            <li><a href="pricing.html" data-i18n="nav.pricing">الأسعار</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الخدمات</h4>
+                        <h4 data-i18n="footer.services">الخدمات</h4>
                         <ul>
                             <li><a href="services.html#branding">العلامة التجارية</a></li>
                             <li><a href="services.html#web">الموقع الإلكتروني</a></li>
@@ -470,30 +479,31 @@
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>للأخصائيين</h4>
-                        <p>نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
+                        <h4 data-i18n="footer.specialists">للأخصائيين</h4>
+                        <p data-i18n="footer.specialists.text">نعمل مع كتّاب، مسوّقين، ومديري مشاريع لتنفيذ العمل لعملائنا.</p>
                         <ul class="footer-links-inline">
-                            <li><a href="apply.html">انضم كشريك مستقل</a></li>
-                            <li><a href="dashboard.html">لوحة المهام</a></li>
+                            <li><a href="apply.html" data-i18n="footer.join">انضم كشريك مستقل</a></li>
+                            <li><a href="dashboard.html" data-i18n="footer.dashboard">لوحة المهام</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
-                        <h4>الثقة والدعم</h4>
+                        <h4 data-i18n="footer.trust">الثقة والدعم</h4>
                         <ul>
-                            <li><a href="contact.html">طلب عرض سريع</a></li>
-                            <li><a href="privacy.html">سياسة الخصوصية</a></li>
-                            <li><a href="terms.html">الشروط والأحكام</a></li>
+                            <li><a href="contact.html" data-i18n="footer.quote">طلب عرض سريع</a></li>
+                            <li><a href="privacy.html" data-i18n="footer.privacy">سياسة الخصوصية</a></li>
+                            <li><a href="terms.html" data-i18n="footer.terms">الشروط والأحكام</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-legal">
-                    <p class="copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
+                    <p class="copyright" data-i18n="footer.copyright">&copy; 2025 مختبر ABC لتقنية المعلومات. جميع الحقوق محفوظة.</p>
                 </div>
             </div>
         </div>
     </footer>
 
 
+    <script src="js/i18n.js"></script>
     <script src="js/script.js?v=20240919-1"></script>
 </body>
 </html>
