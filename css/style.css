@@ -1758,6 +1758,10 @@ input:focus, select:focus, textarea:focus {
 
 .footer-legal p { margin: 0; }
 
+.footer-partner { color: var(--color-muted); }
+
+.footer-partner strong { color: var(--color-text); font-weight: 700; }
+
 .footer-powered {
     display: block;
     font-family: "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
